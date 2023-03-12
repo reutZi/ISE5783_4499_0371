@@ -1,0 +1,112 @@
+package primitives;
+
+import java.util.zip.ZipError;
+
+/**
+ * A class representing a three-dimensional vector in Cartesian space, inheriting from Point.
+ */
+public class Vector extends Point {
+
+    /**
+     * Constructs a new Vector with the specified x, y, and z components.
+     * Throws an IllegalArgumentException if the vector is the zero vector.
+     * @param x the x component of the vector
+     * @param y the y component of the vector
+     * @param z the z component of the vector
+     * @throws IllegalArgumentException if the vector is the zero vector
+     */
+    public Vector(double x, double y, double z) {
+        super(x, y, z);
+        if(xyz.equals(Double3.ZERO))
+            throw new IllegalArgumentException("");
+    }
+
+    /**
+     * Constructs a new Vector with the specified Double3 object.
+     * @param double3 the Double3 object representing the vector's components
+     */
+    Vector(Double3 double3) {
+       this(double3.d1, double3.d2, double3.d3);
+    }
+
+    /**
+     * @return the squared length of this vector
+     */
+   public double lengthSquared(){
+        double dx = xyz.d1;
+        double dy = xyz.d2;
+        double dz = xyz.d3;
+        return dx * dx + dy * dy + dz * dz;
+    }
+
+    /**
+     * @return the length (magnitude) of this vector
+     */
+    public double length(){
+        return Math.sqrt(lengthSquared());
+    }
+
+    /**
+     * Determines whether this vector is equal to the specified object.
+     * Returns true if the object is a Vector and has the same components as this vector.
+     * @param o the object to compare to this vector
+     * @return true if the object is a Vector and has the same components as this vector, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o instanceof Vector other)
+            return xyz.equals(other.xyz);
+        return false;
+    }
+
+    /**
+     * @return a new Vector representing this vector scaled to unit length
+     */
+    public Vector normalize(){
+        double len = length();
+        return new Vector(xyz.reduce(len));
+    }
+
+    /**
+     * Returns the dot product of this vector and the specified vector.
+     * @param other the vector to calculate the dot product with
+     * @return the dot product of this vector and the specified vector
+     */
+    public double dotProduct(Vector other) {
+        double dx = xyz.d1 * other.xyz.d1;
+        double dy = xyz.d2 * other.xyz.d2;
+        double dz = xyz.d3 * other.xyz.d3;
+        return dx + dy + dz;
+    }
+
+    /**
+     * Returns a new Vector representing the cross product of this vector and the specified vector.
+     * @param other the vector to calculate the cross product with
+     * @return a new Vector representing the cross product of this vector and the specified vector
+     */
+    public Vector crossProduct(Vector other) {
+        double x = xyz.d2 * other.xyz.d3 - xyz.d3 * other.xyz.d2;
+        double y = xyz.d1 * other.xyz.d3 - other.xyz.d1 * xyz.d3;
+        double z = other.xyz.d1 * xyz.d2 - xyz.d1 * other.xyz.d2;
+        return new Vector(x, y, z);
+    }
+
+    /**
+     * Returns a new Vector that is the result of adding the current Vector with the specified Vector.
+     * @param other the Vector to add to the current Vector.
+     * @return a new Vector that is the result of adding the current Vector with the specified Vector.
+     */
+    public Vector add(Vector other){
+       return new Vector(xyz.add(other.xyz));
+    }
+
+    /**
+     * Returns a new Vector that is the result of scaling the current Vector by the specified scalar value.
+     * @param rhs the scalar value to scale the Vector by.
+     * @return a new Vector that is the result of scaling the current Vector by the specified scalar value.
+     */
+    public Vector scale(Double rhs){
+        return new Vector(xyz.scale(rhs));
+    }
+}
