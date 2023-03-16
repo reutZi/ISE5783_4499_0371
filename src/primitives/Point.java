@@ -35,7 +35,7 @@ public class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o instanceof Point other)
-            return xyz.equals(other.xyz);
+            return this.xyz.equals(other.xyz);
         return false;
     }
 
@@ -81,7 +81,7 @@ public class Point {
      * @param vector the Vector to add to this Point.
      * @return a new Point representing the result of the addition.
      */
-    public Object add(Vector vector) {
+    public Point add(Vector vector) {
         return new Point(xyz.add(vector.xyz));
     }
 
@@ -91,6 +91,6 @@ public class Point {
      * @return a new Vector representing the result of the subtraction.
      */
     public Vector subtract(Point other) {
-        return new Vector(other.xyz.subtract(xyz));
+        return new Vector(xyz.subtract(other.xyz));
     }
 }

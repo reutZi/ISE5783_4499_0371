@@ -88,8 +88,8 @@ public class Vector extends Point {
     public Vector crossProduct(Vector other) {
         double x = xyz.d2 * other.xyz.d3 - xyz.d3 * other.xyz.d2;
         double y = xyz.d1 * other.xyz.d3 - other.xyz.d1 * xyz.d3;
-        double z = other.xyz.d1 * xyz.d2 - xyz.d1 * other.xyz.d2;
-        return new Vector(x, y, z);
+        double z = xyz.d1 * other.xyz.d2 - xyz.d2 * other.xyz.d1;
+        return new Vector(x, -y, z);
     }
 
     /**
