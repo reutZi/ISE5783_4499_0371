@@ -31,6 +31,9 @@ public class Tube extends RadialGeometry {
 
     @Override
     public Vector getNormal(Point point) {
+       Point p0=axisRay.getP0();
+       //todo
+               //לזרוק חריגה עם ווקטור 0
         return null;  //Temporarily return null
     }
 }

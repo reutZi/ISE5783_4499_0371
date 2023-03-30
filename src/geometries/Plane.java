@@ -9,8 +9,8 @@ import primitives.*;
  */
 public class Plane implements Geometry{
 
-    Point q0;
-    Vector normal;
+    final Point q0;
+    final Vector normal;
 
     /**
      *  Creates a Plane object with the specified point and vector.
@@ -32,7 +32,10 @@ public class Plane implements Geometry{
      */
     public  Plane(Point p1, Point p2, Point p3){
         this.q0=p1; //save one random point to be point of reference
-        this.normal=null;
+        Vector u=p1.subtract(p2);
+        Vector v=p1.subtract(p3);
+        Vector n=u.crossProduct(v);
+        this.normal=n.normalize();
 
     }
     /**

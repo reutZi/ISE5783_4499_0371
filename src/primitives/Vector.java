@@ -109,4 +109,9 @@ public class Vector extends Point {
     public Vector scale(Double rhs){
         return new Vector(xyz.scale(rhs));
     }
+
+    @Override
+    public String toString() {
+        return "Vector: "+ xyz;
+    }
 }
