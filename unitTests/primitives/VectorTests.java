@@ -8,7 +8,6 @@ import primitives.*;
 
 class VectorTests {
 
-
     /**
      * Unit tests for primitives.Vector class
      */
