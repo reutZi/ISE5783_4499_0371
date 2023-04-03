@@ -20,6 +20,7 @@ class VectorTests {
 
         // =============== Boundary Values Tests ==================
         // TC11: test adding v + (-v)
+        //check zero vector
         assertThrows(IllegalArgumentException.class, () -> new Vector(1, 2, 3).add(new Vector(-1, -2, -3)),"Add v plus -v must throw exception");
     }
 
@@ -120,15 +121,12 @@ class VectorTests {
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
+
+        // =============== Boundary Values Tests ==================
+        // TC11: test zero vector from cross-product of co-lined vectors
         Vector v3 = new Vector(-2, -4, -6);
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),"crossProduct() for parallel vectors does not throw an exception");
     }
-
-    // =============== Boundary Values Tests ==================
-    // TC11: test zero vector from cross-productof co-lined vectors
-
-
-
 
 
     /* Test method for {@link primitives.Vector#lengthSquared()}.
@@ -140,7 +138,8 @@ class VectorTests {
         assertEquals(14d, new Vector(1, 2, 3).lengthSquared(), 0.00001, "lengthSquared() wrong value");
     }
 
-    /* Test method for {@link primitives.Vector#length()}.
+    /**
+     *  Test method for {@link primitives.Vector#length()}.
      */
     @Test
     public void testLength() {
@@ -149,14 +148,15 @@ class VectorTests {
     }
 
 
-    /* Test method for {@link primitives.Vector#normalize()}.
+    /**
+     *  Test method for {@link primitives.Vector#normalize()}.
      */
     @Test
     public void testNormalize() {
         Vector v = new Vector(0, 3, 4);
         Vector n = v.normalize();
         // ============ Equivalence Partitions Tests ==============
-        // TC01: Simple test
+        // TC01: Simple test - check that the length is 1.
         assertEquals(1d, n.lengthSquared(), 0.00001, "wrong normalized vector length");
         assertThrows(IllegalArgumentException.class,
                 () -> v.crossProduct(n),

@@ -10,7 +10,7 @@ class PointTests {
 
     Point p = new Point(1, 1, 1);
 
-    /* Test method for {@link primitives.Point#add(primitives.Vector)}.*/
+    /**Test method for {@link primitives.Point#add(primitives.Vector)}.*/
     @Test
     void testAdd() {
         // ============ Equivalence Partitions Tests ==============
@@ -18,12 +18,10 @@ class PointTests {
         assertEquals(new Point(2, 3, 4), new Point(1, 1, 1).add(new Vector(1, 2, 3)), //
                 "Wrong point add");
 
-        // =============== Boundary Values Tests ==================
-        // there are no boundary tests
+        //============= there are no boundary tests ================
     }
 
-    /* Test method for {@link primitives.Point#subtract(primitives.Point)}.
-     */
+    /** Test method for {@link primitives.Point#subtract(primitives.Point)}.*/
     @Test
     void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -37,8 +35,7 @@ class PointTests {
                 "Subtract P from P must throw exception");
     }
 
-    /* Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
-     */
+    /** Test method for {@link primitives.Point#distanceSquared(primitives.Point)}. */
     @Test
     void testDistanceSquared() {
         // ============ Equivalence Partitions Tests ==============
@@ -52,8 +49,7 @@ class PointTests {
                 "Wrong squared distance between the point and itself");
     }
 
-    /* Test method for {@link primitives.Point#distance(primitives.Point)}.
-     */
+    /** Test method for {@link primitives.Point#distance(primitives.Point)}.*/
     @Test
     void testDistance() {
         // ============ Equivalence Partitions Tests ==============
@@ -69,18 +65,7 @@ class PointTests {
 
 
 
-    @Test
-    void testSubtract1() {
-        assertEquals(new Vector(0, -1, -2), p.subtract(new Point(1, 2, 3)), "Error in subtract text");
-    }
 
-    @Test
-    void testSubtract2() {
-        assertThrows(IllegalArgumentException.class, () -> p.subtract(p), " Vector(0,0,0) in not illegal");
-    }
-    /**@Test
-    void testAllDistance(){
 
-    }
-    */
+
 }
