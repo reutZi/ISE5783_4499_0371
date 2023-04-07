@@ -31,9 +31,15 @@ public class Tube extends RadialGeometry {
 
     @Override
     public Vector getNormal(Point point) {
-       Point p0=axisRay.getP0();
-       //todo
-               //לזרוק חריגה עם ווקטור 0
-        return null;  //Temporarily return null
+        // Find the projection of the point on the tube's axis
+        // t = dir * (point - p0)
+        double t = axisRay.getDir().dotProduct(point.subtract(axisRay.getP0()));
+        // O = p0 + t * dir
+        Point O = axisRay.getP0().add(axisRay.getDir().scale(t));
+
+        // Calculate the normal vector
+        Vector normal = point.subtract(O);
+
+        return normal.normalize();
     }
 }

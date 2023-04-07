@@ -20,7 +20,6 @@ public class Plane implements Geometry{
     public Plane(Point q0, Vector vector) {
         this.q0 = q0;
         this.normal = vector.normalize();
-
     }
 
     /**
@@ -30,13 +29,14 @@ public class Plane implements Geometry{
      * @param p2- point on the plane
      * @param p3- point on the plane
      */
-    public  Plane(Point p1, Point p2, Point p3){
-        this.q0=p1; //save one random point to be point of reference
-        Vector u=p1.subtract(p2);
-        Vector v=p1.subtract(p3);
-        Vector n=u.crossProduct(v);
-        this.normal=n.normalize();
+    public  Plane(Point p1, Point p2, Point p3) {
 
+        this.q0 = p1; //save one random point to be point of reference
+        Vector u = p2.subtract(p1); // u = p2 - p1
+        Vector v = p3.subtract(p1); // v = p3 - p1
+        Vector n = u.crossProduct(v);
+
+        this.normal = n.normalize(); // n = normalize(v1 * v2)
     }
     /**
      * function to get the point
