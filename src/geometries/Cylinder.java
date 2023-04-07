@@ -28,6 +28,18 @@ public class Cylinder extends Tube{
 
     @Override
     public Vector getNormal(Point point) {
-        return null; //Temporarily return null
+        Point p0 = axisRay.getP0();
+        Vector v = axisRay.getDir();
+        Vector vectorToPoint = point.subtract(p0);
+
+        double projection = vectorToPoint.dotProduct(v);
+        // check if the point is at the top or bottom of the cylinder
+        if (projection <= 0 || projection >= height) {
+            return v;
+        }
+
+        // calculate the normal at the side of the cylinder
+        Point pointOnAxis = p0.add(v.scale(projection));
+        return point.subtract(pointOnAxis).normalize();
     }
 }
