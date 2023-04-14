@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="started stage 2">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_04_2023_09_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_04_2023_09_29__Changes_.xml" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="getNormal at Cylinder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/PointTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/PointTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/VectorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/VectorTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,125 +23,84 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2MuwTT37dy2CSM7USX7mE3NijqV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="primitives" />
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VectorTests.testCrossProduct">
-    <configuration name="VectorTests.testCrossProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TubeTest.getNormal">
+    <configuration name="PolygonTests.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="primitives.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="METHOD_NAME" value="testCrossProduct" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.PolygonTests" />
+      <option name="METHOD_NAME" value="testGetNormal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorTests.testLength" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SphereTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="primitives.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="METHOD_NAME" value="testLength" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
+      <option name="METHOD_NAME" value="getNormal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorTests.testLengthSquared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TubeTest.getNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="primitives.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="METHOD_NAME" value="testLengthSquared" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorTests.testNormalize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="METHOD_NAME" value="testNormalize" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorTests.testPointSubtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="primitives.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="primitives" />
-      <option name="MAIN_CLASS_NAME" value="primitives.VectorTests" />
-      <option name="METHOD_NAME" value="testPointSubtract" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
+      <option name="METHOD_NAME" value="getNormal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -150,11 +108,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.VectorTests.testCrossProduct" />
-        <item itemvalue="JUnit.VectorTests.testPointSubtract" />
-        <item itemvalue="JUnit.VectorTests.testNormalize" />
-        <item itemvalue="JUnit.VectorTests.testLength" />
-        <item itemvalue="JUnit.VectorTests.testLengthSquared" />
+        <item itemvalue="JUnit.TubeTest.getNormal" />
+        <item itemvalue="JUnit.SphereTest.getNormal" />
+        <item itemvalue="JUnit.PolygonTests.testGetNormal" />
       </list>
     </recent_temporary>
   </component>
@@ -168,41 +124,34 @@
       <updated>1678630784933</updated>
     </task>
     <task id="LOCAL‎-00001" summary="all of the implemention. we need to do javadoc">
-      <created>1678700752017</created>
+      <created>1680504661985</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL‎-00001" />
       <option name="project" value="LOCAL‎" />
-      <updated>1678700752019</updated>
+      <updated>1680504661985</updated>
     </task>
-    <task id="LOCAL‎-00002" summary="final stage 1">
-      <created>1678962131687</created>
+    <task id="LOCAL‎-00002" summary="getNormal at tube">
+      <created>1680865452584</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL‎-00002" />
       <option name="project" value="LOCAL‎" />
-      <updated>1678962131687</updated>
+      <updated>1680865452584</updated>
     </task>
-    <task id="LOCAL‎-00003" summary="final stage 1">
-      <created>1679432638551</created>
+    <task id="LOCAL‎-00003" summary="getNormal at Cylinder">
+      <created>1680866231620</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL‎-00003" />
       <option name="project" value="LOCAL‎" />
-      <updated>1679432638551</updated>
+      <updated>1680866231620</updated>
     </task>
-    <task id="LOCAL‎-00004" summary="final stage 1">
-      <created>1679433742081</created>
+    <task id="LOCAL‎-00004" summary="getNormal at Cylinder">
+      <created>1681462553562</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL‎-00004" />
       <option name="project" value="LOCAL‎" />
-      <updated>1679433742081</updated>
+      <updated>1681462553562</updated>
     </task>
-    <task id="LOCAL‎-00005" summary="started stage 2">
-      <created>1680165457297</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL‎-00005" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1680165457297</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,8 +167,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all of the implemention. we need to do javadoc" />
-    <MESSAGE value="final stage 1" />
-    <MESSAGE value="started stage 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="started stage 2" />
+    <MESSAGE value="getNormal at tube" />
+    <MESSAGE value="getNormal at Cylinder" />
+    <option name="LAST_COMMIT_MESSAGE" value="getNormal at Cylinder" />
   </component>
 </project>
