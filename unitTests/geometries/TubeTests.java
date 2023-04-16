@@ -5,17 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static primitives.Util.isZero;
 
 import org.junit.jupiter.api.Test;
 
-import geometries.Tube;
 import primitives.*;
 
-/**
- * The class is a JUnit test class used to test the functionality of the Tube class.
- **/
-class TubeTest {
+/** The class is a JUnit test class used to test the functionality of the Tube class.*/
+class TubeTests {
 
     /**
      * The method tests the functionality of the Tube getNormal(Point) method in the Tube class.
@@ -27,7 +23,8 @@ class TubeTest {
      * If the calculated normal vector does not match the expected normal vector, the test fails with an error message.
      */
     @Test
-    public void getNormal() {
+
+    public void testGetNormal() {
 
         // Boundary value analysis test when (p - p0) is a vector that is orthogonal to the axisRay
         Point p0 = new Point(0,0,0);

@@ -1,22 +1,11 @@
 package geometries;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static primitives.Util.isZero;
-
 import org.junit.jupiter.api.Test;
+import primitives.*;
 
-import geometries.Sphere;
-import primitives.Point;
-import primitives.Vector;
-
-/**
- * The class is a JUnit test class used to test the functionality of the Sphere class.
- */
-class SphereTest {
+/** The class is a JUnit test class used to test the functionality of the Sphere class. */
+class SphereTests {
 
     /**
      * Tests the {Sphere getNormal(Point)} method by checking if the normal vector of a sphere
@@ -28,7 +17,9 @@ class SphereTest {
      * to the expected normal vector.
      */
     @Test
-    void getNormal() {
+    void testGetNormal() {
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Simple test
         Sphere sphere = new Sphere(1 , new Point(0,0,0));
         Point p = new Point(1,0,0);
         // ensure normal = (1, 0 , 0)
