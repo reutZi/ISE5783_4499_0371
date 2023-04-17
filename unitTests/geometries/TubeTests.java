@@ -13,27 +13,27 @@ import primitives.*;
 /** The class is a JUnit test class used to test the functionality of the Tube class.*/
 class TubeTests {
 
-    /**
-     * The method tests the functionality of the Tube getNormal(Point) method in the Tube class.
-     *
-     * This method performs two tests:
-     * 1. Boundary value analysis test with a point lying on the tube's axis.
-     * 2. Equivalence partitioning test with a point not lying on the tube's axis.
-     *
-     * If the calculated normal vector does not match the expected normal vector, the test fails with an error message.
-     */
-    @Test
 
+    /** Test method for {@link geometries.Tube#getNormal(primitives.Point)} */
+    @Test
     public void testGetNormal() {
 
         // Boundary value analysis test when (p - p0) is a vector that is orthogonal to the axisRay
         Point p0 = new Point(0,0,0);
         Tube tube = new Tube(1, new Ray(p0, new Vector(0,0,1)));
         Point p = new Point(0,1,0);
-        assertEquals(tube.getNormal(p), new Vector(0,1,0), "Tube's normal vector is incorrect for extreme case when (p - p0) is orthogonal to axisRay");
+        Vector result = tube.getNormal(p);
+        assertEquals(result , new Vector(0,1,0), "Tube's normal vector is incorrect for extreme case when (p - p0) is orthogonal to axisRay");
+
+        // ensure |result| = 1 , Verify that the length of the computed normal vector is equal to 1
+        assertEquals(1, result.length(), 0.00000001, "Triangle's normal is not a unit vector");
 
         // Equivalence partitioning test with all the points on the tube
         Point p2 = new Point(1,0,2);
-        assertEquals(tube.getNormal(p2), new Vector(1,0,0), "Tube's normal vector is incorrect for all of the points");
+        Vector result2 = tube.getNormal(p2);
+        assertEquals(result2, new Vector(1,0,0), "Tube's normal vector is incorrect for all of the points");
+
+        // ensure |result| = 1 , Verify that the length of the computed normal vector is equal to 1
+        assertEquals(1, result2.length(), 0.00000001, "Triangle's normal is not a unit vector");
     }
 }

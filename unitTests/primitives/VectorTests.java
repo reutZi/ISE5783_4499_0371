@@ -6,12 +6,11 @@ import static primitives.Util.*;
 import org.junit.jupiter.api.Test;
 import primitives.*;
 
+
+/** Unit tests for primitives.Vector class */
 class VectorTests {
 
-    /**
-     * Unit tests for primitives.Vector class
-     */
-
+    /* Test method for {@link primitives.Point3D#add(primitives.Point3D)}.*/
     @Test
     public void testAdd() {
         // ============ Equivalence Partitions Tests ==============
@@ -24,7 +23,7 @@ class VectorTests {
         assertThrows(IllegalArgumentException.class, () -> new Vector(1, 2, 3).add(new Vector(-1, -2, -3)),"Add v plus -v must throw exception");
     }
 
-
+    /* Test method for {@link primitives.Point3D#subtract(primitives.Point3D)}.*/
     @Test
     public void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -37,14 +36,7 @@ class VectorTests {
                 () -> new Vector(1, 2, 3).subtract(new Vector(1, 2, 3)), "Subtract v from v must throw exception");
     }
 
-  /*
-    Test method for
-
-    {
-        @link primitives.Point3D#subtract(primitives.Point3D)
-    }.
-            */
-
+   /* Test method for {@link primitives.Point3D#subtract(primitives.Point3D)}.*/
     @Test
     public void testPointSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -57,13 +49,7 @@ class VectorTests {
                 () -> new Point(1, 2, 3).subtract(new Point(1, 2, 3)), "Subtract P from P must throw exception");
     }
 
-  /*
-    Test method for
-
-    {
-        @link primitives.Vector#scale( double)}.
-            */
-
+   /* Test method for {@link primitives.Vector#scale( double)}. */
     @Test
     public void testScale() {
         // ============ Equivalence Partitions Tests ==============
@@ -75,14 +61,7 @@ class VectorTests {
         assertThrows(IllegalArgumentException.class, () -> new Vector(1, 2, 3).scale(0d), "Scale by 0 must throw exception");
     }
 
-  /*
-    Test method for
-
-    {
-        @link primitives.Vector#dotProduct(primitives.Vector)
-    }.
-            */
-
+   /* Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}.  */
     @Test
     public void testDotProduct() {
         Vector v1 = new Vector(1, 2, 3);
@@ -98,14 +77,7 @@ class VectorTests {
         assertEquals(0d, v1.dotProduct(v3), 0.00001, "dotProduct() for orthogonal vectors is not zero");
     }
 
-  /*
-    Test method for
-
-    {
-        @link primitives.Vector#crossProduct(primitives.Vector)
-    }.
-            */
-
+  /* Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}. */
     @Test
     public void testCrossProduct() {
         Vector v1 = new Vector(1, 2, 3);
@@ -128,9 +100,7 @@ class VectorTests {
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),"crossProduct() for parallel vectors does not throw an exception");
     }
 
-
-    /* Test method for {@link primitives.Vector#lengthSquared()}.
-     */
+    /** Test method for {@link primitives.Vector#lengthSquared()}. */
     @Test
     public void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
@@ -138,9 +108,7 @@ class VectorTests {
         assertEquals(14d, new Vector(1, 2, 3).lengthSquared(), 0.00001, "lengthSquared() wrong value");
     }
 
-    /**
-     *  Test method for {@link primitives.Vector#length()}.
-     */
+    /** Test method for {@link primitives.Vector#length()}. */
     @Test
     public void testLength() {
         // TC01: Simple test
@@ -148,9 +116,7 @@ class VectorTests {
     }
 
 
-    /**
-     *  Test method for {@link primitives.Vector#normalize()}.
-     */
+    /** Test method for {@link primitives.Vector#normalize()}. */
     @Test
     public void testNormalize() {
         Vector v = new Vector(0, 3, 4);

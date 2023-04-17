@@ -3,14 +3,12 @@ package primitives;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
 import primitives.*;
 
+/** Unit tests for primitives.Point class */
 class PointTests {
 
-    Point p = new Point(1, 1, 1);
-
-    /**Test method for {@link primitives.Point#add(primitives.Vector)}.*/
+    /**Test method for {@link primitives.Point#add(primitives.Vector)}. */
     @Test
     void testAdd() {
         // ============ Equivalence Partitions Tests ==============
@@ -21,7 +19,7 @@ class PointTests {
         //============= there are no boundary tests ================
     }
 
-    /** Test method for {@link primitives.Point#subtract(primitives.Point)}.*/
+    /** Test method for {@link primitives.Point#subtract(primitives.Point)}. */
     @Test
     void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -49,7 +47,7 @@ class PointTests {
                 "Wrong squared distance between the point and itself");
     }
 
-    /** Test method for {@link primitives.Point#distance(primitives.Point)}.*/
+    /** Test method for {@link primitives.Point#distance(primitives.Point)}. */
     @Test
     void testDistance() {
         // ============ Equivalence Partitions Tests ==============
@@ -62,10 +60,4 @@ class PointTests {
         assertEquals(0d, new Point(1, 2, 3).distance(new Point(1, 2, 3)), 0.0001, //
                 "Wrong distance between the point and itself");
     }
-
-
-
-
-
-
 }
