@@ -9,7 +9,7 @@ import static primitives.Util.isZero;
 /** The class is a JUnit test class used to test the functionality of the Plane class */
 class PlaneTests {
 
-    /** Test method for {@link geometries.Plane#Plane(primitives.Point, primitives.Point,primitives.Point)}. */
+    /** Test method for {@link geometries.Plane#Plane(Point, Point,Point)}. */
     @Test
     void testConstructor() {
 

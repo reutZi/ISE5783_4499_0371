@@ -1,8 +1,7 @@
 package geometries;
 
 import primitives.*;
-import primitives.Ray;
-import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  *Class that represent a cylinder (tube that not infinity)
@@ -24,5 +23,9 @@ public class Cylinder extends Tube{
     /** @return the height*/
     public double getHeight() {
         return height;
+    }
+
+    public Vector getNormal(Point point) {
+
     }
 }
