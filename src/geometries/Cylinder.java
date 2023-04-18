@@ -16,6 +16,7 @@ public class Cylinder extends Tube{
      * @param height the height of the cylinder.
      * @param axisRay */
     public Cylinder(double radius, Ray axisRay,double height) {
+
         super(radius,axisRay);
         this.height = height;
     }
@@ -25,7 +26,38 @@ public class Cylinder extends Tube{
         return height;
     }
 
-    public Vector getNormal(Point point) {
 
+    /**
+     Returns the normal vector to the cylinder at a specified point.
+     @param point A point on the cylinder.
+     @return The normal vector to the cylinder at the specified point.
+     */
+    public Vector getNormal(Point point) {
+        // Get the origin point of the cylinder axis ray.
+        Point p0 = axisRay.getP0();
+        // Get the direction vector of the cylinder axis ray.
+        Vector v = axisRay.getDir();
+
+        // Check if the given point is the same as the axis ray's origin point.
+        // If so, return the direction vector of the axis ray.
+        if (point.equals(p0))
+            return v;
+
+        // Calculate a vector u from the cylinder's axis ray origin to the given point.
+        Vector u = point.subtract(p0);
+
+        // Calculate the projection of u onto v.
+        double t = alignZero(u.dotProduct(v));
+
+        // Check if the point is on the top or bottom base of the cylinder.
+        if (t == 0 || isZero(height - t))
+            return v;
+
+        // Calculate the intersection point o between the cylinder axis ray and the plane that passes through
+        // the given point and is perpendicular to the cylinder's axis ray.
+        Point o = p0.add(v.scale(t));
+
+        // Calculate the normal vector from the given point to the intersection point o.
+        return point.subtract(o).normalize();
     }
 }
