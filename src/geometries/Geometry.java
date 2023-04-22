@@ -5,7 +5,7 @@ import primitives.*;
 /**
  * The Geometry interface represents a geometric shape.
  */
-public interface Geometry {
+public interface Geometry extends Intersectable{
 
     /**
      * Returns the normal vector of the specified point on the surface of this geometry.

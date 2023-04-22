@@ -26,6 +26,22 @@ public class Point {
         this(double3.d1, double3.d2, double3.d3);
     }
 
+    /** Returns the x coordinate of the point */
+    public double getX(){
+        return xyz.d1;
+    }
+
+    /** Returns the y coordinate of the point */
+    public double getY(){
+        return xyz.d2;
+    }
+
+    /** Returns the z coordinate of the point */
+    public double getZ(){
+        return xyz.d3;
+    }
+
+
     /**
      * Compares the Point with the specified object for equality.
      * @param o the object to be compared with the Point.

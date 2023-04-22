@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Plane ia A class that implements the "Geometry" interface.
  * This class represents a plane by a one point on the plane and a vector
@@ -59,5 +61,10 @@ public class Plane implements Geometry{
      */
     public Vector getNormal() {
         return getNormal(q0);
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray){
+        return null;
     }
 }
