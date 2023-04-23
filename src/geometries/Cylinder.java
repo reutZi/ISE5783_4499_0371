@@ -6,15 +6,13 @@ import java.util.List;
 
 import static primitives.Util.*;
 
-/**
- *Class that represent a cylinder (tube that not infinity)
- * therefore the cylinder is extends from tube, but cylinder has also a height.*/
+/** Class that represent a cylinder (tube that not infinity)
+ * therefore the cylinder is extends from tube, but cylinder has also a height. */
 public class Cylinder extends Tube{
 
     double height;
 
-    /**
-     * create a new Cylinder object
+    /** create a new Cylinder object
      * @param radius the radius of the base of the cylinder
      * @param height the height of the cylinder.
      * @param axisRay */
@@ -30,11 +28,7 @@ public class Cylinder extends Tube{
     }
 
 
-    /**
-     Returns the normal vector to the cylinder at a specified point.
-     @param point A point on the cylinder.
-     @return The normal vector to the cylinder at the specified point.
-     */
+    @Override
     public Vector getNormal(Point point) {
         // Get the origin point of the cylinder axis ray.
         Point p0 = axisRay.getP0();

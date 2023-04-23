@@ -36,4 +36,10 @@ class TubeTests {
         // ensure |result| = 1 , Verify that the length of the computed normal vector is equal to 1
         assertEquals(1, result2.length(), 0.00000001, "Triangle's normal is not a unit vector");
     }
+
+    /** Test method for {@link geometries.Tube#findIntersections(Ray)}. */
+    @Test
+    void testFindIntersections() {
+
+    }
 }

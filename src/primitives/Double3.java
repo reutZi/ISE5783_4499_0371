@@ -8,10 +8,13 @@ import static primitives.Util.isZero;
 /** This class will serve all primitive classes based on three numbers
  * @author Dan Zilberstein */
 public class Double3 {
+
     /** First number */
     final double d1;
+
     /** Second number */
     final double d2;
+
     /** Third number */
     final double d3;
 
@@ -21,7 +24,7 @@ public class Double3 {
     /** One's triad (1,1,1) */
     public static final Double3 ONE = new Double3(1, 1, 1);
 
-    /** Constructor to initialize Double3 based object with its three number values
+    /** Constructor to initialize Double3 based object with its three number values.
      * @param d1 first number value
      * @param d2 second number value
      * @param d3 third number value */
@@ -31,7 +34,7 @@ public class Double3 {
         this.d3 = d3;
     }
 
-    /** Constructor to initialize Double3 based object the same number values
+    /** Constructor to initialize Double3 based object the same number values.
      * @param value number value for all 3 numbers */
     public Double3(double value) {
         this.d1 = value;
@@ -46,6 +49,7 @@ public class Double3 {
             return isZero(d1 - other.d1)
                     && isZero(d2 - other.d2)
                     && isZero(d3 - other.d3);
+
         return false;
     }
 
@@ -60,7 +64,7 @@ public class Double3 {
     }
 
     /** Sum two floating point triads into a new triad where each couple of numbers
-     * is summarized
+     * is summarized.
      * @param  rhs right handle side operand for addition
      * @return result of add */
     public Double3 add(Double3 rhs) {
@@ -68,7 +72,7 @@ public class Double3 {
     }
 
     /** Subtract two floating point triads into a new triad where each couple of
-     * numbers is subtracted
+     * numbers is subtracted.
      * @param  rhs right handle side operand for addition
      * @return result of add */
     public Double3 subtract(Double3 rhs) {
@@ -76,8 +80,7 @@ public class Double3 {
     }
 
     /** Scale (multiply) floating point triad by a number into a new triad where
-     * each
-     * number is multiplied by the number
+     * each number is multiplied by the number rhs.
      * @param  rhs right handle side operand for scaling
      * @return result of scale */
     public Double3 scale(double rhs) {
@@ -110,9 +113,7 @@ public class Double3 {
 
     /** Checks whether all the numbers are lower than three numbers in another triad
      * @param  other other triad
-     * @return true if all the numbers are less that appropriate numbers in
-     *               other
-     *               triad, false otherwise */
+     * @return true if all the numbers are less that appropriate numbers in other triad, false otherwise */
     public boolean lowerThan(Double3 other) {
         return d1 < other.d1 && d2 < other.d2 && d3 < other.d3;
     }

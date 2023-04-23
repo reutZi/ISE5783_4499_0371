@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CylinderTest {
 
+    /** Test method for {@link geometries.Cylinder#getNormal(Point)}. */
     @Test
     void getNormal() {
         Cylinder cyl = new Cylinder(1.0, new Ray(new Point(0, 0, 1), new Vector(0, 1, 0)), 1d);
@@ -35,5 +36,11 @@ class CylinderTest {
 
         // TC14: Point at the edge with 2nd base
         assertEquals(new Vector(0, 1, 0), cyl.getNormal(new Point(0, 1, 2)), "Bad normal to edge with upper base");
+    }
+
+    /** Test method for {@link geometries.Cylinder#findIntersections(Ray)}. */
+    @Test
+    void testFindIntersections() {
+
     }
 }

@@ -63,5 +63,4 @@ class SphereTests {
         // **** Group: Special cases
         // TC19: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
     }
-
-    }
+}

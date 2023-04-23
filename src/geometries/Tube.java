@@ -6,27 +6,21 @@ import primitives.Vector;
 
 import java.util.List;
 
-/**
- * A class that represents a Tube in space, with the ray and the radius of the tube.
+/** A class that represents a Tube in space, with the ray and the radius of the tube.
  * the tube is infinity.
- * tube is a part of Radial Geometry, so this class extends from "RadialGeometry".
- */
+ * tube is a part of Radial Geometry, so this class extends from "RadialGeometry". */
 public class Tube extends RadialGeometry {
     Ray axisRay;
 
-    /**
-     * crate a new Tube object
+    /** crate a new Tube object
      * @param radius the radius of the base of the tube.
-     * @param axisRay
-     */
+     * @param axisRay */
     public Tube(double radius, Ray axisRay) {
         super(radius);
         this.axisRay = axisRay;
     }
 
-    /**
-     * @return the ray of the tube.
-     */
+    /** @return the ray of the tube. */
     public Ray getAxisRay() {
         return axisRay;
     }
