@@ -2,7 +2,10 @@ package geometries;
 
 import primitives.*;
 
+
+import java.util.LinkedList;
 import java.util.List;
+import static primitives.Util.*;
 
 /** Plane ia A class that implements the "Geometry" interface.
  * This class represents a plane by a one point on the plane and a vector
@@ -55,6 +58,23 @@ public class Plane implements Geometry{
 
     @Override
     public List<Point> findIntersections(Ray ray){
+
+        if(q0.equals(ray.getP0())) return null;
+
+        Vector qMinusP0 = q0.subtract(ray.getP0());
+        double nQMinusP0 = normal.dotProduct(qMinusP0);
+        double nv = normal.dotProduct(ray.getDir());
+
+        if (isZero(nv)) { return null; }
+
+        double t = alignZero(nQMinusP0/nv);
+
+        if(t > 0d){
+            List<Point> list = new LinkedList<Point>();
+            list.add(ray.getPoint(t));
+            return list;
+        }
+
         return null;
     }
 }

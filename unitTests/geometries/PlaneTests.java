@@ -63,6 +63,57 @@ class PlaneTests {
     /** Test method for {@link geometries.Plane#findIntersections(Ray)}. */
     @Test
     void testFindIntersections() {
+        Plane pl = new Plane(new Point(0,0,2), new Point(1,0,2), new Point(0,1,2));
 
+        // ============ Equivalence Partitions Tests ==============
+
+        // TC01: ray intersects the plane
+        Ray ray = new Ray(new Point(-1,0,-1), new Vector(1, 0,1));
+        assertEquals(pl.findIntersections(ray).size(), 1, "ERROR: Wrong number of points intersects the plane");
+        assertEquals(pl.findIntersections(ray).get(0), new Point(2,0,2), "ERROR: Wrong value point intersects the plane");
+
+        //TC02: Ray does not intersect the plane
+        ray = new Ray(new Point(3,0,3), new Vector(1, 0,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane");
+
+        // =============== Boundary Values Tests ==================
+
+
+        //TC11: the ray included in the plane
+        ray = new Ray(new Point(3,0,2), new Vector(1, 0,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane" +
+                " when Ray is parallel to the plane and included in the plane");
+
+        //TC12: the ray not included in the plane
+        ray = new Ray(new Point(3,0,3), new Vector(1, 1,0));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane " +
+                "when Ray is parallel to the plane and not included in the plane");
+
+        //TC13: before the plane
+        ray = new Ray(new Point(2,3,1), new Vector(0, 0,1));
+        assertEquals(pl.findIntersections(ray).size(), 1, "ERROR: Wrong number of points intersects the plane" +
+                "when the ray is orthogonal to the plane before the plane");
+        assertEquals(pl.findIntersections(ray).get(0), new Point(2,3,2), "ERROR: Wrong value point intersects the plane" +
+                "when the ray is orthogonal to the plane before the plane");
+
+        //TC14: in the plane
+        ray = new Ray(new Point(5,3,2), new Vector(0, 0,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane" +
+                "when the ray is orthogonal to the plane in the plane");
+
+        //TC15: after the plane
+        ray = new Ray(new Point(0,3,4), new Vector(0, 0,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane" +
+                "when the ray is orthogonal to the plane after the plane");
+
+        //TC16: Ray is neither orthogonal nor parallel to and begins at the plane
+        ray = new Ray(new Point(1,0,2), new Vector(1, 1,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane " +
+                "when the ray is neither orthogonal nor parallel to and begins at the plane");
+
+        //TC17: Ray is neither orthogonal nor parallel to the plane and begins in the same point which appears as reference point in the plane
+        ray = new Ray(pl.getQ0(), new Vector(0, 1,1));
+        assertNull(pl.findIntersections(ray), "ERROR: Wrong number of points intersects the plane " +
+                "when the ray is neither orthogonal nor parallel to and begins in the same point which appears as reference point in the plane");
     }
 }
