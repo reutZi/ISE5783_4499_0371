@@ -7,8 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
-
+import java.util.List;
 import primitives.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** The class is a JUnit test class used to test the functionality of the Tube class.*/
 class TubeTests {
@@ -35,11 +36,5 @@ class TubeTests {
 
         // ensure |result| = 1 , Verify that the length of the computed normal vector is equal to 1
         assertEquals(1, result2.length(), 0.00000001, "Triangle's normal is not a unit vector");
-    }
-
-    /** Test method for {@link geometries.Tube#findIntersections(Ray)}. */
-    @Test
-    void testFindIntersections() {
-
     }
 }

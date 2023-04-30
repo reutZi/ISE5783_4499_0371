@@ -1,18 +1,10 @@
 package geometries;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
-
 import org.junit.jupiter.api.Test;
-
-import geometries.Polygon;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
+import java.util.List;
 
 /** Testing Polygons
  * @author Dan */
@@ -90,5 +82,40 @@ public class PolygonTests {
     @Test
     void testFindIntersections() {
 
+        //square
+        Polygon poly = new Polygon(
+                new Point(1d, 4d, 0),
+                new Point(4d, 4d, 0),
+                new Point(4d, 0, 0),
+                new Point(1d, 0, 0)
+        );
+
+        Point p = new Point(0, 0, 4d);
+
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Inside triangle
+        List<Point> result = poly.findIntersections(new Ray(p, new Vector(2d, 2d, -4d)));
+        assertEquals(List.of(new Point(2d, 2d, 0)), result, "Inside polygon");
+
+        // TC02: Outside against edge
+        result = poly.findIntersections(new Ray(p, new Vector(5d, 2d, -4d)));
+        assertNull(result, "Outside against edge");
+
+        // TC03: Outside against vertex
+        result = poly.findIntersections(new Ray(p, new Vector(7d, 7d, -4d)));
+        assertNull(result, "Outside against vertex");
+
+        // =============== Boundary Values Tests ==================
+        // TC11: On edge
+        result = poly.findIntersections(new Ray(p, new Vector(4d, 2, -4d)));
+        assertNull(result, "On edge");
+
+        // TC12: In vertex
+        result = poly.findIntersections(new Ray(p, new Vector(4d, 4d, -4d)));
+        assertNull(result, "In vertex");
+
+        // TC13: On edge's continuation
+        result = poly.findIntersections(new Ray(p, new Vector(7d, 8d, -4d)));
+        assertNull(result, "On edge's continuation");
     }
 }

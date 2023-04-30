@@ -37,10 +37,4 @@ class CylinderTest {
         // TC14: Point at the edge with 2nd base
         assertEquals(new Vector(0, 1, 0), cyl.getNormal(new Point(0, 1, 2)), "Bad normal to edge with upper base");
     }
-
-    /** Test method for {@link geometries.Cylinder#findIntersections(Ray)}. */
-    @Test
-    void testFindIntersections() {
-
-    }
 }

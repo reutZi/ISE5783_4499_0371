@@ -41,23 +41,29 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
+
         Point p0 = ray.getP0();
         Vector dir = ray.getDir();
         double r = this.radius;
         Vector u;
+
+        // Check if the ray starts at the center of the sphere
         try {
             u = this.center.subtract(p0);
-        }
-        catch (IllegalArgumentException e) //say that the ray started at the sphere's center
-        {
+        } catch (IllegalArgumentException e) {
             return List.of(p0.add(dir.scale(r)));
         }
+
+        // Calculate the necessary values for intersection calculation
         double tm = u.dotProduct(dir);
         double ul = u.length();
         double d = Math.sqrt(ul * ul - tm * tm);
 
+        // Check if there are no intersections
         if (d >= r)
-            return null;  //no intersection
+            return null;
+
+        // Calculate the intersection points
         double th = Math.sqrt(r * r - d * d);
         double t1 = tm + th;
         double t2 = tm - th;
@@ -67,6 +73,7 @@ public class Sphere extends RadialGeometry {
             return List.of(p0.add(dir.scale(t1)));
         else if (t2 > 0)
             return List.of(p0.add(dir.scale(t2)));
-        else return null;
+        else
+            return null;
     }
 }

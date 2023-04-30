@@ -59,22 +59,34 @@ public class Plane implements Geometry{
     @Override
     public List<Point> findIntersections(Ray ray){
 
-        if(q0.equals(ray.getP0())) return null;
+        // Check if the Ray starts on the Plane, if so return null.
+        if (q0.equals(ray.getP0())) {
+            return null;
+        }
 
+        // Calculate the vector between q0 and the Ray's starting point.
         Vector qMinusP0 = q0.subtract(ray.getP0());
+        // Calculate the dot product between the Plane's normal and qMinusP0.
         double nQMinusP0 = normal.dotProduct(qMinusP0);
+        // Calculate the dot product between the Plane's normal and the Ray's direction vector.
         double nv = normal.dotProduct(ray.getDir());
 
-        if (isZero(nv)) { return null; }
+        // If the dot product between the Plane's normal and the Ray's direction vector is close to zero, return null.
+        if (isZero(nv)) {
+            return null;
+        }
 
-        double t = alignZero(nQMinusP0/nv);
+        // Calculate the intersection parameter t.
+        double t = alignZero(nQMinusP0 / nv);
 
-        if(t > 0d){
+        // If t is greater than 0, create a new list containing the intersection point and return it.
+        if (t > 0d) {
             List<Point> list = new LinkedList<Point>();
             list.add(ray.getPoint(t));
             return list;
         }
 
+        // Otherwise, return null.
         return null;
     }
 }
