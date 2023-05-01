@@ -2,8 +2,10 @@ package geometries;
 import primitives.*;
 import java.util.List;
 
+/** This interface represents an intersectable geometry object. */
 public interface Intersectable {
 
-    /** @returnA List<Point> containing intersection points of the Ray with geometry. */
+    /** Returns a list of intersection points between the given ray and this geometry.
+     * @param ray the ray to intersect with this geometry. */
     List<Point> findIntersections(Ray ray);
 }
