@@ -94,14 +94,14 @@ public class Polygon implements Geometry {
 
       // Compute necessary vectors and points for intersection calculation
       Point P0 = ray.getP0();
-      Vector v = ray.getDir();
+      Vector dir = ray.getDir();
       Point P1 = vertices.get(1);
       Point P2 = vertices.get(0);
       Vector v1 = P1.subtract(P0);
       Vector v2 = P2.subtract(P0);
 
       // Check if the ray intersects the polygon using sign calculation
-      double sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+      double sign = alignZero(dir.dotProduct(v1.crossProduct(v2)));
       if (isZero(sign)) {
          return null;
       }
@@ -112,7 +112,7 @@ public class Polygon implements Geometry {
       for (int i = vertices.size() - 1; i > 0; --i) {
          v1 = v2;
          v2 = vertices.get(i).subtract(P0);
-         sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+         sign = alignZero(dir.dotProduct(v1.crossProduct(v2)));
 
          // Return null if the vertex lies on the plane of the polygon
          if (isZero(sign)) {

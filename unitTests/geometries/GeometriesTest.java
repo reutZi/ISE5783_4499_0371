@@ -17,6 +17,7 @@ class GeometriesTest {
 
         Ray ray = new Ray(new Point(2,0,0), new Vector(-2,-2,2));
         // ============ Equivalence Partitions Tests ==============
+
         //TC01: Only some of the lines are intersection
         Geometries geometries = new Geometries(pl,sphere, triangle);
         //אם מוחזר null

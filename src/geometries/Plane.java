@@ -81,8 +81,7 @@ public class Plane implements Geometry{
 
         // If t is greater than 0, create a new list containing the intersection point and return it.
         if (t > 0d) {
-            List<Point> list = new LinkedList<Point>();
-            list.add(ray.getPoint(t));
+            List<Point> list = List.of(ray.getPoint(t));
             return list;
         }
 

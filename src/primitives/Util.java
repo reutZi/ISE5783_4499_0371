@@ -39,7 +39,6 @@ public abstract class Util {
 
 	/**
 	 * Aligns the number to zero if it is almost zero
-	 * 
 	 * @param number the number to align
 	 * @return 0.0 if the number is very close to zero, the number itself otherwise
 	 */

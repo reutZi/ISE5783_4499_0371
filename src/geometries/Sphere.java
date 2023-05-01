@@ -42,38 +42,45 @@ public class Sphere extends RadialGeometry {
     @Override
     public List<Point> findIntersections(Ray ray) {
 
+        // Get the start point and direction of the ray
         Point p0 = ray.getP0();
         Vector dir = ray.getDir();
+
+        // Get the radius of the sphere
         double r = this.radius;
+
+        // Calculate vector from the ray's start point to the center of the sphere
         Vector u;
 
-        // Check if the ray starts at the center of the sphere
         try {
             u = this.center.subtract(p0);
         } catch (IllegalArgumentException e) {
+            // If the ray starts at the center of the sphere, return a single intersection point
             return List.of(p0.add(dir.scale(r)));
         }
 
-        // Calculate the necessary values for intersection calculation
+        // Calculate necessary values for intersection calculation
         double tm = u.dotProduct(dir);
         double ul = u.length();
         double d = Math.sqrt(ul * ul - tm * tm);
 
         // Check if there are no intersections
-        if (d >= r)
+        if (d >= r) {
             return null;
+        }
 
         // Calculate the intersection points
         double th = Math.sqrt(r * r - d * d);
         double t1 = tm + th;
         double t2 = tm - th;
-        if (t1 > 0 && t2 > 0)
-            return List.of(p0.add(dir.scale(t1)), p0.add(dir.scale(t2)));
-        else if (t1 > 0)
-            return List.of(p0.add(dir.scale(t1)));
-        else if (t2 > 0)
-            return List.of(p0.add(dir.scale(t2)));
-        else
+        if (t1 > 0 && t2 > 0) {
+            return List.of(ray.getPoint(t1), ray.getPoint(t2));
+        } else if (t1 > 0) {
+            return List.of(ray.getPoint(t1));
+        } else if (t2 > 0) {
+            return List.of(ray.getPoint(t2));
+        } else {
             return null;
+        }
     }
 }
