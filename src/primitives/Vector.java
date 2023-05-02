@@ -85,7 +85,7 @@ public class Vector extends Point {
 
     /** @param rhs the scalar value to scale the Vector by.
      * @return a new Vector that is the result of scaling the current Vector by the specified scalar value. */
-    public Vector scale(Double rhs) {
+    public Vector scale(double rhs) {
         // for better performance we are not using the following
         // return new Vector(xyz.scale(rhs));
         return new Vector(xyz.d1 * rhs, xyz.d2 * rhs,  xyz.d3 * rhs);
