@@ -29,9 +29,7 @@ public class Camera {
         return vRight;
     }
 
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height;}
 
     public double getWidth() {
         return width;
@@ -39,11 +37,6 @@ public class Camera {
 
     public double getDistance() {
         return distance;
-    }
-
-    public Camera setVPDistance(double distance){
-        this.distance = distance;
-        return this;
     }
 
     public Camera(Point p, Vector vTo, Vector vUp) {
@@ -63,7 +56,13 @@ public class Camera {
         return this;
     }
 
+    public Camera setVPDistance(double distance){
+        this.distance = distance;
+        return this;
+    }
+
     public Ray constructRay(int nX, int nY, int j, int i){
+
         Point pC = p0.add(vTo.scale(distance));
 
         double rY = height / (double)nY;

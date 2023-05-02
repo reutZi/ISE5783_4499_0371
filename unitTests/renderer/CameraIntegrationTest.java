@@ -14,8 +14,10 @@ public class CameraIntegrationTest {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
     @Test
-    void integrationTriangle(){
+    void testIntegrationTriangle(){
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0));
+        cam.setVPSize(3, 3);
+        cam.setVPDistance(1);
         Triangle tr = new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2), new Point(0, -1, -2));
 
         List<Point> allpoints = null;
@@ -32,6 +34,15 @@ public class CameraIntegrationTest {
         }
          // TC01: Small triangle 1 point
         assertEquals(1,allpoints.size());
+    }
+
+    @Test
+    void testIntegrationSphere(){
+
+    }
+
+    @Test
+    void testIntegrationPlane(){
 
     }
 }
