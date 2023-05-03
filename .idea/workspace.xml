@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="CameraIntegrationTest">
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/CameraIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/CameraIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lighting/AmbientLight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/ImageWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +69,9 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\unitTests\renderer" />
+      <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\src\renderer" />
+      <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\src\primitives" />
       <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\unitTests" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
