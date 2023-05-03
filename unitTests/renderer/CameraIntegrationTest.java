@@ -46,7 +46,7 @@ public class CameraIntegrationTest {
 
         Triangle triangle = new Triangle(new Point(1, 1, -2), new Point(-1, 1, -2), new Point(0, -1, -2));
         int intersectionsNum = intersectionNumber(cam, triangle, 3,3);
-        assertEquals(1,intersectionsNum, "");
+        assertEquals(1,intersectionsNum, "wrong in the triangle's test");
     }
 
     /** Tests that a sphere intersects with a camera correctly. */
@@ -65,23 +65,23 @@ public class CameraIntegrationTest {
 
         Sphere sphere = new Sphere(1,new Point(0,0,-3));
         intersectionsNum = intersectionNumber(cam1, sphere,3,3);
-        assertEquals(2, intersectionsNum, "");
+        assertEquals(2, intersectionsNum, "wrong in the case of sphere with 2 intersections");
 
         sphere = new Sphere(2.5, new Point(0, 0, -2.5));
         intersectionsNum = intersectionNumber(cam2, sphere,3,3);
-        assertEquals(18, intersectionsNum, "");
+        assertEquals(18, intersectionsNum, "wrong in the case of sphere with 18 intersections");
 
         sphere = new Sphere(2, new Point(0,0,-2));
         intersectionsNum = intersectionNumber(cam2, sphere,3,3);
-        assertEquals(10, intersectionsNum, "");
+        assertEquals(10, intersectionsNum, "wrong in the case of sphere with 10 intersections");
 
         sphere = new Sphere(4,new Point(0,0,-0.5));
         intersectionsNum = intersectionNumber(cam2, sphere,3,3);
-        assertEquals(9, intersectionsNum, "");
+        assertEquals(9, intersectionsNum, "wrong in the case of sphere with 9 intersections");
 
         sphere = new Sphere(0.5,new Point(0,0,1));
         intersectionsNum = intersectionNumber(cam1, sphere,3,3);
-        assertEquals(0, intersectionsNum, "");
+        assertEquals(0, intersectionsNum, "wrong in the case of sphere with no intersections");
     }
 
 
@@ -96,14 +96,14 @@ public class CameraIntegrationTest {
 
         Plane plane = new Plane(new Point(0,0,-2), new Vector(0,0,1));
         intersectionsNum = intersectionNumber(cam, plane,3,3);
-        assertEquals(9, intersectionsNum, "");
+        assertEquals(9, intersectionsNum, "wrong in the case1 of plane with 9 intersections");
 
         plane = new Plane(new Point(1.5, 1.5, 0), new Vector(-1,0,3));
         intersectionsNum = intersectionNumber(cam, plane,3,3);
-        assertEquals(9, intersectionsNum, "");
+        assertEquals(9, intersectionsNum, "wrong in the case2 of plane with 9 intersections");
 
         plane = new Plane(new Point(1.5, 1.5, 0), new Vector(-1,0,1));
         intersectionsNum = intersectionNumber(cam, plane,3,3);
-        assertEquals(6, intersectionsNum, "");
+        assertEquals(6, intersectionsNum, "wrong in the case of plane with 6 intersections");
     }
 }

@@ -83,6 +83,14 @@ public class Camera {
         return this;
     }
 
+/**
+ * Constructs a new Ray object that represents a ray of light in a three-dimensional space.
+ *
+ * @param nX the number of columns in the camera's view frustum
+ * @param nY the number of rows in the camera's view frustum
+ * @param j the column index of the pixel to construct the ray for
+ * @param i the row index of the pixel to construct the ray for
+ * @return a new Ray object that represents a ray of light in a three-dimensional space*/
     public Ray constructRay(int nX, int nY, int j, int i){
         Point pC = p0.add(vTo.scale(distance));
 
