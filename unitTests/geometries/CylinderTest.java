@@ -7,6 +7,7 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Testing {@link Cylinder} */
 class CylinderTest {
 
     /** Test method for {@link geometries.Cylinder#getNormal(Point)}. */
