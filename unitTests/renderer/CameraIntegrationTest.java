@@ -14,6 +14,13 @@ public class CameraIntegrationTest {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
 
+    /** Computes the number of intersections between a camera and an intersectable object
+     * in a view plane with the given number of columns and rows.
+     * @param camera the camera to test.
+     * @param intersectable the object to intersect with.
+     * @param nX the number of columns in the view plane.
+     * @param nY the number of rows in the view plane.
+     * @return the total number of intersections found. */
     int intersectionNumber(Camera camera, Intersectable intersectable, int nX, int nY){
 
         int intersectionsNum = 0;
@@ -29,6 +36,8 @@ public class CameraIntegrationTest {
         }
         return intersectionsNum;
     }
+
+    /** Tests that a triangle intersects with a camera correctly. */
     @Test
     void testIntegrationTriangle(){
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0))
@@ -40,6 +49,7 @@ public class CameraIntegrationTest {
         assertEquals(1,intersectionsNum, "");
     }
 
+    /** Tests that a sphere intersects with a camera correctly. */
     @Test
     void testIntegrationSphere(){
 
@@ -74,6 +84,8 @@ public class CameraIntegrationTest {
         assertEquals(0, intersectionsNum, "");
     }
 
+
+    /** Tests that a plane intersects with a camera correctly. */
     @Test
     void testIntegrationPlane(){
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0))
