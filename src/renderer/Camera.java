@@ -2,6 +2,7 @@ package renderer;
 
 import primitives.*;
 import static primitives.Util.*;
+import java.util.MissingResourceException;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
@@ -13,6 +14,8 @@ public class Camera {
     private double height; // Height of view plane
     private double width; // Width of view plane
     private double distance; // Distance of view plane from camera
+    private ImageWriter imageWriter;
+    private RayTracerBase rayTracer;
 
     /** Constructs a new camera object.
      * @param p    The camera position.
@@ -83,14 +86,22 @@ public class Camera {
         return this;
     }
 
-/**
- * Constructs a new Ray object that represents a ray of light in a three-dimensional space.
- *
- * @param nX the number of columns in the camera's view frustum
- * @param nY the number of rows in the camera's view frustum
- * @param j the column index of the pixel to construct the ray for
- * @param i the row index of the pixel to construct the ray for
- * @return a new Ray object that represents a ray of light in a three-dimensional space*/
+    public Camera setImageWriter(ImageWriter imageWriter) {
+        this.imageWriter = imageWriter;
+        return this;
+    }
+
+    public Camera setRayTracer(RayTracerBase rayTracer) {
+        this.rayTracer = rayTracer;
+        return this;
+    }
+
+    /** Constructs a new Ray object that represents a ray of light in a three-dimensional space.
+     * @param nX the number of columns in the camera's view frustum.
+     * @param nY the number of rows in the camera's view frustum.
+     * @param j the column index of the pixel to construct the ray for.
+     * @param i the row index of the pixel to construct the ray for.
+     * @return a new Ray object that represents a ray of light in a three-dimensional space. */
     public Ray constructRay(int nX, int nY, int j, int i){
         Point pC = p0.add(vTo.scale(distance));
 
@@ -111,5 +122,53 @@ public class Camera {
 
         return new Ray(p0, dirRay);
     }
+
+    public void renderImage(){
+        if(height == 0)
+            throw new MissingResourceException("The field is not initialized", "Camera", "height");
+        if(width == 0)
+            throw new MissingResourceException("The field is not initialized", "Camera", "width");
+        if(distance == 0)
+            throw new MissingResourceException("The field is not initialized", "Camera", "distance");
+        if(imageWriter == null)
+            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
+        if(rayTracer == null)
+            throw new MissingResourceException("The field is not initialized", "Camera", "rayTracerBase");
+
+        Ray ray;
+        Color color;
+        int nY = imageWriter.getNy();
+        int nX = imageWriter.getNx();
+
+        for (int i = 0; i < nY; i++) {
+            for (int j = 0; j < nX; j++) {
+
+                ray = constructRay(nX, nY, j, i);
+                color = rayTracer.traceRay(ray);
+                imageWriter.writePixel(j, i, color);
+            }
+        }
+    }
+
+    public void printGrid(int interval, Color color){
+        if (this.imageWriter == null)
+            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
+
+        for (int i = 0; i < imageWriter.getNy(); i++) {
+            for (int j = 0; j < imageWriter.getNx(); j++) {
+
+                if (i % interval == 0 || j % interval == 0)
+                    imageWriter.writePixel(j, i, color);
+            }
+        }
+    }
+
+    public void writeToImage() {
+        if (this.imageWriter == null)
+            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
+
+        this.imageWriter.writeToImage();
+    }
+
 }
 

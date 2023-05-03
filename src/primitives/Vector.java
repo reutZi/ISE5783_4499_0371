@@ -1,6 +1,6 @@
 package primitives;
 
-import java.util.zip.ZipError;
+import java.util.List;
 
 /** A class representing a three-dimensional vector in Cartesian space, inheriting from Point.*/
 public class Vector extends Point {
