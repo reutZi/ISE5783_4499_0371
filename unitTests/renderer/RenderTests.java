@@ -6,15 +6,13 @@ import org.junit.jupiter.api.Test;
 import geometries.*;
 import lighting.AmbientLight;
 import primitives.*;
-import renderer.*;
 import scene.Scene;
 
 /** Test rendering a basic image
  * @author Dan */
 public class RenderTests {
 
-   /** Produce a scene with basic 3D model and render it into a png image with a
-    * grid */
+   /** Produce a scene with basic 3D model and render it into a png image with a grid */
    @Test
    public void basicRenderTwoColorTest() {
       Scene scene = new Scene("Test scene")//
