@@ -62,7 +62,9 @@ public class Ray {
         Point closestPoint = null;
 
         for(Point point : list) {
+
             distance = p0.distanceSquared(point);
+
             if(distance < minDistance){
                 closestPoint = point;
                 minDistance = distance;

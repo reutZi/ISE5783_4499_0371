@@ -13,6 +13,7 @@ public class RayTracerBasic extends RayTracerBase{
 
     @Override
     public Color traceRay(Ray ray) {
+
         List<Point> pointsList = scene.geometries.findIntersections(ray);
 
         if (pointsList == null)

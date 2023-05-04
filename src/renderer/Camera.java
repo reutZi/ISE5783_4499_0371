@@ -103,6 +103,7 @@ public class Camera {
      * @param i the row index of the pixel to construct the ray for.
      * @return a new Ray object that represents a ray of light in a three-dimensional space. */
     public Ray constructRay(int nX, int nY, int j, int i){
+
         Point pC = p0.add(vTo.scale(distance));
 
         double rY = height / (double)nY;
@@ -124,6 +125,7 @@ public class Camera {
     }
 
     public void renderImage(){
+
         if(height == 0)
             throw new MissingResourceException("The field is not initialized", "Camera", "height");
         if(width == 0)
@@ -151,6 +153,7 @@ public class Camera {
     }
 
     public void printGrid(int interval, Color color){
+
         if (this.imageWriter == null)
             throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
 
@@ -164,6 +167,7 @@ public class Camera {
     }
 
     public void writeToImage() {
+
         if (this.imageWriter == null)
             throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
 

@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="Camera and RayTrace">
-      <change afterPath="$PROJECT_DIR$/images/Blue and red.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Pink and black.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/base render test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/xml render test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2023_10_19_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2023_10_19__Changes_.xml" beforeDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="RenderTests built a first picture">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +330,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1683143878633</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL‎-00023" summary="RenderTests built a first picture">
+      <created>1683189679765</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL‎-00023" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683189679765</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,7 +366,8 @@
     <MESSAGE value="CameraIntegrationTest" />
     <MESSAGE value="Color" />
     <MESSAGE value="Camera and RayTrace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Camera and RayTrace" />
+    <MESSAGE value="RenderTests built a first picture" />
+    <option name="LAST_COMMIT_MESSAGE" value="RenderTests built a first picture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
