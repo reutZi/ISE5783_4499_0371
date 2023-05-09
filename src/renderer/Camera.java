@@ -23,14 +23,15 @@ public class Camera {
      * @param vUp  The up direction vector of the camera.
      * @throws IllegalArgumentException if the direction and up vectors are not orthogonal. */
     public Camera(Point p, Vector vTo, Vector vUp) throws IllegalArgumentException {
-        this.p0 = p;
-        this.vTo = vTo.normalize();
-        this.vUp = vUp.normalize();
-
         if(!isZero(vTo.dotProduct(vUp)))
             throw new IllegalArgumentException("The vectors aren't orthogonal");
 
-        vRight = vTo.crossProduct(vUp).normalize();
+        this.p0 = p;
+
+        this.vTo = vTo.normalize();
+        this.vUp = vUp.normalize();
+
+        vRight = this.vTo.crossProduct(this.vUp).normalize();
     }
 
     /** @return The camera position. */
@@ -106,8 +107,8 @@ public class Camera {
 
         Point pC = p0.add(vTo.scale(distance));
 
-        double rY = height / (double)nY;
-        double rX = width / (double)nX;
+        double rY = height / nY;
+        double rX = width /  nX;
 
         double yI = -(i -(nY - 1)/2.0) * rY;
         double xJ = (j - (nX - 1)/2.0) * rX;
