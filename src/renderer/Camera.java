@@ -7,14 +7,23 @@ import java.util.MissingResourceException;
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
 
-    private Point p0; // Camera position
-    private Vector vTo; // Direction vector of camera
-    private Vector vUp; // Up direction vector of camera
-    private Vector vRight; // Right direction vector of camera
-    private double height; // Height of view plane
-    private double width; // Width of view plane
-    private double distance; // Distance of view plane from camera
+    // Camera position
+    private Point p0;
+    // Direction vector of camera
+    private Vector vTo;
+    // Up direction vector of camera
+    private Vector vUp;
+    // Right direction vector of camera
+    private Vector vRight;
+    // Height of view plane
+    private double height;
+    // Width of view plane
+    private double width;
+    // Distance of view plane from camera
+    private double distance;
+    // The object used for writing the rendered image.
     private ImageWriter imageWriter;
+    // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
     /** Constructs a new camera object.
@@ -98,35 +107,40 @@ public class Camera {
     }
 
     /** Constructs a new Ray object that represents a ray of light in a three-dimensional space.
-     * @param nX the number of columns in the camera's view frustum.
-     * @param nY the number of rows in the camera's view frustum.
+     * @param Nx the number of columns in the camera's view frustum.
+     * @param Ny the number of rows in the camera's view frustum.
      * @param j the column index of the pixel to construct the ray for.
      * @param i the row index of the pixel to construct the ray for.
      * @return a new Ray object that represents a ray of light in a three-dimensional space. */
-    public Ray constructRay(int nX, int nY, int j, int i){
+    public Ray constructRay(int Nx, int Ny, int j, int i){
 
-        Point pC = p0.add(vTo.scale(distance));
+        Point Pc = p0.add(vTo.scale(distance));
 
-        double rY = height / nY;
-        double rX = width /  nX;
+        double Ry = height / Ny;
+        double Rx = width /  Nx;
 
-        double yI = -(i -(nY - 1)/2.0) * rY;
-        double xJ = (j - (nX - 1)/2.0) * rX;
+        double Yi = -(i -(Ny - 1)/2.0) * Ry;
+        double Xj = (j - (Nx - 1)/2.0) * Rx;
 
-        Point pIJ = pC;
+        Point Pij = Pc;
 
-        if(xJ != 0)
-            pIJ = pIJ.add(vRight.scale(xJ));
-        if(yI != 0)
-            pIJ = pIJ.add(vUp.scale(yI));
+        if(isZero(Xj))
+            Pij = Pij.add(vRight.scale(Xj));
 
-        Vector dirRay = pIJ.subtract(p0);
+        if(isZero(Yi))
+            Pij = Pij.add(vUp.scale(Yi));
+
+        Vector dirRay = Pij.subtract(p0);
 
         return new Ray(p0, dirRay);
     }
 
+    /**
+     * Renders an image by tracing rays for each pixel of the view plane.
+     * @throws MissingResourceException if any of the fields are not initialized.
+     */
     public void renderImage(){
-
+        // Check if all the required fields are initialized
         if(height == 0)
             throw new MissingResourceException("The field is not initialized", "Camera", "height");
         if(width == 0)
@@ -143,16 +157,26 @@ public class Camera {
         int nY = imageWriter.getNy();
         int nX = imageWriter.getNx();
 
+        // Loop through each pixel in the image and trace a ray for it
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
 
+                // Construct a ray for the current pixel
                 ray = constructRay(nX, nY, j, i);
+                // Trace the ray using the rayTracer object to get the color of the pixel
                 color = rayTracer.traceRay(ray);
+                // Write the color to the image using the imageWriter object
                 imageWriter.writePixel(j, i, color);
             }
         }
     }
 
+    /**
+     * Prints a grid on the view plane at a given interval and color.
+     * @param interval the interval between each line of the grid.
+     * @param color the color of the grid.
+     * @throws MissingResourceException if the image writer field is not initialized.
+     */
     public void printGrid(int interval, Color color){
 
         if (this.imageWriter == null)
@@ -167,6 +191,10 @@ public class Camera {
         }
     }
 
+    /**
+     Writes the image to a file using the image writer.
+     @throws MissingResourceException if the image writer field is not initialized.
+     */
     public void writeToImage() {
 
         if (this.imageWriter == null)

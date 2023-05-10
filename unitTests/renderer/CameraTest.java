@@ -56,6 +56,5 @@ class CameraTest {
 		assertEquals(new Ray(ZERO_POINT, new Vector(1, -3, -10)),
 				camera.setVPSize(8, 8).constructRay(4, 4, 1, 0), badRay);
 
-}
-
+    }
 }

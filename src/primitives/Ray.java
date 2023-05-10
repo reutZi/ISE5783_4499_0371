@@ -55,16 +55,14 @@ public class Ray {
         return p0.add(dir.scale(t));
     }
 
-    /**
-     * Finds the closest point to this ray among a list of points.
-     *
-     * @param list the list of points to search for the closest point
-     * @return the closest point to this ray, or null if the list is empty
-     */
+    /** Finds the closest point to this ray among a list of points.
+     * @param list the list of points to search for the closest point.
+     * @return the closest point to this ray, or null if the list is empty. */
     public Point findClosestPoint(List<Point> list){
 
         if (list.isEmpty())
             return null;
+
         double minDistance = p0.distanceSquared(list.get(0));
         double distance;
         Point closestPoint = null;
