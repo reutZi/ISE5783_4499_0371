@@ -40,7 +40,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 
         // Get the start point and direction of the ray
         Point p0 = ray.getP0();
@@ -56,7 +56,7 @@ public class Sphere extends RadialGeometry {
             u = this.center.subtract(p0);
         } catch (IllegalArgumentException e) {
             // If the ray starts at the center of the sphere, return a single intersection point
-            return List.of(p0.add(dir.scale(r)));
+            return List.of(new GeoPoint(this, p0.add(dir.scale(r))));
         }
 
         // Calculate necessary values for intersection calculation
@@ -74,11 +74,11 @@ public class Sphere extends RadialGeometry {
         double t1 = tm + th;
         double t2 = tm - th;
         if (t1 > 0 && t2 > 0) {
-            return List.of(ray.getPoint(t1), ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
         } else if (t1 > 0) {
-            return List.of(ray.getPoint(t1));
+            return List.of(new GeoPoint(this, ray.getPoint(t1)));
         } else if (t2 > 0) {
-            return List.of(ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
         } else {
             return null;
         }

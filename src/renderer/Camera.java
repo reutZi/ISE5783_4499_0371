@@ -140,7 +140,7 @@ public class Camera {
      * Renders an image by tracing rays for each pixel of the view plane.
      * @throws MissingResourceException if any of the fields are not initialized.
      */
-    public void renderImage(){
+    public Camera renderImage(){
         // Check if all the required fields are initialized
         if(height == 0)
             throw new MissingResourceException("The field is not initialized", "Camera", "height");
@@ -170,6 +170,7 @@ public class Camera {
                 imageWriter.writePixel(j, i, color);
             }
         }
+        return this;
     }
 
     /**
