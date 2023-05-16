@@ -204,6 +204,5 @@ public class Camera {
 
         this.imageWriter.writeToImage();
     }
-
 }
 
