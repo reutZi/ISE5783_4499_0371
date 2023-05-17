@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="lighting">
-      <change afterPath="$PROJECT_DIR$/images/lightSphereDirectional.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lightSphereSpot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/lightTrianglesDirectional.png" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="lighting test">
+      <change afterPath="$PROJECT_DIR$/images/lightSpherePoint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lightSphereSpotSharp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lightTrianglesPoint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lightTrianglesSpot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/lightTrianglesSpotSharp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/basicRenderTestTwoColors.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LightsTests.sphereSpot">
+  <component name="RunManager" selected="JUnit.LightsTests">
     <configuration name="CylinderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -164,10 +164,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LightsTests" />
         <item itemvalue="JUnit.LightsTests.sphereSpot" />
         <item itemvalue="JUnit.LightsTests.trianglesDirectional" />
         <item itemvalue="JUnit.LightsTests.sphereDirectional" />
-        <item itemvalue="JUnit.LightsTests" />
         <item itemvalue="JUnit.CylinderTest" />
       </list>
     </recent_temporary>
@@ -391,7 +391,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1684077861158</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL‎-00031" summary="lighting test">
+      <created>1684222125338</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL‎-00031" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1684222125338</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,7 +430,8 @@
     <MESSAGE value="RenderTests built a first picture" />
     <MESSAGE value="Stage 5 finished" />
     <MESSAGE value="lighting" />
-    <option name="LAST_COMMIT_MESSAGE" value="lighting" />
+    <MESSAGE value="lighting test" />
+    <option name="LAST_COMMIT_MESSAGE" value="lighting test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
