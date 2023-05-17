@@ -28,7 +28,6 @@ public class RayTracerBasic extends RayTracerBase{
         super(scene);
     }
 
-
     @Override
     public Color traceRay(Ray ray) {
         List<GeoPoint> pointsList = scene.geometries.findGeoIntersections(ray);
@@ -73,25 +72,24 @@ public class RayTracerBasic extends RayTracerBase{
             Color intensity = light.getIntensity(point);
 
             if(ln * nv > 0){
-                color = color.add(calcDiffusive(l, n, Kd, intensity)
-                        .add(calcSpecular(l, n, v, nSh, Ks, intensity)));
+                Double3 effects = calcDiffusive(ln, Kd)
+                        .add((calcSpecular(l, n, ln, v, nSh, Ks)));
+                color = color.add(intensity.scale(effects));
             }
         }
         return color;
     }
 
+    private Double3 calcDiffusive(double ln, Double3 Kd) {
 
-    private Color calcDiffusive(Vector l, Vector n, Double3 Kd, Color intensity) {
+        double abs = Math.abs(ln);
 
-        double abs = Math.abs(n.dotProduct(l));
-
-        return intensity.scale(Kd.scale(abs));
+        return Kd.scale(abs);
     }
 
+    private Double3 calcSpecular(Vector l, Vector n, double ln, Vector v, double nSh, Double3 Ks) {
 
-    private Color calcSpecular(Vector l, Vector n, Vector v, double nSh, Double3 Ks, Color intensity) {
-
-        Vector r = l.subtract(n.scale(l.dotProduct(n) * 2)).normalize();
+        Vector r = l.subtract(n.scale(ln * 2)).normalize();
 
         double vr = v.scale(-1).dotProduct(r);
 
@@ -99,8 +97,6 @@ public class RayTracerBasic extends RayTracerBase{
 
         double pow = Math.pow(max, nSh);
 
-        Double3 ksMax = Ks.scale(pow);
-
-        return intensity.scale(ksMax);
+       return Ks.scale(pow);
     }
 }
