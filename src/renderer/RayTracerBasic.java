@@ -1,5 +1,6 @@
 package renderer;
 
+
 import lighting.LightSource;
 import primitives.Color;
 import primitives.*;
@@ -8,13 +9,16 @@ import scene.Scene;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
+
 /**
  * A basic Ray Tracer implementation that extends the RayTracerBase abstract class.
  * Ray tracing is a rendering technique for generating an image by tracing the path of light
  * as pixels in the image plane and simulating the effects of its encounters with virtual objects.
  */
 
+
 public class RayTracerBasic extends RayTracerBase{
+
 
     /**
      * Constructor for the RayTracerBasic class.
@@ -24,9 +28,9 @@ public class RayTracerBasic extends RayTracerBase{
         super(scene);
     }
 
+
     @Override
     public Color traceRay(Ray ray) {
-
         List<GeoPoint> pointsList = scene.geometries.findGeoIntersections(ray);
 
         if (pointsList == null)
@@ -34,6 +38,7 @@ public class RayTracerBasic extends RayTracerBase{
 
         return calcColor(ray.findClosestGeoPoint(pointsList), ray);
     }
+
 
     /**
      * Method to calculate the color of an object at a specific point.
@@ -46,16 +51,15 @@ public class RayTracerBasic extends RayTracerBase{
                 .add(calcLocalEffects(geoPoint, ray));
     }
 
-    private Color calcLocalEffects(GeoPoint geoPoint, Ray ray) {
 
+    private Color calcLocalEffects(GeoPoint geoPoint, Ray ray) {
         Color color = Color.BLACK;
         Point point = geoPoint.point;
         Vector n = geoPoint.geometry.getNormal(point);
         Vector v = ray.getDir ();
 
         double nv = alignZero(n.dotProduct(v));
-
-        if(nv == 0)
+        if(isZero(nv))
             return color;
 
         Double3 Kd = geoPoint.geometry.getMaterial().Kd;
@@ -69,13 +73,13 @@ public class RayTracerBasic extends RayTracerBase{
             Color intensity = light.getIntensity(point);
 
             if(ln * nv > 0){
-
-                color.add(calcDiffusive(l, n, Kd, intensity)
+                color = color.add(calcDiffusive(l, n, Kd, intensity)
                         .add(calcSpecular(l, n, v, nSh, Ks, intensity)));
             }
         }
         return color;
     }
+
 
     private Color calcDiffusive(Vector l, Vector n, Double3 Kd, Color intensity) {
 
@@ -83,6 +87,7 @@ public class RayTracerBasic extends RayTracerBase{
 
         return intensity.scale(Kd.scale(abs));
     }
+
 
     private Color calcSpecular(Vector l, Vector n, Vector v, double nSh, Double3 Ks, Color intensity) {
 
