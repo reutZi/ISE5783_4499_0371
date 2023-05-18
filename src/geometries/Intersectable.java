@@ -6,20 +6,37 @@ import java.util.Objects;
 /** This interface represents an intersectable geometry object. */
 public abstract class Intersectable {
 
+    /**
+     * Represents a geographical point with associated geometry information.
+     */
     public static class GeoPoint {
+        /**
+         * The geometry information associated with the point.
+         */
         public Geometry geometry;
+
+        /**
+         * The coordinates of the point.
+         */
         public Point point;
 
+        /**
+         * Constructs a new GeoPoint object with the given geometry and point.
+         *
+         * @param geometry The geometry information associated with the point.
+         * @param point The coordinates of the point.
+         */
         public GeoPoint(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
         }
 
-        @Override
+
+    @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o instanceof GeoPoint other)
-              return this.geometry.equals(other.geometry) && this.point.equals(other.point);
+              return this.geometry.equals(other.geometry) && this.point.equals(other.point);//??
             return false;
         }
 
@@ -45,9 +62,16 @@ public abstract class Intersectable {
                 : geoList.stream().map(gp -> gp.point).toList();
     }
 
-    public final List<GeoPoint> findGeoIntersections(Ray ray){
-       return findGeoIntersectionsHelper(ray);
+    /**
+     * Finds the geographical intersections between a given ray and the geometry.
+     *
+     * @param ray The ray used to find intersections.
+     * @return A list of GeoPoint objects representing the geographical intersections.
+     */
+    public final List<GeoPoint> findGeoIntersections(Ray ray) {
+        return findGeoIntersectionsHelper(ray);
     }
+
 
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 }

@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="lighting test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/LightSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/LightSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
