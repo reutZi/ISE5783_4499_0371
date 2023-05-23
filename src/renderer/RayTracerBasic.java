@@ -1,8 +1,8 @@
 package renderer;
 
 
-import lighting.LightSource;
-import primitives.Color;
+import lighting.*;
+import primitives.*;
 import primitives.*;
 import static primitives.Util.*;
 import scene.Scene;
@@ -73,6 +73,7 @@ public class RayTracerBasic extends RayTracerBase{
         double nSh = geoPoint.geometry.getMaterial().nShininess;
 
         for (LightSource light : scene.lights) {
+
             Vector l = light.getL(point);
             double ln = alignZero(l.dotProduct(n));
             Color intensity = light.getIntensity(point);
@@ -114,6 +115,7 @@ public class RayTracerBasic extends RayTracerBase{
         double vr = v.scale(-1).dotProduct(r);
         double max = Math.max(0, vr);
         double pow = Math.pow(max, nSh);
+
         return Ks.scale(pow);
     }
 
