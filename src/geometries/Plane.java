@@ -54,34 +54,37 @@ public class Plane extends Geometry{
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
 
         // Check if the Ray starts on the Plane, if so return null.
         if (q0.equals(ray.getP0())) {
             return null;
         }
 
-        // Calculate the vector between q0 and the Ray's starting point.
-        Vector qMinusP0 = q0.subtract(ray.getP0());
-        // Calculate the dot product between the Plane's normal and qMinusP0.
-        double nQMinusP0 = normal.dotProduct(qMinusP0);
         // Calculate the dot product between the Plane's normal and the Ray's direction vector.
-        double nv = normal.dotProduct(ray.getDir());
+        double nv = alignZero(normal.dotProduct(ray.getDir()));
 
         // If the dot product between the Plane's normal and the Ray's direction vector is close to zero, return null.
         if (isZero(nv)) {
             return null;
         }
 
+        // Calculate the vector between q0 and the Ray's starting point.
+        Vector qMinusP0 = q0.subtract(ray.getP0());
+        // Calculate the dot product between the Plane's normal and qMinusP0.
+        double nQMinusP0 = alignZero(normal.dotProduct(qMinusP0));
+
+        if(isZero(nQMinusP0))
+            return null;
+
         // Calculate the intersection parameter t.
         double t = alignZero(nQMinusP0 / nv);
 
-        // If t is greater than 0, create a new list containing the intersection point and return it.
-        if (t > 0d) {
-           return List.of(new GeoPoint(this, ray.getPoint(t)));
+        if (t < 0 || alignZero(t - maxDistance) > 0) {
+            return null;
         }
 
-        // Otherwise, return null.
-        return null;
+        // If t is greater than 0, create a new list containing the intersection point and return it.
+        return List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 }

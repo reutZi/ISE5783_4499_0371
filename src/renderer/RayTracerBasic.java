@@ -1,6 +1,5 @@
 package renderer;
 
-
 import lighting.*;
 import primitives.*;
 import primitives.*;
@@ -9,16 +8,15 @@ import scene.Scene;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
-
 /**
  * A basic Ray Tracer implementation that extends the RayTracerBase abstract class.
  * Ray tracing is a rendering technique for generating an image by tracing the path of light
  * as pixels in the image plane and simulating the effects of its encounters with virtual objects.
  */
-
-
 public class RayTracerBasic extends RayTracerBase{
 
+    private static final double MIN_CALC_COLOR_K = 0.001;
+    private static final double DELTA = 0.1;
 
     /**
      * Constructor for the RayTracerBasic class.
@@ -38,7 +36,6 @@ public class RayTracerBasic extends RayTracerBase{
         return calcColor(ray.findClosestGeoPoint(pointsList), ray);
     }
 
-
     /**
      * Method to calculate the color of an object at a specific point.
      * @param geoPoint The Point object representing the intersection point with the Ray.
@@ -49,7 +46,6 @@ public class RayTracerBasic extends RayTracerBase{
                 .add(geoPoint.geometry.getEmission())
                 .add(calcLocalEffects(geoPoint, ray));
     }
-
 
     /**
      * Calculates the local effects of a light source on a given geographical point and ray.
@@ -79,9 +75,11 @@ public class RayTracerBasic extends RayTracerBase{
             Color intensity = light.getIntensity(point);
 
             if (ln * nv > 0) {
-                Double3 effects = calcDiffuse(ln, Kd)
-                        .add(calcSpecular(l, n, ln, v, nSh, Ks));
-                color = color.add(intensity.scale(effects));
+                if(unshaded(l, n, geoPoint, light)) {
+                    Double3 effects = calcDiffuse(ln, Kd)
+                            .add(calcSpecular(l, n, ln, v, nSh, Ks));
+                    color = color.add(intensity.scale(effects));
+                }
             }
         }
         return color;
@@ -119,4 +117,51 @@ public class RayTracerBasic extends RayTracerBase{
         return Ks.scale(pow);
     }
 
+   private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light){
+
+        Vector lightDirection = l.scale(-1);
+
+        double nld = n.dotProduct(lightDirection);
+
+        Vector deltaVector = n.scale(nld > 0 ? DELTA : -DELTA);
+
+        Point point = gp.point.add(deltaVector);
+
+        Ray lightRay = new Ray(point, lightDirection);
+
+        double distance = light.getDistance(gp.point);
+
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, distance);
+
+        return intersections == null;
+    }
+
+   /* private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light) {
+
+        Vector lightDirection = l.scale(-1); // from point to light source
+        double nl = n.dotProduct(lightDirection);
+
+        Vector delta = n.scale(nl > 0 ? DELTA : -DELTA);
+        Point pointRay = gp.point.add(delta);
+        Ray lightRay = new Ray(pointRay, lightDirection);
+
+        double maxdistance = light.getDistance(gp.point);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, maxdistance);
+
+        if (intersections == null){
+            return true;
+        }
+
+        for (var item : intersections){
+            if (item.geometry.getMaterial().Kd.lowerThan(MIN_CALC_COLOR_K)){
+                return false;
+            }
+        }
+
+        return true;
+    }*/
+
 }
+
+
+

@@ -22,7 +22,7 @@ public class Geometries extends Intersectable{
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
 
         // Initialize a new empty list of intersection points.
         List<GeoPoint> Intersection = null;

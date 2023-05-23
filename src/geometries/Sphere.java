@@ -4,7 +4,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.util.ArrayList;
+import static primitives.Util.*;
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
 
         // Get the start point and direction of the ray
         Point p0 = ray.getP0();
@@ -71,16 +71,22 @@ public class Sphere extends RadialGeometry {
 
         // Calculate the intersection points
         double th = Math.sqrt(r * r - d * d);
+
         double t1 = tm + th;
         double t2 = tm - th;
-        if (t1 > 0 && t2 > 0) {
+
+        if (t1 > 0 && t2 > 0 && alignZero(t1 - maxDistance) <= 0 && alignZero(t2 - maxDistance) <= 0) {
             return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
-        } else if (t1 > 0) {
-            return List.of(new GeoPoint(this, ray.getPoint(t1)));
-        } else if (t2 > 0) {
-            return List.of(new GeoPoint(this, ray.getPoint(t2)));
-        } else {
-            return null;
         }
+
+        if (t1 > 0 && alignZero(t1 - maxDistance) <= 0) {
+            return List.of(new GeoPoint(this, ray.getPoint(t1)));
+        }
+
+        if (t2 > 0 && alignZero(t2 - maxDistance) <= 0) {
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
+        }
+
+        return null;
     }
 }

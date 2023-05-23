@@ -76,5 +76,4 @@ public class SpotLight extends PointLight {
         // Scale the intensity with the super intensity
         return super.getIntensity(p).scale(intensity);
     }
-
 }
