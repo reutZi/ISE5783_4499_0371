@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
  */
 public class SpotLight extends PointLight {
     private Vector dir;
-    private double narrowness;
+    private double narrowness = 0;
 
     /**
      * Sets the direction of the spotlight.
@@ -59,16 +59,19 @@ public class SpotLight extends PointLight {
      */
     @Override
     public Color getIntensity(Point p) {
+
         // Calculate the dot product between the light vector and the spotlight direction
-        double projection = getL(p).dotProduct(dir);
+        double projection = this.dir.dotProduct(getL(p));
 
         // Check if the point is outside the beam of the spotlight
-        if (projection <= 0) {
+        if (isZero(projection)) {
             return Color.BLACK;
         }
 
+        double max = Math.max(0, projection);
+
         // Calculate the intensity based on the projection raised to the power of narrowness
-        double intensity = Math.pow(projection, narrowness);
+        double intensity = Math.pow(max, narrowness);
 
         // Scale the intensity with the super intensity
         return super.getIntensity(p).scale(intensity);

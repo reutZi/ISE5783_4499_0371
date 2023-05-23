@@ -25,10 +25,10 @@ public class RenderTests {
     */
    @Test
    public void basicRenderTwoColorTest() {
-      Scene scene = new Scene("Test scene")//
+      Scene scene = new Scene.SceneBuilder("Test scene")
               .setAmbientLight(new AmbientLight(new Color(255, 191, 191), //
                       new Double3(1, 1, 1))) //
-              .setBackground(new Color(75, 127, 90));
+              .setBackground(new Color(75, 127, 90)).build();
 
       scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)),
               new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
@@ -53,8 +53,8 @@ public class RenderTests {
     * bodies and render it into a png image with a grid */
    @Test
    public void basicRenderMultiColorTest() {
-      Scene scene = new Scene("Test scene")//
-              .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))); //
+      Scene scene = new Scene.SceneBuilder("Test scene")//
+              .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2))).build(); //
 
       scene.geometries.add( // center
               new Sphere(50, new Point(0, 0, -100)),
@@ -93,9 +93,10 @@ public class RenderTests {
          JsonObject jsonObject = json.getAsJsonObject();
 
          // Create a new Scene object and set its background and ambient light properties
-         Scene scene = new Scene(jsonObject.get("name").getAsString())
+         Scene scene = new Scene.SceneBuilder(jsonObject.get("name").getAsString())
                  .setBackground(gson.fromJson(jsonObject.get("background"), Color.class))
-                 .setAmbientLight(gson.fromJson(jsonObject.get("ambientLight"), AmbientLight.class));
+                 .setAmbientLight(gson.fromJson(jsonObject.get("ambientLight"), AmbientLight.class))
+                 .build();
 
          // Get the geometries section of the JSON file, if it exists
          JsonElement jsonGeometries = jsonObject.get("geometries");
