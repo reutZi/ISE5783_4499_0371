@@ -30,7 +30,7 @@ public class Geometries extends Intersectable{
         // Loop through each intersectable geometry in the geometriesList.
         for (Intersectable intersectable : geometriesList) {
             // Find intersections between the current geometry and the specified Ray.
-            List<GeoPoint> currentIntersection = intersectable.findGeoIntersections(ray);
+            List<GeoPoint> currentIntersection = intersectable.findGeoIntersections(ray, maxDistance);
 
             // If there are intersections, add them to the list of intersection points.
             if (currentIntersection != null && Intersection == null) {

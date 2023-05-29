@@ -53,7 +53,7 @@ public class Plane extends Geometry{
         return getNormal(q0);
     }
 
-    @Override
+   /* @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance){
 
         // Check if the Ray starts on the Plane, if so return null.
@@ -86,5 +86,46 @@ public class Plane extends Geometry{
 
         // If t is greater than 0, create a new list containing the intersection point and return it.
         return List.of(new GeoPoint(this, ray.getPoint(t)));
+    }*/
+
+    @Override
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
+        Point P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Vector n = normal;
+        //denominator
+        double nv = alignZero(n.dotProduct(v));
+
+        // ray is lying in the plane axis
+        if (isZero(nv)) {
+            return null;
+        }
+
+        //ray cannot start from the plane
+        if (q0.equals(P0)) {
+            return null;
+        }
+
+        Vector P0_Q0 = q0.subtract(P0);
+
+        //numerator
+        double nP0Q0 = alignZero(n.dotProduct(P0_Q0));
+
+        // ray parallel to the plane
+        if (isZero(nP0Q0)) {
+            return null;
+        }
+
+        double t = alignZero(nP0Q0 / nv);
+
+        if (t < 0 ||  alignZero(t - maxDistance) > 0) {
+            return null;
+        }
+
+
+        Point point = ray.getPoint(t);
+
+        return List.of(new GeoPoint(this, point));
     }
 }

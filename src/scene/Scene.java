@@ -46,8 +46,15 @@ public class Scene {
      * Sets the geometries of the scene.
      * @param geometries The geometries to be added to the scene.
      */
-    public void setGeometries(Geometries geometries) {
+    public Scene setGeometries(Geometries geometries)
+    {
         this.geometries = geometries;
+        return this;
+    }
+
+    public Scene setAmbientLight(AmbientLight ambientLight) {
+        this.ambientLight = ambientLight;
+        return this;
     }
 
     public static class SceneBuilder {
@@ -108,14 +115,6 @@ public class Scene {
         public Scene build() {
             return new Scene(this);
         }
-    }
-    /**
-     * Constructs a new Scene object with the given name.
-     * @param name The name of the scene.
-     */
-    public Scene(String name) {
-        this.name = name;
-        this.geometries = new Geometries();
     }
 }
 

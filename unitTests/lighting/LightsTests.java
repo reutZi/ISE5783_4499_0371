@@ -16,7 +16,7 @@ import scene.Scene;
  * @author Dan
  */
 public class LightsTests {
-   private final Scene scene1 = new Scene("Test scene");
+   private final Scene scene1 = new Scene.SceneBuilder("Test scene").build();
    private final Scene scene2 = new Scene.SceneBuilder("Test scene")
            .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15))).build();
 
