@@ -13,13 +13,14 @@ import geometries.Intersectable.GeoPoint;
  * Ray tracing is a rendering technique for generating an image by tracing the path of light
  * as pixels in the image plane and simulating the effects of its encounters with virtual objects.
  */
-public class RayTracerBasic extends RayTracerBase{
+public class RayTracerBasic extends RayTracerBase {
 
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final double DELTA = 0.1;
 
     /**
      * Constructor for the RayTracerBasic class.
+     *
      * @param scene The Scene object containing all the objects to be rendered.
      */
     public RayTracerBasic(Scene scene) {
@@ -38,10 +39,11 @@ public class RayTracerBasic extends RayTracerBase{
 
     /**
      * Method to calculate the color of an object at a specific point.
+     *
      * @param geoPoint The Point object representing the intersection point with the Ray.
      * @return The Color of the object at the intersection point.
      */
-    private Color calcColor(GeoPoint geoPoint, Ray ray){
+    private Color calcColor(GeoPoint geoPoint, Ray ray) {
         return scene.ambientLight.getIntensity()
                 .add(geoPoint.geometry.getEmission())
                 .add(calcLocalEffects(geoPoint, ray));
@@ -51,7 +53,7 @@ public class RayTracerBasic extends RayTracerBase{
      * Calculates the local effects of a light source on a given geographical point and ray.
      *
      * @param geoPoint The geographical point at which to calculate the local effects.
-     * @param ray The ray associated with the calculation.
+     * @param ray      The ray associated with the calculation.
      * @return The color resulting from the local effects.
      */
     private Color calcLocalEffects(GeoPoint geoPoint, Ray ray) {
@@ -75,7 +77,7 @@ public class RayTracerBasic extends RayTracerBase{
             Color intensity = light.getIntensity(point);
 
             if (ln * nv > 0) {
-                if(unshaded(l, n, geoPoint, light)) {
+                if (unshaded(l,n, geoPoint, light)) {
                     Double3 effects = calcDiffuse(ln, Kd)
                             .add(calcSpecular(l, n, ln, v, nSh, Ks));
                     color = color.add(intensity.scale(effects));
@@ -100,12 +102,12 @@ public class RayTracerBasic extends RayTracerBase{
     /**
      * Calculates the specular reflection of light based on the given parameters.
      *
-     * @param l The light direction vector.
-     * @param n The surface normal vector.
-     * @param ln The dot product of the light direction and the surface normal.
-     * @param v The view direction vector.
+     * @param l   The light direction vector.
+     * @param n   The surface normal vector.
+     * @param ln  The dot product of the light direction and the surface normal.
+     * @param v   The view direction vector.
      * @param nSh The shininess coefficient.
-     * @param Ks The specular reflection coefficient.
+     * @param Ks  The specular reflection coefficient.
      * @return The specular reflection color.
      */
     private Double3 calcSpecular(Vector l, Vector n, double ln, Vector v, double nSh, Double3 Ks) {
@@ -117,7 +119,7 @@ public class RayTracerBasic extends RayTracerBase{
         return Ks.scale(pow);
     }
 
-   private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light){
+     private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light){
 
         Vector lightDirection = l.scale(-1);
 
@@ -133,8 +135,11 @@ public class RayTracerBasic extends RayTracerBase{
 
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, distance);
 
-        return intersections == null;
+        return intersections==null;
+
     }
+
+
 
    /* private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light) {
 
@@ -160,8 +165,8 @@ public class RayTracerBasic extends RayTracerBase{
 
         return true;
     }*/
-
 }
+
 
 
 
