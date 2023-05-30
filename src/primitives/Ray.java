@@ -3,9 +3,13 @@ package primitives;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
+import static primitives.Util.alignZero;
+
 /** This class represents a ray in 3D space. A ray is defined by a starting point (p0)
  * and a direction vector (dir) that comes out of the point. */
 public class Ray {
+
+    private static double DELTA = 0.1d;
 
     /** The starting point of the ray. */
     final Point p0;
@@ -18,6 +22,18 @@ public class Ray {
      * @param dir the direction vector of the ray. It will be normalized. */
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
+        this.dir = dir.normalize();
+    }
+
+  /** Constructs a new Ray object with the specified starting point and direction vector.
+     * @param p0  the starting point of the ray
+     * @param dir the direction vector of the ray. It will be normalized. */
+    public Ray(Point p0, Vector dir, Vector n) {
+        double nv = alignZero(dir.dotProduct(n));
+
+        Vector deltaVector = n.scale(nv > 0 ? DELTA : -DELTA);
+
+        this.p0 = p0.add(deltaVector);
         this.dir = dir.normalize();
     }
 

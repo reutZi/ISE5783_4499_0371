@@ -42,10 +42,11 @@ public class Vector extends Point {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Vector other)
-            return xyz.equals(other.xyz);
-        return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector vector = (Vector) o;
+        return xyz.equals(vector.xyz);
     }
+
 
     /** @return a new Vector representing this vector scaled to unit length. */
     public Vector normalize() {

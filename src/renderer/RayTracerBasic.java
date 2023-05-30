@@ -17,6 +17,10 @@ public class RayTracerBasic extends RayTracerBase {
 
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final Double3 INITIAL_K = new Double3(1.0d);
+
+
 
     /**
      * Constructor for the RayTracerBasic class.
@@ -29,12 +33,12 @@ public class RayTracerBasic extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
-        List<GeoPoint> pointsList = scene.geometries.findGeoIntersections(ray);
+        GeoPoint geoPoint = scene.geometries.findClosestIntersection(ray);
 
-        if (pointsList == null)
+        if (geoPoint == null)
             return this.scene.background;
 
-        return calcColor(ray.findClosestGeoPoint(pointsList), ray);
+        return calcColor(geoPoint, ray);
     }
 
     /**
@@ -44,9 +48,17 @@ public class RayTracerBasic extends RayTracerBase {
      * @return The Color of the object at the intersection point.
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
-        return scene.ambientLight.getIntensity()
+        /*  return scene.ambientLight.getIntensity()
                 .add(geoPoint.geometry.getEmission())
-                .add(calcLocalEffects(geoPoint, ray));
+                .add(calcLocalEffects(geoPoint, ray));*/
+
+        return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K)
+                .add(scene.ambientLight.getIntensity());
+    }
+
+    private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Color color = calcLocalEffects(gp, ray).add(gp.geometry.getEmission());
+        return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
 
     /**
@@ -77,7 +89,7 @@ public class RayTracerBasic extends RayTracerBase {
             Color intensity = light.getIntensity(point);
 
             if (ln * nv > 0) {
-                if (unshaded(l,n, geoPoint, light)) {
+                if (unshaded(l, n, geoPoint, light)) {
                     Double3 effects = calcDiffuse(ln, Kd)
                             .add(calcSpecular(l, n, ln, v, nSh, Ks));
                     color = color.add(intensity.scale(effects));
@@ -119,52 +131,75 @@ public class RayTracerBasic extends RayTracerBase {
         return Ks.scale(pow);
     }
 
-     private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light){
+    private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light) {
 
         Vector lightDirection = l.scale(-1);
 
-        double nld = n.dotProduct(lightDirection);
-
-        Vector deltaVector = n.scale(nld > 0 ? DELTA : -DELTA);
-
-        Point point = gp.point.add(deltaVector);
-
-        Ray lightRay = new Ray(point, lightDirection);
+        Ray lightRay = new Ray(gp.point, lightDirection,n);
 
         double distance = light.getDistance(gp.point);
 
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, distance);
 
-        return intersections==null;
+        if( intersections == null)
+            return  true;
 
-    }
-
-
-
-   /* private boolean unshaded(Vector l, Vector n, GeoPoint gp, LightSource light) {
-
-        Vector lightDirection = l.scale(-1); // from point to light source
-        double nl = n.dotProduct(lightDirection);
-
-        Vector delta = n.scale(nl > 0 ? DELTA : -DELTA);
-        Point pointRay = gp.point.add(delta);
-        Ray lightRay = new Ray(pointRay, lightDirection);
-
-        double maxdistance = light.getDistance(gp.point);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, maxdistance);
-
-        if (intersections == null){
-            return true;
-        }
-
-        for (var item : intersections){
-            if (item.geometry.getMaterial().Kd.lowerThan(MIN_CALC_COLOR_K)){
+        for (GeoPoint geoPoint : intersections) {
+            if (geoPoint.geometry.getMaterial().Kt.lowerThan(MIN_CALC_COLOR_K)) {
                 return false;
             }
         }
 
         return true;
-    }*/
+    }
+
+    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Color color = Color.BLACK;
+        Vector v = ray.getDir();
+        Vector n = gp.geometry.getNormal(gp.point);
+        Material material = gp.geometry.getMaterial();
+        return calcColorGLobalEffect(constructReflectedRay(gp.point, ray, n),
+                level, k, material.Kr)
+                .add(calcColorGLobalEffect(constructRefractedRay(gp.point, ray, n),
+                        level, k, material.Kt));
+    }
+
+    private Color calcColorGLobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
+        Double3 kkx = k.product(kx);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+        GeoPoint gp = scene.geometries.findClosestIntersection(ray);
+        if (gp == null) return scene.background.scale(kx);
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir()))
+                ? Color.BLACK : calcColor(gp, ray, level - 1, kkx);
+    }
+
+   /* private Ray constructReflectedRay(Point point, Vector v, Vector n){
+        Vector r = v.subtract(n.scale(v.dotProduct(n) * 2)).normalize();
+        return new Ray(point, r, n);
+    }
+
+    private Ray constructRefractedRay(Point point, Vector v, Vector n){
+        return new Ray(point, v, n);
+    }
+
+    */
+   private Ray constructRefractedRay(Point point, Ray ray, Vector n) {
+       return new Ray(point, ray.getDir(), n);
+   }
+
+    /**
+     * construct the reflection ray according to the physics law of reflection
+     * @param point reference point of the new ray
+     * @param ray the ray to reflect
+     * @param n the normal to the geometry the point belongs to
+     * @return the reflected ray
+     */
+    private Ray constructReflectedRay(Point point, Ray ray, Vector n) {
+        return new Ray(point, reflectionVector(ray.getDir(), n), n);
+    }
+    private Vector reflectionVector(Vector l, Vector n) {
+        return l.subtract(n.scale(2 * l.dotProduct(n))).normalize();
+    }
 }
 
 
