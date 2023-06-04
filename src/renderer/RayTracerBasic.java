@@ -92,12 +92,32 @@ public class RayTracerBasic extends RayTracerBase {
             if (ln * nv > 0) {
                 if (unshaded(l,n, geoPoint, light)) {
                     Double3 effects = calcDiffuse(ln, Kd)
-                            .add(calcSpecular(l, n, ln, v, nSh, Ks));
+                            .add(calcSpecular(l, n, v, nSh, Ks));
                     color = color.add(intensity.scale(effects));
                 }
             }
         }
         return color;
+    }
+
+    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Color color = Color.BLACK;
+        Vector v = ray.getDir();
+        Vector n = gp.geometry.getNormal(gp.point);
+        Material material = gp.geometry.getMaterial();
+        return calcGlobalEffect(constructReflectedRay(gp.point, v, n),
+                level, k, material.Kr)
+                .add(calcGlobalEffect(constructRefractedRay(gp.point, v, n),
+                        level, k, material.Kt));
+    }
+
+    private Color calcGlobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
+        Double3 kkx = k.product(kx);
+        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
+        GeoPoint gp = findClosestIntersection(ray);
+        if (gp == null) return scene.background.scale(kx);
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir()))
+                ? Color.BLACK : calcColor(gp, ray, level - 1, kkx).scale(kx);
     }
 
     /**
@@ -117,14 +137,13 @@ public class RayTracerBasic extends RayTracerBase {
      *
      * @param l   The light direction vector.
      * @param n   The surface normal vector.
-     * @param ln  The dot product of the light direction and the surface normal.
      * @param v   The view direction vector.
      * @param nSh The shininess coefficient.
      * @param Ks  The specular reflection coefficient.
      * @return The specular reflection color.
      */
-    private Double3 calcSpecular(Vector l, Vector n, double ln, Vector v, double nSh, Double3 Ks) {
-        Vector r = l.subtract(n.scale(ln * 2)).normalize();
+    private Double3 calcSpecular(Vector l, Vector n, Vector v, double nSh, Double3 Ks) {
+        Vector r = reflectionVector(l, n);
         double vr = v.scale(-1).dotProduct(r);
         double max = Math.max(0, vr);
         double pow = Math.pow(max, nSh);
@@ -154,39 +173,6 @@ public class RayTracerBasic extends RayTracerBase {
         return true;
     }
 
-
-    private Color calcColorGlobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
-        GeoPoint gp = findClosestIntersection(ray);
-        return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kx)).scale(k);
-    }
-
-    /**
-     * calculate the color according to the k factor for the reflection and refraction effects
-     * @param gp calculate the color of this point
-     * @param ray the ray of intersection that 'hit' the point
-     * @param level of the recursion
-     * @param k the volume of the color
-     * @return the calculated color
-     */
-    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
-        Color color = Color.BLACK;
-        Vector n = gp.geometry.getNormal(gp.point);
-        Material material = gp.geometry.getMaterial();
-
-        Double3 kkr = k.product(material.Kr);
-        if (!kkr.lowerThan(MIN_CALC_COLOR_K)) // the color is effected by the reflection
-            color = calcColorGlobalEffect(constructReflectedRay(gp.point, ray, n), level, material.Kr, kkr);
-
-        Double3 kkt = k.product(material.Kt);
-        if (!kkt.lowerThan(MIN_CALC_COLOR_K)) // the color is effected due to the transparency
-            color = color.add(calcColorGlobalEffect(constructRefractedRay(gp.point, ray, n), level, material.Kt, kkt));
-
-        return color;
-    }
-
-
-
-
     private GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> intersectionPoints = scene.geometries.findGeoIntersections(ray);
         if (intersectionPoints == null)
@@ -194,46 +180,19 @@ public class RayTracerBasic extends RayTracerBase {
         return ray.findClosestGeoPoint(intersectionPoints);
     }
 
-    private Ray constructRefractedRay(Point point, Ray ray, Vector n) {
-        return new Ray(point, ray.getDir(),n);
+    private Ray constructRefractedRay(Point point, Vector v, Vector n) {
+        return new Ray(point, v, n);
     }
 
-
-    private Ray constructReflectedRay(Point point, Ray ray, Vector n) {
-        return new Ray(point, reflectionVector(ray.getDir(), n), n);
+    private Ray constructReflectedRay(Point point, Vector v, Vector n) {
+        return new Ray(point, reflectionVector(v, n), n);
     }
 
     private Vector reflectionVector(Vector l, Vector n) {
-        return l.subtract(n.scale(2 * l.dotProduct(n))).normalize();
+        double ln2 = l.dotProduct(n) * 2;
+        Vector nln2 = n.scale(ln2);
+        return l.subtract(nln2).normalize();
     }
-
-
-
-
-
-/*
-    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
-        Color color = Color.BLACK;
-        Vector v = ray.getDir();
-        Vector n = gp.geometry.getNormal(gp.point);
-        Material material = gp.geometry.getMaterial();
-        return calcColorGlobalEffect(constructReflectedRay(gp.point, ray.getDir(), n),
-                level, k, material.Kr)
-                .add(calcColorGlobalEffect(constructRefractedRay(gp.point, ray.getDir(), n),
-                        level, k, material.Kt));
-    }
-
-    /* private Color calcColorGlobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
-        Double3 kkx = k.product(kx);
-        if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
-        GeoPoint gp = scene.geometries.findClosestIntersection(ray);
-        if (gp == null) return scene.background.scale(kx);
-        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDir()))
-                ? Color.BLACK : calcColor(gp, ray, level - 1, kkx);
-    }
-*/
-
-
 }
 
 
