@@ -82,7 +82,7 @@ public class Ray {
 
     public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPoints){
 
-        if (geoPoints.isEmpty())
+        if (geoPoints==null||geoPoints.isEmpty())
             return null;
 
         double minDistance = p0.distanceSquared(geoPoints.get(0).point);

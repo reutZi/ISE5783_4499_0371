@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final stage 6">
-      <change afterPath="$PROJECT_DIR$/images/shadowSphereTriangleMove1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/shadowSphereTriangleMove2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/shadowSphereTriangleSpot1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/shadowSphereTriangleSpot2.png" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="..">
+      <change afterPath="$PROJECT_DIR$/images/reflectionTwoSpheresMirrored.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/refractionShadow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/refractionTwoSpheres.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_25__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_27__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_14_06_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_14_06__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2023_11_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2023_11_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,11 +73,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\97258\IdeaProjects\ISE5783_4499_0371\unitTests\renderer" />
       <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\unitTests\renderer" />
       <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\unitTests\lighting" />
       <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\src" />
       <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\src\renderer" />
-      <recent name="C:\Users\reutz\OneDrive\שולחן העבודה\minip2\ISE5783_4499_0371\src\primitives" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="renderer" />
@@ -86,7 +87,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LightsTests">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests">
     <configuration name="LightsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -97,6 +98,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="lighting" />
       <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -117,7 +133,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShadowTests.sphereTriangleMove2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShadowTests.sphereTriangleInitial" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
         <pattern>
@@ -127,23 +143,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
-      <option name="METHOD_NAME" value="sphereTriangleMove2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShadowTests.sphereTriangleSpot1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
-      <option name="METHOD_NAME" value="sphereTriangleSpot1" />
+      <option name="METHOD_NAME" value="sphereTriangleInitial" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LightsTests" />
+        <item itemvalue="JUnit.ReflectionRefractionTests" />
         <item itemvalue="JUnit.ShadowTests" />
+        <item itemvalue="JUnit.ShadowTests.sphereTriangleInitial" />
+        <item itemvalue="JUnit.LightsTests" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleSpot2" />
-        <item itemvalue="JUnit.ShadowTests.sphereTriangleSpot1" />
-        <item itemvalue="JUnit.ShadowTests.sphereTriangleMove2" />
       </list>
     </recent_temporary>
   </component>
