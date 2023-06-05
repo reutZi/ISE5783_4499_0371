@@ -42,16 +42,6 @@ public class SpotLight extends PointLight {
         return this;
     }
 
-    /*@Override
-    public Color getIntensity(Point p){
-
-        double projection = this.dir.dotProduct(getL(p));
-
-        double numerator = Math.max(0, projection);
-
-        return super.getIntensity(p).scale(numerator);
-    }*/
-
     /**
      * Calculates the intensity of the spotlight at a given point in the scene.
      * @param p The point at which to calculate the intensity.
@@ -71,9 +61,9 @@ public class SpotLight extends PointLight {
         double max = Math.max(0, projection);
 
         // Calculate the intensity based on the projection raised to the power of narrowness
-        double intensity = Math.pow(max, narrowness);
+        //double intensity = Math.pow(max, narrowness);
 
         // Scale the intensity with the super intensity
-        return super.getIntensity(p).scale(intensity);
+        return super.getIntensity(p).scale(max);
     }
 }
