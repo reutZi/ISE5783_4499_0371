@@ -8,6 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2023_11_14_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2023_11_14__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/reflectionTwoSpheresMirrored.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/reflectionTwoSpheresMirrored.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/refractionShadow.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/refractionShadow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/refractionTwoSpheres.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/refractionTwoSpheres.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
     </list>
@@ -463,7 +466,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685949481789</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL‎-00042" summary="transparency">
+      <created>1685967029441</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL‎-00042" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1685967029441</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
