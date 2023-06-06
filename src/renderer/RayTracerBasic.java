@@ -126,6 +126,7 @@ public class RayTracerBasic extends RayTracerBase {
 //    }
 
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) {
+        //Double3 xxxx = kx.product(kkx);
         GeoPoint gp = findClosestIntersection(ray);
         return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx)).scale(kx);
     }

@@ -104,4 +104,48 @@ public class ReflectionRefractionTests {
                 .renderImage() //
                 .writeToImage();
     }
+
+
+    /** Produce a picture of a two triangles lighted by a spot light with a
+     * partially
+     * transparent Sphere producing partial shadow */
+    /** Produce a picture of a triangle and three spheres */
+    /** Produce a picture of a triangle and three spheres */
+    /** Produce a picture of a triangle and three spheres */
+    /** Produce a picture of an ice cream cone with three scoops */
+    /** Produce a picture of a triangle and three spheres resembling an ice cream cone */
+    /** Produce a picture of a triangle and three spheres */
+    @Test
+    public void ourTest() {
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setVPSize(200, 200).setVPDistance(1000);
+
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+
+        scene.geometries.add(
+                new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(10, 0, -100))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
+                new Sphere(30d, new Point(0, 80, -200)).setEmission(new Color(255, 255, 0)) // Yellow sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
+                new Sphere(30d, new Point(-25, 50, -200)).setEmission(new Color(255, 0, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
+                new Sphere(30d, new Point(25, 50, -200)).setEmission(new Color(0, 255, 0)) // Green sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30))
+        );
+
+        scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(0, 0, 0), new Vector(0, 0, -1))
+                .setKl(4E-5).setKq(2E-7));
+
+        ImageWriter imageWriter = new ImageWriter("ourTest", 600, 600);
+        camera.setImageWriter(imageWriter)
+                .setRayTracer(new RayTracerBasic(scene))
+                .renderImage()
+                .writeToImage();
+    }
+
+
+
+
+
+
 }
