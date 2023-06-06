@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="transparency">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_05_2023_09_02_[Changes]/shadowSphereTriangleInitial.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_05_2023_09_02_[Changes]/shadowTrianglesSphere.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_05_2023_09_02_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_05_2023_09_02__Changes_.xml" beforeDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="outrTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ourTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/ourTest.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -472,7 +468,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685967029441</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL‎-00043" summary="outrTest">
+      <created>1686052688775</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL‎-00043" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686052688775</updated>
+    </task>
+    <task id="LOCAL‎-00044" summary="outrTest">
+      <created>1686052830163</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL‎-00044" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686052830163</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,7 +519,8 @@
     <MESSAGE value="Shades" />
     <MESSAGE value="reflection and refraction tests" />
     <MESSAGE value="transparency" />
-    <option name="LAST_COMMIT_MESSAGE" value="transparency" />
+    <MESSAGE value="outrTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="outrTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
