@@ -138,18 +138,17 @@ public class ReflectionRefractionTests {
                         new Point(66, 92, -85),
                         new Point(35, 57, -85)
                 )                        .setEmission(new Color(yellow)), //
-                new Sphere(30d, new Point(0, 70, -100)).setEmission(new Color(PINK)) // Yellow sphere
+                new Sphere(31d, new Point(0, 70, -100)).setEmission(new Color(PINK)) // Yellow sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
-                new Sphere(32d, new Point(-27, 40, -100)).setEmission(new Color(255, 0, 0)) // Red sphere
+                new Sphere(33d, new Point(-27, 40, -100)).setEmission(new Color(255, 0, 0)) // Red sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
-                new Sphere(32d, new Point(27, 40, -100)).setEmission(new Color(127, 63, 0)) // Green sphere
+                new Sphere(33d, new Point(27, 40, -100)).setEmission(new Color(127, 63, 0)) // Green sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30))
         );
 
         scene.lights.add(new SpotLight(new Color(245,222,179), new Point(75,20, 100), new Vector(0, 0, -4))
                 .setKl(4E-5).setKq(2E-7));
-        //scene.lights.add(new SpotLight(new Color(GREEN), new Point(-20,50, 0), new Vector(0, 0, -4))
-          //      .setKl(4E-5).setKq(2E-7));
+
 
         ImageWriter imageWriter = new ImageWriter("ourTest", 600, 600);
         camera.setImageWriter(imageWriter)
