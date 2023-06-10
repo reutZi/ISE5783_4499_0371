@@ -124,7 +124,7 @@ public class ReflectionRefractionTests {
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
 
         scene.geometries.add(
-                new Triangle(new Point(50, 20, -10), new Point(0, -100, -110), new Point(-50, 20, -10)).setEmission(new Color(DARK_GRAY))
+                new Triangle(new Point(50, 20, -10), new Point(0, -100, -110), new Point(-50, 20, -10)).setEmission(new Color(205,133,63))
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
                 new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135),
                         new Point(75, 75, -150)) //
