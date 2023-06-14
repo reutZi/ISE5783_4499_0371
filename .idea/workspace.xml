@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final all stage 7">
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final final stage 7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +23,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -75,22 +82,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.ourTest">
-    <configuration name="LightsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lighting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="lighting" />
-      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.heart">
     <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -102,6 +94,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="heart" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
         <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests" />
         <item itemvalue="JUnit.ShadowTests" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleInitial" />
-        <item itemvalue="JUnit.LightsTests" />
       </list>
     </recent_temporary>
   </component>
@@ -501,7 +509,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1686432811679</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL‎-00048" summary="final final stage 7">
+      <created>1686647058176</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL‎-00048" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686647058177</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -541,7 +556,8 @@
     <MESSAGE value="outrTest" />
     <MESSAGE value="complate ice cream" />
     <MESSAGE value="stage 7 final" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 7 final" />
+    <MESSAGE value="final final stage 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="final final stage 7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,14 +16,19 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
-/** Tests for reflection and transparency functionality, test for partial
+/**
+ * Tests for reflection and transparency functionality, test for partial
  * shadows
  * (with transparency)
- * @author dzilb */
+ *
+ * @author dzilb
+ */
 public class ReflectionRefractionTests {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
 
-    /** Produce a picture of a sphere lighted by a spot light */
+    /**
+     * Produce a picture of a sphere lighted by a spot light
+     */
     @Test
     public void twoSpheres() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -44,7 +49,9 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
-    /** Produce a picture of a sphere lighted by a spot light */
+    /**
+     * Produce a picture of a sphere lighted by a spot light
+     */
     @Test
     public void twoSpheresOnMirrors() {
         Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -77,9 +84,11 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
-    /** Produce a picture of a two triangles lighted by a spot light with a
+    /**
+     * Produce a picture of a two triangles lighted by a spot light with a
      * partially
-     * transparent Sphere producing partial shadow */
+     * transparent Sphere producing partial shadow
+     */
     @Test
     public void trianglesTransparentSphere() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -115,7 +124,9 @@ public class ReflectionRefractionTests {
     /** Produce a picture of a triangle and three spheres */
     /** Produce a picture of an ice cream cone with three scoops */
     /** Produce a picture of a triangle and three spheres resembling an ice cream cone */
-    /** Produce a picture of a triangle and three spheres */
+    /**
+     * Produce a picture of a triangle and three spheres
+     */
     @Test
     public void ourTest() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
@@ -124,11 +135,11 @@ public class ReflectionRefractionTests {
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
 
         scene.geometries.add(
-                new Triangle(new Point(50, 20, -10), new Point(0, -100, -50), new Point(-50, 20, -10)).setEmission(new Color(205,133,63))
+                new Triangle(new Point(50, 20, -10), new Point(0, -100, -50), new Point(-50, 20, -10)).setEmission(new Color(205, 133, 63))
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
-                new Triangle(new Point(50, 20, -10), new Point(0, -100, -50), new Point(0, 20, -90)).setEmission(new Color(205,133,63))
+                new Triangle(new Point(50, 20, -10), new Point(0, -100, -50), new Point(0, 20, -90)).setEmission(new Color(205, 133, 63))
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
-                new Triangle(new Point(0, 20, -90), new Point(0, -100, -50), new Point(-50, 20, -10)).setEmission(new Color(205,133,63))
+                new Triangle(new Point(0, 20, -90), new Point(0, -100, -50), new Point(-50, 20, -10)).setEmission(new Color(205, 133, 63))
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
 
                 new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135),
@@ -142,7 +153,7 @@ public class ReflectionRefractionTests {
                         new Point(70, 77, -85),
                         new Point(66, 92, -85),
                         new Point(35, 57, -85)
-                )                        .setEmission(new Color(yellow)), //
+                ).setEmission(new Color(yellow)), //
                 new Sphere(31d, new Point(0, 70, -100)).setEmission(new Color(PINK)) // Yellow sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
                 new Sphere(33d, new Point(-27, 40, -100)).setEmission(new Color(255, 0, 0)) // Red sphere
@@ -151,11 +162,83 @@ public class ReflectionRefractionTests {
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30))
         );
 
-        scene.lights.add(new SpotLight(new Color(245,222,179), new Point(75,20, 100), new Vector(0, 0, -4))
+        scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 100), new Vector(0, 0, -4))
                 .setKl(4E-5).setKq(2E-7));
 
 
         ImageWriter imageWriter = new ImageWriter("ourTest", 600, 600);
+        camera.setImageWriter(imageWriter)
+                .setRayTracer(new RayTracerBasic(scene))
+                .renderImage()
+                .writeToImage();
+    }
+
+    @Test
+    public void heart() {
+       // Camera camera = new Camera(new Point(0, -150, 800), new Vector(0, 0, -1), new Vector(0, 1, 0))
+        //        .setVPSize(200, 200).setVPDistance(1000);
+
+        // camera = new Camera(new Point(1100, -50, -250), new Vector(-1, 0, 0), new Vector(0, 0, 1))
+      //  .setVPSize(200, 200).setVPDistance(1000);
+       Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1/2, 0, 1))
+         .setVPSize(200, 200).setVPDistance(1000);
+
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+
+        scene.geometries.add(
+
+                new Sphere(12d, new Point(0, -70, -295)).setEmission(new Color(255, 0, 0)) // under all
+                        .setMaterial(new Material().setKd(0.7).setKs(0.3).setShininess(30)),
+                new Sphere(12d, new Point(0, -70, -200)).setEmission(new Color(0, 250, 0)) //
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-20, -70, -283)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(20, -70, -283)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-37, -70, -265)).setEmission(new Color(255, 0, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(37, -70, -265)).setEmission(new Color(255, 0, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-52, -70, -245)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(52, -70, -245)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-62, -70, -222)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(62, -70, -222)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-62, -70, -200)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(62, -70, -200)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-55, -70, -177)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-15, -70, -180)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(15, -70, -180)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(55, -70, -177)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(35, -70, -165)).setEmission(new Color(255, 255, 255)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Sphere(12d, new Point(-35, -70, -165)).setEmission(new Color(25, 255, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+
+
+                new Triangle(new Point(-150, -150, -306), new Point(150, -150, -306),
+                        new Point(75, 75, -306)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //
+                new Triangle(new Point(-150, -150, -306), new Point(-70, 70, -306), new Point(75, 75, -306)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
+
+
+        );
+
+        scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 100), new Vector(0, 0, -4))
+                .setKl(4E-5).setKq(2E-7));
+
+
+        ImageWriter imageWriter = new ImageWriter("heart", 600, 600);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
