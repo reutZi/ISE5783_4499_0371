@@ -2,7 +2,11 @@ package renderer;
 
 import primitives.*;
 import static primitives.Util.*;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.MissingResourceException;
+import java.util.Random;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
@@ -25,6 +29,9 @@ public class Camera {
     private ImageWriter imageWriter;
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
+
+    private final int nSS = 4;
+    private int threadsCount = 3;
 
     /** Constructs a new camera object.
      * @param p    The camera position.
@@ -173,6 +180,32 @@ public class Camera {
         return this;
     }
 
+    public Camera renderImageSuperSampling() {
+        for (int i = 0; i < imageWriter.getNx(); i++) {
+            for (int j = 0; j < imageWriter.getNy(); j++) {
+                imageWriter.writePixel(j, i, castBeamSuperSampling(j, i));
+            }
+        }
+        return this;
+    }
+
+    private Color castRay(int j, int i) {
+        Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
+        return rayTracer.traceRay(ray);
+    }
+
+    public Camera renderImageMultiThreading() {
+        Pixel.initialize(imageWriter.getNx(), imageWriter.getNy(), 1);
+        while (threadsCount-- > 0) {    //In our case up to 3
+            new Thread(() -> {
+                for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+                    imageWriter.writePixel(pixel.col, pixel.row, castRay(pixel.col, pixel.row));
+            }).start();
+        }
+        Pixel.waitToFinish();
+        return this;
+    }
+
     /**
      * Prints a grid on the view plane at a given interval and color.
      * @param interval the interval between each line of the grid.
@@ -203,6 +236,49 @@ public class Camera {
             throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
 
         this.imageWriter.writeToImage();
+    }
+
+    private Color castBeamSuperSampling(int j, int i) {
+        List<Ray> beam = constructBeamSuperSampling(imageWriter.getNx(), imageWriter.getNy(), j, i);
+        Color color = Color.BLACK;
+        // calculates the average colour of rays traced
+        for (Ray ray : beam) {
+            color = color.add(rayTracer.traceRay(ray));
+        }
+        return color.reduce(nSS);
+    }
+
+    private List<Ray> constructBeamSuperSampling(int nX, int nY, int j, int i) {
+        List<Ray> beam = new LinkedList<>();
+        beam.add(constructRay(nX, nY, j, i));
+        double ry = height / nY;
+        double rx = width / nX;
+        double yScale = alignZero((j - nX / 2d) * rx + rx / 2d);
+        double xScale = alignZero((i - nY / 2d) * ry + ry / 2d);
+        Point pixelCenter = p0.add(vTo.scale(distance)); // center
+        if (!isZero(yScale))
+            pixelCenter = pixelCenter.add(vRight.scale(yScale));
+        if (!isZero(xScale))
+            pixelCenter = pixelCenter.add(vUp.scale(-1 * xScale));
+        Random rand = new Random();
+        // create rays randomly around the center ray
+        for (int c = 0; c < nSS; c++) {
+            // move randomly in the pixel
+            double dxfactor = rand.nextBoolean() ? rand.nextDouble() : -1 *
+                    rand.nextDouble();
+            double dyfactor = rand.nextBoolean() ? rand.nextDouble() : -1 *
+                    rand.nextDouble();
+            double dx = rx * dxfactor;
+            double dy = ry * dyfactor;
+            Point randomPoint = pixelCenter;
+            if (!isZero(dx))
+                randomPoint = randomPoint.add(vRight.scale(dx));
+            if (!isZero(dy))
+                randomPoint = randomPoint.add(vUp.scale(-1 * dy));
+            beam.add(new Ray(p0, randomPoint.subtract(p0)));
+        }
+        return beam;
+
     }
 }
 

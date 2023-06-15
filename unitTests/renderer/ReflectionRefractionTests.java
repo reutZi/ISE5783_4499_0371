@@ -246,4 +246,29 @@ public class ReflectionRefractionTests {
     }
 
 
+    @Test
+    public void basicRenderTwoColorTest() {
+        Scene scene = new Scene.SceneBuilder("Test scene")
+                .setAmbientLight(new AmbientLight(new Color(255, 191, 191), //
+                        new Double3(1, 1, 1))) //
+                .setBackground(new Color(75, 127, 90)).build();
+
+        scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)),
+                new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
+                // left
+                new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
+                        new Point(-100, -100, -100)), // down
+                // left
+                new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
+        // right
+        Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setVPDistance(100) //
+                .setVPSize(500, 500) //
+                .setImageWriter(new ImageWriter("base render test antialiasing", 1000, 1000))
+                .setRayTracer(new RayTracerBasic(scene));
+
+        camera.renderImageSuperSampling();
+        camera.writeToImage();
+    }
+
 }
