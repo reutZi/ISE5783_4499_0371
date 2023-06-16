@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final all stage 7">
-      <change afterPath="$PROJECT_DIR$/images/heart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/Pixel.java" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="improvments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereSpot.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereSpot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereSpotSharp.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereSpotSharp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesSpot.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesSpot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesSpotSharp.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesSpotSharp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/base render test antialiasing.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/base render test antialiasing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/heart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +87,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.basicRenderTwoColorTest">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.heart">
     <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -174,9 +169,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
         <item itemvalue="JUnit.ReflectionRefractionTests.basicRenderTwoColorTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.RandomAntiAliasing" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
         <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests" />
       </list>
@@ -190,13 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00001" summary="all of the implemention. we need to do javadoc">
-      <created>1680504661985</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL‎-00001" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1680504661985</updated>
     </task>
     <task id="LOCAL‎-00002" summary="getNormal at tube">
       <created>1680865452584</created>
@@ -527,7 +515,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1686647058177</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL‎-00049" summary="improvments">
+      <created>1686837371426</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL‎-00049" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686837371426</updated>
+    </task>
+    <task id="LOCAL‎-00050" summary="improvments">
+      <created>1686837403224</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL‎-00050" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686837403225</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -543,7 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="all of the implemention. we need to do javadoc" />
     <MESSAGE value="getNormal at tube" />
     <MESSAGE value="getNormal at Cylinder" />
     <MESSAGE value="Stage 2 done" />
@@ -568,7 +569,8 @@
     <MESSAGE value="complate ice cream" />
     <MESSAGE value="stage 7 final" />
     <MESSAGE value="final final stage 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="final final stage 7" />
+    <MESSAGE value="improvments" />
+    <option name="LAST_COMMIT_MESSAGE" value="improvments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

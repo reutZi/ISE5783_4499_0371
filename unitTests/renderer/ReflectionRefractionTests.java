@@ -187,41 +187,41 @@ public class ReflectionRefractionTests {
 
         scene.geometries.add(
 
-                new Sphere(12d, new Point(0, -70, -295)).setEmission(new Color(255, 0, 0)) // under all
+                new Sphere(12d, new Point(0, -70, -295)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.7).setKs(0.3).setShininess(30)),
-                new Sphere(12d, new Point(0, -70, -200)).setEmission(new Color(0, 250, 0)) //
+                new Sphere(12d, new Point(0, -70, -196)).setEmission(new Color(BLUE)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-20, -70, -283)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(-20, -70, -283)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(20, -70, -283)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(20, -70, -283)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-37, -70, -265)).setEmission(new Color(255, 0, 0)) // Red sphere
+                new Sphere(12d, new Point(-37, -70, -265)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(37, -70, -265)).setEmission(new Color(255, 0, 0)) // Red sphere
+                new Sphere(12d, new Point(37, -70, -265)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-52, -70, -245)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(-52, -70, -246)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(52, -70, -245)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(52, -70, -246)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-62, -70, -222)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(-62, -70, -224)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(62, -70, -222)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(62, -70, -224)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-62, -70, -200)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(-62, -70, -200)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(62, -70, -200)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(62, -70, -200)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-55, -70, -177)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(-55, -70, -177)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-15, -70, -180)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(-15, -70, -178)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(15, -70, -180)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(15, -70, -178)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(55, -70, -177)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(55, -70, -177)).setEmission(new Color(WHITE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(35, -70, -165)).setEmission(new Color(255, 255, 255)) // Red sphere
+                new Sphere(12d, new Point(35, -70, -165)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
-                new Sphere(12d, new Point(-35, -70, -165)).setEmission(new Color(25, 255, 0)) // Red sphere
+                new Sphere(12d, new Point(-35, -70, -165)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
 
 
@@ -241,10 +241,9 @@ public class ReflectionRefractionTests {
         ImageWriter imageWriter = new ImageWriter("heart", 600, 600);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
-                .renderImage()
+                .renderImageSuperSampling()
                 .writeToImage();
     }
-
 
     @Test
     public void basicRenderTwoColorTest() {
@@ -270,5 +269,4 @@ public class ReflectionRefractionTests {
         camera.renderImageSuperSampling();
         camera.writeToImage();
     }
-
 }
