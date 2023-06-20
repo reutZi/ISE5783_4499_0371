@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
@@ -30,8 +31,20 @@ public class Camera {
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
-    private final int nSS = 4;
-    private int threadsCount = 3;
+    private int threadsCount;
+
+    private boolean isAntiAliasing = false;
+
+    private double printInterval;
+
+    /**
+     * first parameter for number of random ray to cast for random beam anti aliasing
+     */
+    private int n;
+    /**
+     * first parameter for number of random ray to cast for random beam anti aliasing
+     */
+    private int m;
 
     /** Constructs a new camera object.
      * @param p    The camera position.
@@ -114,6 +127,21 @@ public class Camera {
         return this;
     }
 
+    public Camera setAntiAliasing(boolean antiAliasing) {
+        isAntiAliasing = antiAliasing;
+        return this;
+    }
+
+    public Camera setN(int num) {
+        this.n = num;
+        return this;
+    }
+
+    public Camera setM(int num) {
+        this.m = num;
+        return this;
+    }
+
     /** Constructs a new Ray object that represents a ray of light in a three-dimensional space.
      * @param Nx the number of columns in the camera's view frustum.
      * @param Ny the number of rows in the camera's view frustum.
@@ -143,67 +171,161 @@ public class Camera {
         return new Ray(p0, dirRay);
     }
 
-    /**
-     * Renders an image by tracing rays for each pixel of the view plane.
-     * @throws MissingResourceException if any of the fields are not initialized.
-     */
-    public Camera renderImage(){
-        // Check if all the required fields are initialized
-        if(height == 0)
-            throw new MissingResourceException("The field is not initialized", "Camera", "height");
-        if(width == 0)
-            throw new MissingResourceException("The field is not initialized", "Camera", "width");
-        if(distance == 0)
-            throw new MissingResourceException("The field is not initialized", "Camera", "distance");
-        if(imageWriter == null)
-            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
-        if(rayTracer == null)
-            throw new MissingResourceException("The field is not initialized", "Camera", "rayTracerBase");
+//    /**
+//     * Renders an image by tracing rays for each pixel of the view plane.
+//     * @throws MissingResourceException if any of the fields are not initialized.
+//     */
+//    public Camera renderImage(){
+//        // Check if all the required fields are initialized
+//        if(height == 0)
+//            throw new MissingResourceException("The field is not initialized", "Camera", "height");
+//        if(width == 0)
+//            throw new MissingResourceException("The field is not initialized", "Camera", "width");
+//        if(distance == 0)
+//            throw new MissingResourceException("The field is not initialized", "Camera", "distance");
+//        if(imageWriter == null)
+//            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
+//        if(rayTracer == null)
+//            throw new MissingResourceException("The field is not initialized", "Camera", "rayTracerBase");
+//
+//        Ray ray;
+//        Color color;
+//        int nY = imageWriter.getNy();
+//        int nX = imageWriter.getNx();
+//
+//        // Loop through each pixel in the image and trace a ray for it
+//        for (int i = 0; i < nY; i++) {
+//            for (int j = 0; j < nX; j++) {
+//
+//                // Construct a ray for the current pixel
+//                ray = constructRay(nX, nY, j, i);
+//                // Trace the ray using the rayTracer object to get the color of the pixel
+//                color = rayTracer.traceRay(ray);
+//                // Write the color to the image using the imageWriter object
+//                imageWriter.writePixel(j, i, color);
+//            }
+//        }
+//        return this;
+//    }
 
-        Ray ray;
-        Color color;
-        int nY = imageWriter.getNy();
-        int nX = imageWriter.getNx();
-
-        // Loop through each pixel in the image and trace a ray for it
-        for (int i = 0; i < nY; i++) {
-            for (int j = 0; j < nX; j++) {
-
-                // Construct a ray for the current pixel
-                ray = constructRay(nX, nY, j, i);
-                // Trace the ray using the rayTracer object to get the color of the pixel
-                color = rayTracer.traceRay(ray);
-                // Write the color to the image using the imageWriter object
-                imageWriter.writePixel(j, i, color);
-            }
-        }
-        return this;
-    }
-
-    public Camera renderImageSuperSampling() {
-        for (int i = 0; i < imageWriter.getNx(); i++) {
-            for (int j = 0; j < imageWriter.getNy(); j++) {
-                imageWriter.writePixel(j, i, castBeamSuperSampling(j, i));
-            }
-        }
-        return this;
-    }
 
     private Color castRay(int j, int i) {
         Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
         return rayTracer.traceRay(ray);
     }
 
-    public Camera renderImageMultiThreading() {
-        Pixel.initialize(imageWriter.getNx(), imageWriter.getNy(), 1);
-        while (threadsCount-- > 0) {    //In our case up to 3
-            new Thread(() -> {
-                for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
-                    imageWriter.writePixel(pixel.col, pixel.row, castRay(pixel.col, pixel.row));
-            }).start();
+    /**
+     * given a pixel ,cast a ray to a randomly selected point within a cell in a sub-grid made on a pixel
+     *
+     * @param Nx         number of rows in view plane
+     * @param Ny         number of columns in view plane
+     * @param Pij        center point of pixel (i,j)
+     * @param gridRow    row index of the cell in  the sub-grid of pixel
+     * @param gridColumn column index of the cell in  the sub-grid of pixel
+     * @param n          number of rows in the grid
+     * @param m          number of columns in the grid
+     * @return {@link Ray} from camera to randomly selected point
+     */
+    public Ray constructRandomRay(int Nx, int Ny, Point Pij, int gridRow, int gridColumn, int n, int m) {
+
+        // calculate "size" of each pixel -
+        // height per pixel = total "physical" height / number of rows
+        // width per pixel = total "physical" width / number of columns
+        double Ry = (double) height / Ny;
+        double Rx = (double) width / Nx;
+
+        //calculate height and width of a cell from the sub-grid
+        double gridHeight = (double) Ry / n;
+        double gridWidth = (double) Rx / m;
+
+        Random r = new Random();
+        // set a random value to scale vector on Y axis
+        // value range is from -(gridHeight/2) to (gridHeight/2)
+        double yI = r.nextDouble(gridHeight) - gridHeight / 2;
+        // set a random value to scale vector on X axis
+        // value range is from -(gridWidth/2) to (gridWidth/2)
+        double xJ = r.nextDouble(gridWidth) - gridWidth / 2;
+
+        // if result of xJ is > 0
+        // move result point from middle of pixel to column index in sub-grid
+        // then add the random value to move left/right on X axis within the cell
+        if (!isZero(xJ)) {
+            Pij = Pij.add(vRight.scale(gridWidth * gridColumn + xJ));
         }
-        Pixel.waitToFinish();
-        return this;
+
+        // if result of yI is > 0
+        // move result point from middle of pixel to row index in sub-grid
+        // then add the random value to move up/down on Y axis within the cell
+        if (!isZero(yI)) {
+            Pij = Pij.add(vUp.scale(gridHeight * gridRow + yI));
+        }
+
+        // return ray cast from camera to randomly selected point within grid of pixel
+        // reached by yI and xJ scaling factors
+        return new Ray(p0, Pij.subtract(p0));
+
+    }
+
+    /**
+     * given a pixel construct a beam of random rays within the grid of the pixel
+     *
+     * @param Nx  number of rows in view plane
+     * @param Ny  number of columns in view plane
+     * @param n   first parameter to set number of random rays to cast
+     * @param m   second parameter to set number of rays to cast
+     * @param ray ray towards the center of the pixel
+     * @return list with m*n rays cast randomly within the grid of the pixel
+     */
+    public List<Ray> constructRayBeam(int Nx, int Ny, int n, int m, Ray ray) {
+        // get center point of pixel
+        Point Pij = ray.getPoint(distance);
+        List<Ray> temp = new LinkedList<>();
+
+        // create a grid of n rows * m columns in each pixel
+        // construct a ray from camera to every cell in grid
+        // each ray is constructed randomly precisely within the grid borders
+        for (int i = -n / 2; i < n / 2; i++)
+            for (int j = -m / 2; j < m / 2; j++)
+                temp.add(constructRandomRay(Nx, Ny, Pij, i, j, n, m));
+
+        // remove from the list if a  ray was randomly constructed identical to ray to center
+        temp.removeIf((item) -> {
+            return item.equals(ray);
+        });
+        // add to list the ray to the center of the pixel
+        temp.add(ray);
+
+        return temp;
+    }
+
+    /**
+     * cast a beam of n*m random beams within a grid of a pixel (i,j)
+     *
+     * @param Nx number of rows in view plane
+     * @param Ny number of columns in view plane
+     * @param j  column index of pixel
+     * @param i  row index of pixel
+     * @param n  first parameter to set number of random rays to cast
+     * @param m  second parameter to set number of rays to cast
+     */
+    private void castRayBeamRandom(int Nx, int Ny, int j, int i, int n, int m) {
+        // construct ray through pixel
+        Ray ray = constructRay(Nx, Ny, j, i);
+
+        // construct n*m random rays towards the pixel
+        var rayBeam = constructRayBeam(Nx, Ny, n, m, ray);
+
+
+        // calculate color of the pixel using the average from all the rays in beam
+        Color color = Color.BLACK;
+        for (var r : rayBeam) {
+            color = color.add(rayTracer.traceRay(r));
+        }
+        // reduce final color by total number of rays to get mean value of pixel color
+        color = color.reduce(rayBeam.size());
+
+        //write pixel
+        imageWriter.writePixel(j, i, color);
     }
 
     /**
@@ -238,46 +360,94 @@ public class Camera {
         this.imageWriter.writeToImage();
     }
 
-    private Color castBeamSuperSampling(int j, int i) {
-        List<Ray> beam = constructBeamSuperSampling(imageWriter.getNx(), imageWriter.getNy(), j, i);
-        Color color = Color.BLACK;
-        // calculates the average colour of rays traced
-        for (Ray ray : beam) {
-            color = color.add(rayTracer.traceRay(ray));
-        }
-        return color.reduce(nSS);
+
+    public Camera renderImage() {
+        // check that image, writing and rendering objects are instantiated
+        if (imageWriter == null)
+            throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
+
+        if (rayTracer == null)
+            throw new MissingResourceException("ray tracer is not initialized", RayTracerBase.class.getName(), "");
+
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
+
+        //initialize thread progress reporter
+        Pixel.initialize(nY, nX, printInterval);
+
+        if(isAntiAliasing)
+            renderImageAntiAliasingRandom(nX, nY);
+        else
+            renderImage(nX, nY);
+
+        return this;
     }
 
-    private List<Ray> constructBeamSuperSampling(int nX, int nY, int j, int i) {
-        List<Ray> beam = new LinkedList<>();
-        beam.add(constructRay(nX, nY, j, i));
-        double ry = height / nY;
-        double rx = width / nX;
-        double yScale = alignZero((j - nX / 2d) * rx + rx / 2d);
-        double xScale = alignZero((i - nY / 2d) * ry + ry / 2d);
-        Point pixelCenter = p0.add(vTo.scale(distance)); // center
-        if (!isZero(yScale))
-            pixelCenter = pixelCenter.add(vRight.scale(yScale));
-        if (!isZero(xScale))
-            pixelCenter = pixelCenter.add(vUp.scale(-1 * xScale));
-        Random rand = new Random();
-        // create rays randomly around the center ray
-        for (int c = 0; c < nSS; c++) {
-            // move randomly in the pixel
-            double dxfactor = rand.nextBoolean() ? rand.nextDouble() : -1 *
-                    rand.nextDouble();
-            double dyfactor = rand.nextBoolean() ? rand.nextDouble() : -1 *
-                    rand.nextDouble();
-            double dx = rx * dxfactor;
-            double dy = ry * dyfactor;
-            Point randomPoint = pixelCenter;
-            if (!isZero(dx))
-                randomPoint = randomPoint.add(vRight.scale(dx));
-            if (!isZero(dy))
-                randomPoint = randomPoint.add(vUp.scale(-1 * dy));
-            beam.add(new Ray(p0, randomPoint.subtract(p0)));
+    /**
+     * render image using No improvement with support of multi threading
+     * (the fastest runtime - image has the lowest resolution)
+     *
+     * @param nX number of rows in the view Plane
+     * @param nY number of columns in the view plane
+     */
+    private void renderImage(int nX, int nY) {
+        if (threadsCount == 0) {
+            for (int i = 0; i < nY; ++i)
+                for (int j = 0; j < nX; ++j) {
+                    castRay(j, i);
+                    Pixel.pixelDone();
+                    Pixel.printPixel();
+                }
+        } else if (threadsCount == -1) {
+            IntStream.range(0, nY).parallel()
+                    .forEach(i -> IntStream.range(0, nX).parallel()
+                            .forEach(j -> {
+                                castRay(j, i);
+                                Pixel.pixelDone();
+                                Pixel.printPixel();
+                            }));
+        } else {
+            while (threadsCount-- > 0) {
+                new Thread(() -> {
+                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+                        castRay(pixel.col, pixel.row);
+                }).start();
+            }
+            Pixel.waitToFinish();
         }
-        return beam;
+    }
+
+
+    /**
+     * render image using Random method Anti aliasing improvement with support of multi threading
+     * (the slowest runtime - image has high resolution)
+     *
+     * @param nX number of rows in the view Plane
+     * @param nY number of columns in the view plane
+     */
+    private void renderImageAntiAliasingRandom(int nX, int nY) {
+        if (threadsCount == 0) {
+            for (int i = 0; i < nY; ++i)
+                for (int j = 0; j < nX; ++j) {
+                    castRayBeamRandom(nX, nY, i, j, n, m);
+                    Pixel.pixelDone();
+                    Pixel.printPixel();
+                }
+        } else if (threadsCount == -1) {
+            IntStream.range(0, nY).parallel().forEach(i -> IntStream.range(0, nX).parallel().forEach(j -> {
+                castRayBeamRandom(nX, nY, i, j, n, m);
+                Pixel.pixelDone();
+                Pixel.printPixel();
+            }));
+        } else {
+            while (threadsCount-- > 0) {
+                new Thread(() -> {
+                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+                        castRayBeamRandom(nX, nY, pixel.col, pixel.row, n, m);
+                }).start();
+            }
+            Pixel.waitToFinish();
+        }
 
     }
 }
