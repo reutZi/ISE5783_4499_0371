@@ -5,6 +5,7 @@ package renderer;
 
 import static java.awt.Color.*;
 
+import geometries.Cylinder;
 import geometries.Polygon;
 import org.junit.jupiter.api.Test;
 
@@ -175,13 +176,13 @@ public class ReflectionRefractionTests {
 
     @Test
     public void heart() {
-       // Camera camera = new Camera(new Point(0, -150, 800), new Vector(0, 0, -1), new Vector(0, 1, 0))
-        //        .setVPSize(200, 200).setVPDistance(1000);
+        // Camera camera = new Camera(new Point(0, -150, 800), new Vector(0, 0, -1), new Vector(0, 1, 0))
+        //      .setVPSize(200, 200).setVPDistance(1000);
 
-        // camera = new Camera(new Point(1100, -50, -250), new Vector(-1, 0, 0), new Vector(0, 0, 1))
-      //  .setVPSize(200, 200).setVPDistance(1000);
-       Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1/2, 0, 1))
-         .setVPSize(200, 200).setVPDistance(1000);
+        //  Camera camera = new Camera(new Point(1100, -50, -250), new Vector(-1, 0, 0), new Vector(0, 0, 1))
+        //.setVPSize(200, 200).setVPDistance(1000);
+        Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
+              .setVPSize(200, 200).setVPDistance(1000);
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
 
@@ -223,22 +224,100 @@ public class ReflectionRefractionTests {
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
                 new Sphere(12d, new Point(-35, -70, -165)).setEmission(new Color(BLUE))
                         .setMaterial(new Material().setKd(0.2).setKs(0.7).setShininess(30)),
+                new Triangle(new Point(150, -200, -300), new Point(-270, -400, -350),
+                        new Point(150, -200, 200)) //
+                        .setEmission(new Color(20, 20, 20)) //
+                        .setMaterial(new Material().setKr(0.2)),
+                new Triangle(new Point(-160, -150, -300), new Point(270, -400, -350),
+                        new Point(-160, -150, 200)) //
+                        .setEmission(new Color(20, 20, 20)) //
+                        .setMaterial(new Material().setKr(0.2)),
+                new Polygon(   //המקל
+                        new Point(-23, -100, -305),
+                        new Point(-23, -100, -220),
+                        new Point(-26, -100, -220),
+                        new Point(-26, -100, -305)
+                ).setEmission(new Color(0,0,0)),
+                new Polygon( //הדגל
+                        new Point(-23, -100, -220),
+                        new Point (-23, -100, -247),
+                        new Point(23, -100, -247),
+                        new Point(23, -100, -220)
+                ).setEmission(new Color(255,255,255)),
+                new Polygon( //פס תחתון
+                        new Point(-23, -99, -242),
+                        new Point (-23, -99, -244),
+                        new Point(23, -99, -244),
+                        new Point(23, -99, -242)
+                ).setEmission(new Color(0,0,255)),
+                new Polygon( //פס עליון
+                        new Point(-23, -99, -223),
+                        new Point (-23, -99, -225),
+                        new Point(23, -99, -225),
+                        new Point(23, -99, -223)
+                ).setEmission(new Color(0,0,255)),
+                //מגן דוד
+                new Triangle(new Point(0, -95, -226), new Point(-7, -95, -238), new Point(7, -95, -238))
+                        .setEmission(new Color(BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //משולש ישר
+                new Triangle(new Point(0, -95, -242), new Point(-7, -95, -230), new Point(7, -95, -230))
+                        .setEmission(new Color(BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),//משולש הפוך
+                new Polygon(
+                        new Point(-150, -150, -300),
+                        new Point (150, -150, -300),
+                        new Point(150, 70, -315),
+                        new Point(-150, 70, -315)
+                ) .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
+
+                //new Triangle(new Point(-150, -150, -305), new Point(150, -150, -305),
+                  //      new Point(75, 75, -305)) //
+                      //  .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //
+                //new Triangle(new Point(-150, -150, -305), new Point(-70, 70, -305), new Point(75, 75, -305)) //
+                  //      .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
 
 
-                new Triangle(new Point(-150, -150, -306), new Point(150, -150, -306),
-                        new Point(75, 75, -306)) //
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //
-                new Triangle(new Point(-150, -150, -306), new Point(-70, 70, -306), new Point(75, 75, -306)) //
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
+        );
+
+        //scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(-100, 100, 100), new Vector(0, 0, -4))
+          //      .setKl(2E-5).setKq(1E-7));
+        //scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 100), new Vector(0, 0, -4))
+          //      .setKl(4E-5).setKq(2E-7));
+        scene.lights.add( //
+                new SpotLight(new Color(245, 222, 179), new Point(40, 40, 115), new Vector(-1, -1, -4)) //
+                        .setKl(4E-4).setKq(2E-6));
 
 
+        ImageWriter imageWriter = new ImageWriter("heart", 600, 600);
+        camera.setImageWriter(imageWriter)
+                .setRayTracer(new RayTracerBasic(scene))
+                .renderImageSuperSampling()
+                .writeToImage();
+    }
+
+    @Test
+    public void MagenDavid() {
+        // Camera camera = new Camera(new Point(0, -150, 800), new Vector(0, 0, -1), new Vector(0, 1, 0))
+        //        .setVPSize(200, 200).setVPDistance(1000);
+
+        // camera = new Camera(new Point(1100, -50, -250), new Vector(-1, 0, 0), new Vector(0, 0, 1))
+        //  .setVPSize(200, 200).setVPDistance(1000);
+        Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
+                .setVPSize(200, 200).setVPDistance(1000);
+
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+
+        scene.geometries.add(
+
+                new Triangle(new Point(15, -70, -157), new Point(5, -50, -178), new Point(25, -50, -178))
+                        .setEmission(new Color(BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
+                new Triangle(new Point(15, -70, -183), new Point(5, -50, -162), new Point(25, -50, -162))
+                        .setEmission(new Color(BLUE)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
         );
 
         scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 100), new Vector(0, 0, -4))
                 .setKl(4E-5).setKq(2E-7));
 
 
-        ImageWriter imageWriter = new ImageWriter("heart", 600, 600);
+        ImageWriter imageWriter = new ImageWriter("MagenDavid", 600, 600);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImageSuperSampling()
