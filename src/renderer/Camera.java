@@ -14,36 +14,44 @@ public class Camera {
 
     // Camera position
     private Point p0;
+
     // Direction vector of camera
     private Vector vTo;
+
     // Up direction vector of camera
     private Vector vUp;
+
     // Right direction vector of camera
     private Vector vRight;
+
     // Height of view plane
     private double height;
+
     // Width of view plane
     private double width;
+
     // Distance of view plane from camera
     private double distance;
+
     // The object used for writing the rendered image.
     private ImageWriter imageWriter;
+
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
-    private int threadsCount = 0;
+    //number of threads to use in image rendering
+    private int threadsCount = -1;
 
+    // Indicates whether anti-aliasing is enabled for the camera
     private boolean isAntiAliasing = false;
 
-    private double printInterval;
+    // used for thread progress reporting during rendering
+    private double printInterval = 0;
 
-    /**
-     * first parameter for number of random ray to cast for random beam anti aliasing
-     */
+    //first parameter for number of random ray to cast for random beam anti aliasing
     private int n;
-    /**
-     * first parameter for number of random ray to cast for random beam anti aliasing
-     */
+
+    // first parameter for number of random ray to cast for random beam anti aliasing
     private int m;
 
     /** Constructs a new camera object.
@@ -117,30 +125,61 @@ public class Camera {
         return this;
     }
 
+    /**
+     * Sets the image writer for the camera.
+     *
+     * @param imageWriter The image writer object.
+     * @return The camera object.
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * Sets the ray tracer for the camera.
+     *
+     * @param rayTracer The ray tracer object.
+     * @return The camera object.
+     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
+    /**
+     * Sets the anti-aliasing option for the camera.
+     *
+     * @param antiAliasing {@code true} to enable anti-aliasing, {@code false} otherwise.
+     * @return The camera object.
+     */
     public Camera setAntiAliasing(boolean antiAliasing) {
         isAntiAliasing = antiAliasing;
         return this;
     }
 
+    /**
+     * Sets the number of random rays to cast for random beam anti-aliasing.
+     *
+     * @param num The number of random rays.
+     * @return The camera object.
+     */
     public Camera setN(int num) {
         this.n = num;
         return this;
     }
 
+    /**
+     * Sets the number of random rays to cast for random beam anti-aliasing.
+     *
+     * @param num The number of random rays.
+     * @return The camera object.
+     */
     public Camera setM(int num) {
         this.m = num;
         return this;
     }
+
 
     /** Constructs a new Ray object that represents a ray of light in a three-dimensional space.
      * @param Nx the number of columns in the camera's view frustum.
@@ -171,13 +210,18 @@ public class Camera {
         return new Ray(p0, dirRay);
     }
 
+    /**
+     * Casts a ray from the specified pixel coordinates and writes the resulting color to the image.
+     *
+     * @param j The x-coordinate of the pixel.
+     * @param i The y-coordinate of the pixel.
+     */
     private void castRay(int j, int i) {
-        // construct ray through pixel
         Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
-        // return the color using ray tracer
         Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(j, i, color);
     }
+
 
     /**
      * given a pixel ,cast a ray to a randomly selected point within a cell in a sub-grid made on a pixel
@@ -190,6 +234,7 @@ public class Camera {
      * @param n          number of rows in the grid
      * @param m          number of columns in the grid
      * @return {@link Ray} from camera to randomly selected point
+     * @author menachem bezalel
      */
     public Ray constructRandomRay(int Nx, int Ny, Point Pij, int gridRow, int gridColumn, int n, int m) {
 
@@ -228,7 +273,6 @@ public class Camera {
         // return ray cast from camera to randomly selected point within grid of pixel
         // reached by yI and xJ scaling factors
         return new Ray(p0, Pij.subtract(p0));
-
     }
 
     /**
@@ -240,6 +284,7 @@ public class Camera {
      * @param m   second parameter to set number of rays to cast
      * @param ray ray towards the center of the pixel
      * @return list with m*n rays cast randomly within the grid of the pixel
+     * @author menachem bezalel
      */
     public List<Ray> constructRayBeam(int Nx, int Ny, int n, int m, Ray ray) {
         // get center point of pixel
@@ -272,6 +317,7 @@ public class Camera {
      * @param i  row index of pixel
      * @param n  first parameter to set number of random rays to cast
      * @param m  second parameter to set number of rays to cast
+     * @author menachem bezalel
      */
     private void castRayBeamRandom(int Nx, int Ny, int j, int i, int n, int m) {
         // construct ray through pixel
@@ -279,7 +325,6 @@ public class Camera {
 
         // construct n*m random rays towards the pixel
         var rayBeam = constructRayBeam(Nx, Ny, n, m, ray);
-
 
         // calculate color of the pixel using the average from all the rays in beam
         Color color = Color.BLACK;
@@ -314,8 +359,8 @@ public class Camera {
     }
 
     /**
-     Writes the image to a file using the image writer.
-     @throws MissingResourceException if the image writer field is not initialized.
+     * Writes the image to a file using the image writer.
+     * @throws MissingResourceException if the image writer field is not initialized.
      */
     public void writeToImage() {
 
@@ -326,7 +371,13 @@ public class Camera {
     }
 
 
-    public Camera renderImage() {
+    /**
+     * Renders the image using the configured camera settings.
+     *
+     * @return The camera object.
+     * @throws MissingResourceException If the image writer or ray tracer is not initialized.
+     */
+    public Camera renderImage() throws MissingResourceException {
         // check that image, writing and rendering objects are instantiated
         if (imageWriter == null)
             throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
@@ -337,10 +388,10 @@ public class Camera {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
 
-        //initialize thread progress reporter
+        // initialize thread progress reporter
         Pixel.initialize(nY, nX, printInterval);
 
-        if(isAntiAliasing)
+        if (isAntiAliasing)
             renderImageAntiAliasingRandom(nX, nY);
         else
             renderImage(nX, nY);
@@ -348,12 +399,14 @@ public class Camera {
         return this;
     }
 
+
     /**
      * render image using No improvement with support of multi threading
      * (the fastest runtime - image has the lowest resolution)
      *
      * @param nX number of rows in the view Plane
      * @param nY number of columns in the view plane
+     * @author menachem bezalel
      */
     private void renderImage(int nX, int nY) {
         if (threadsCount == 0) {
@@ -389,6 +442,7 @@ public class Camera {
      *
      * @param nX number of rows in the view Plane
      * @param nY number of columns in the view plane
+     * @author menachem bezalel
      */
     private void renderImageAntiAliasingRandom(int nX, int nY) {
         if (threadsCount == 0) {
@@ -413,7 +467,6 @@ public class Camera {
             }
             Pixel.waitToFinish();
         }
-
     }
 }
 

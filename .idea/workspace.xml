@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="heart continue">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_31__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_06_2023_23_31__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_06_2023_15_04__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_06_2023_15_04__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_06_2023_12_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_06_2023_12_34__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/advancedBeamTestRandom.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/advancedBeamTestRandom.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/heart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/ourTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/ourTest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/advancedBeamTestRandom.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
@@ -92,39 +88,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.heart">
-    <configuration name="ReflectionRefractionTests.MagenDavid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="MagenDavid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReflectionRefractionTests.antiAliasingBasicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="antiAliasingBasicTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.improvmentsTests.heart">
     <configuration name="ReflectionRefractionTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -173,13 +137,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="improvmentsTests.antiAliasingBasicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="improvments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="improvments" />
+      <option name="MAIN_CLASS_NAME" value="improvments.improvmentsTests" />
+      <option name="METHOD_NAME" value="antiAliasingBasicTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="improvmentsTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="improvments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="improvments" />
+      <option name="MAIN_CLASS_NAME" value="improvments.improvmentsTests" />
+      <option name="METHOD_NAME" value="heart" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.improvmentsTests.heart" />
+        <item itemvalue="JUnit.improvmentsTests.antiAliasingBasicTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
         <item itemvalue="JUnit.ReflectionRefractionTests.realBonus" />
         <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.antiAliasingBasicTest" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.MagenDavid" />
       </list>
     </recent_temporary>
   </component>
@@ -191,20 +187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00003" summary="getNormal at Cylinder">
-      <created>1680866231620</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL‎-00003" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1680866231620</updated>
-    </task>
-    <task id="LOCAL‎-00004" summary="getNormal at Cylinder">
-      <created>1681462553562</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL‎-00004" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1681462553562</updated>
     </task>
     <task id="LOCAL‎-00005" summary="Stage 2 done">
       <created>1681477695400</created>
@@ -535,7 +517,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687265990913</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL‎-00052" summary="heart continue">
+      <created>1687344396367</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL‎-00052" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687344396367</updated>
+    </task>
+    <task id="LOCAL‎-00053" summary="heart continue">
+      <created>1687344409916</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL‎-00053" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687344409916</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -551,7 +547,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="getNormal at tube" />
     <MESSAGE value="getNormal at Cylinder" />
     <MESSAGE value="Stage 2 done" />
     <MESSAGE value="started findIntersections" />
@@ -576,7 +571,8 @@
     <MESSAGE value="stage 7 final" />
     <MESSAGE value="final final stage 7" />
     <MESSAGE value="improvments" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvments" />
+    <MESSAGE value="heart continue" />
+    <option name="LAST_COMMIT_MESSAGE" value="heart continue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
