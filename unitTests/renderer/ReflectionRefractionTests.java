@@ -305,7 +305,7 @@ public class ReflectionRefractionTests {
                         new Point(150, -150, -310),
                         new Point(150, 70, -325),
                         new Point(-150, 70, -325)
-                ).setEmission(new Color(100,100,100)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(0)),
+                ).setEmission(new Color(100, 100, 100)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(0)),
                 new Polygon( //פס
                         new Point(-15, -130, -223),
                         new Point(-15, -130, -225),
@@ -322,9 +322,9 @@ public class ReflectionRefractionTests {
         );
 
         scene.lights.add(new SpotLight(new Color(0, 0, 179), new Point(0, 100, 100), new Vector(0, 0, -4))
-              .setKl(2E-5).setKq(1E-7));
+                .setKl(2E-5).setKq(1E-7));
         scene.lights.add(new SpotLight(new Color(245, 0, 179), new Point(75, 20, 100), new Vector(0, 0, -2))
-              .setKl(4E-5).setKq(2E-7));
+                .setKl(4E-5).setKq(2E-7));
         scene.lights.add( //
                 new SpotLight(new Color(245, 222, 179), new Point(40, 40, 115), new Vector(-1, -1, -4)) //
                         .setKl(4E-4).setKq(2E-6));

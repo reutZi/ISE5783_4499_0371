@@ -31,7 +31,7 @@ public class Camera {
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
-    private int threadsCount;
+    private int threadsCount = 0;
 
     private boolean isAntiAliasing = false;
 
@@ -171,47 +171,12 @@ public class Camera {
         return new Ray(p0, dirRay);
     }
 
-//    /**
-//     * Renders an image by tracing rays for each pixel of the view plane.
-//     * @throws MissingResourceException if any of the fields are not initialized.
-//     */
-//    public Camera renderImage(){
-//        // Check if all the required fields are initialized
-//        if(height == 0)
-//            throw new MissingResourceException("The field is not initialized", "Camera", "height");
-//        if(width == 0)
-//            throw new MissingResourceException("The field is not initialized", "Camera", "width");
-//        if(distance == 0)
-//            throw new MissingResourceException("The field is not initialized", "Camera", "distance");
-//        if(imageWriter == null)
-//            throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
-//        if(rayTracer == null)
-//            throw new MissingResourceException("The field is not initialized", "Camera", "rayTracerBase");
-//
-//        Ray ray;
-//        Color color;
-//        int nY = imageWriter.getNy();
-//        int nX = imageWriter.getNx();
-//
-//        // Loop through each pixel in the image and trace a ray for it
-//        for (int i = 0; i < nY; i++) {
-//            for (int j = 0; j < nX; j++) {
-//
-//                // Construct a ray for the current pixel
-//                ray = constructRay(nX, nY, j, i);
-//                // Trace the ray using the rayTracer object to get the color of the pixel
-//                color = rayTracer.traceRay(ray);
-//                // Write the color to the image using the imageWriter object
-//                imageWriter.writePixel(j, i, color);
-//            }
-//        }
-//        return this;
-//    }
-
-
-    private Color castRay(int j, int i) {
+    private void castRay(int j, int i) {
+        // construct ray through pixel
         Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
-        return rayTracer.traceRay(ray);
+        // return the color using ray tracer
+        Color color = rayTracer.traceRay(ray);
+        imageWriter.writePixel(j, i, color);
     }
 
     /**
