@@ -1,9 +1,6 @@
 package improvments;
 
-import geometries.Geometries;
-import geometries.Polygon;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import lighting.AmbientLight;
 import lighting.SpotLight;
 import org.junit.jupiter.api.Test;
@@ -188,11 +185,6 @@ public class improvmentsTests {
                         new Point(10, -130, -225),
                         new Point(10, -130, -223)
                 ).setEmission(new Color(255, 255, 255))
-                //new Triangle(new Point(-150, -150, -305), new Point(150, -150, -305),
-                //      new Point(75, 75, -305)) //
-                //  .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)), //
-                //new Triangle(new Point(-150, -150, -305), new Point(-70, 70, -305), new Point(75, 75, -305)) //
-                //      .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60))
 
 
         );
@@ -212,4 +204,65 @@ public class improvmentsTests {
                 .renderImage()
                 .writeToImage();
     }
+
+    @Test
+    public void MP2() {
+//        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                .setVPSize(200, 200).setVPDistance(500);
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setVPSize(200, 200).setVPDistance(500);
+
+        scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+        scene.geometries.add(
+                new Polygon( //רצפה
+                        new Point(-200, -50, -100),
+                        new Point(200, -50, -100),
+                        new Point(200, -100, 320),
+                        new Point(-200, -100, 320)
+                ).setEmission(new Color(100, 100, 100))
+                        .setMaterial(new Material()
+                                .setKd(0.5)
+                                .setKs(0.5)
+                                .setShininess(0)),
+                new Polygon( //קיר אחורי
+                        new Point(-200, -90, -100),
+                        new Point(200, -90, -100),
+                        new Point(200, 200, -100),
+                        new Point(-200, 200, -100)
+                ).setEmission(new Color(100, 0, 0))
+                        .setMaterial(new Material()
+                                .setKd(0.5)
+                                .setKs(0.5)
+                                .setShininess(0)),
+                new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
+                new Polygon(//מסגרת
+                        new Point(70, 90, -100),
+                        new Point(140, 90, -100),
+                        new Point(140, 140, -100),
+                        new Point(70, 140, -100)
+                ).setEmission(new Color(0, 0, 0)),
+                new Polygon(//תמונה
+                        new Point(74, 94, -100),
+                        new Point(136, 94, -100),
+                        new Point(136, 136, -100),
+                        new Point(74, 136, -100)
+                ).setEmission(new Color(255,255,255))
+
+
+
+
+        );
+
+
+        scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 200), new Vector(0, -1, -4))
+                .setKl(4E-4).setKq(2E-5));
+
+
+        ImageWriter imageWriter = new ImageWriter("newMP2", 600, 600);
+        camera.setImageWriter(imageWriter)
+                .setRayTracer(new RayTracerBasic(scene))
+                .renderImage()
+                .writeToImage();
+    }
+
 }

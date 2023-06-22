@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="almost final heart">
-      <change afterPath="$PROJECT_DIR$/images/MP2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/geometries/Cuboid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/heart.png" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="started MP2">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2023_20_33__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_06_2023_20_33__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +86,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.improvmentsTests.heart">
+  <component name="RunManager" selected="JUnit.improvmentsTests.MP2">
     <configuration name="ReflectionRefractionTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -103,22 +103,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.ourTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="ourTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ReflectionRefractionTests.realBonus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -130,6 +114,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="METHOD_NAME" value="realBonus" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="improvmentsTests.MP2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="improvments.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="improvments" />
+      <option name="MAIN_CLASS_NAME" value="improvments.improvmentsTests" />
+      <option name="METHOD_NAME" value="MP2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.improvmentsTests.MP2" />
         <item itemvalue="JUnit.improvmentsTests.heart" />
         <item itemvalue="JUnit.improvmentsTests.antiAliasingBasicTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
         <item itemvalue="JUnit.ReflectionRefractionTests.realBonus" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
       </list>
     </recent_temporary>
   </component>
@@ -185,20 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00005" summary="Stage 2 done">
-      <created>1681477695400</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL‎-00005" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1681477695400</updated>
-    </task>
-    <task id="LOCAL‎-00006" summary="Stage 2 done">
-      <created>1681633610096</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL‎-00006" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1681633610096</updated>
     </task>
     <task id="LOCAL‎-00007" summary="Stage 2 done">
       <created>1681764013434</created>
@@ -529,7 +515,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687344409916</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL‎-00054" summary="final mini Project 1">
+      <created>1687386067341</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL‎-00054" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687386067342</updated>
+    </task>
+    <task id="LOCAL‎-00055" summary="started MP2">
+      <created>1687386142691</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL‎-00055" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687386142691</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -545,8 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="getNormal at Cylinder" />
-    <MESSAGE value="Stage 2 done" />
     <MESSAGE value="started findIntersections" />
     <MESSAGE value="find intersection of sphere - tests" />
     <MESSAGE value="find intersection of triangle and plane" />
@@ -570,7 +568,9 @@
     <MESSAGE value="final final stage 7" />
     <MESSAGE value="improvments" />
     <MESSAGE value="heart continue" />
-    <option name="LAST_COMMIT_MESSAGE" value="heart continue" />
+    <MESSAGE value="final mini Project 1" />
+    <MESSAGE value="started MP2" />
+    <option name="LAST_COMMIT_MESSAGE" value="started MP2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
