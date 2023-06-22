@@ -234,7 +234,7 @@ public class improvmentsTests {
                                 .setKd(0.5)
                                 .setKs(0.5)
                                 .setShininess(0)),
-                new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
+                //new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
                 new Polygon(//מסגרת
                         new Point(70, 90, -100),
                         new Point(140, 90, -100),
@@ -246,7 +246,24 @@ public class improvmentsTests {
                         new Point(136, 94, -100),
                         new Point(136, 136, -100),
                         new Point(74, 136, -100)
-                ).setEmission(new Color(255,255,255))
+                ).setEmission(new Color(255,255,255)),
+                new Polygon( //מיטה
+                        new Point(-125, -10, -50),
+                        new Point(35, -10, -50),
+                        new Point(35, -50, 80),
+                        new Point(-125, -50, 80)
+                ).setEmission(new Color(0,0,200))
+                        .setMaterial((new Material()
+                                .setKd(0.5)
+                                .setKs(0.5)
+                                .setKr(0.5)
+                                .setShininess(30))),
+                new Cuboid(new Point(-115, -47, 65),110,3, 50,new Color(WHITE)),//כרית
+
+                new Cuboid(new Point(-125, -10, -40),10,60,10),
+                new Cuboid(new Point(25, -10, -40),10,60,10),
+                new Cuboid(new Point(25, -50, 70),10,60,10),
+                new Cuboid(new Point(-125, -50, 70),10,60,10)
 
 
 
