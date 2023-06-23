@@ -214,7 +214,7 @@ public class improvmentsTests {
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
-                new Polygon( //רצפה
+                new Polygon( //floor
                         new Point(-200, -50, -100),
                         new Point(200, -50, -100),
                         new Point(200, -100, 320),
@@ -224,7 +224,7 @@ public class improvmentsTests {
                                 .setKd(0.5)
                                 .setKs(0.5)
                                 .setShininess(0)),
-                new Polygon( //קיר אחורי
+                new Polygon( //back wall
                         new Point(-200, -90, -100),
                         new Point(200, -90, -100),
                         new Point(200, 200, -100),
@@ -235,36 +235,51 @@ public class improvmentsTests {
                                 .setKs(0.5)
                                 .setShininess(0)),
                 //new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
-                new Polygon(//מסגרת
+                new Polygon(//frame
                         new Point(70, 90, -100),
                         new Point(140, 90, -100),
                         new Point(140, 140, -100),
                         new Point(70, 140, -100)
                 ).setEmission(new Color(0, 0, 0)),
-                new Polygon(//תמונה
+                new Polygon(//white picture
                         new Point(74, 94, -100),
                         new Point(136, 94, -100),
                         new Point(136, 136, -100),
                         new Point(74, 136, -100)
                 ).setEmission(new Color(255,255,255)),
-                new Polygon( //מיטה
+                new Polygon( //bed
                         new Point(-125, -10, -50),
                         new Point(35, -10, -50),
                         new Point(35, -50, 80),
                         new Point(-125, -50, 80)
-                ).setEmission(new Color(0,0,200))
-                        .setMaterial((new Material()
-                                .setKd(0.5)
-                                .setKs(0.5)
-                                .setKr(0.5)
-                                .setShininess(30))),
+                ).setEmission(new Color(0,0,200)),
+//                        .setMaterial((new Material()
+//                                .setKd(0.5)
+//                                .setKs(0.5)
+//                                .setKr(0.5)
+//                                .setShininess(30))),
                 new Cuboid(new Point(-115, -47, 65),110,3, 50,new Color(WHITE)),//כרית
 
+                //top left bed leg
                 new Cuboid(new Point(-125, -10, -40),10,60,10),
+                //top right bed leg
                 new Cuboid(new Point(25, -10, -40),10,60,10),
+                //bottom right bed leg
                 new Cuboid(new Point(25, -50, 70),10,60,10),
-                new Cuboid(new Point(-125, -50, 70),10,60,10)
+                //bottom left bed leg
+                new Cuboid(new Point(-125, -50, 70),10,60,10),
 
+                new Polygon(new Point(-125, -50, 80),
+                        new Point(-100, -50, 80),
+                        new Point(-100, -10, -50),
+                        new Point(-125, -10, -50)),
+
+                new Polygon(new Point(-100, -50, 50),
+                        new Point(-70, -50, 50),
+                        new Point(-70, -10, -20),
+                        new Point(-100, -10, -20)).setEmission(new Color(WHITE))
+
+                //new Cuboid(new Point(-125, 0, 70),10,10,200, new Color(255,255,255))
 
 
 
