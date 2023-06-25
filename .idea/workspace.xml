@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final project 1">
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/newMP2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/newMP2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
@@ -185,13 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00008" summary="Stage 2 done">
-      <created>1681819868278</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL‎-00008" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1681819868278</updated>
     </task>
     <task id="LOCAL‎-00009" summary="Stage 2 done">
       <created>1681821467661</created>
@@ -529,7 +522,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687446276787</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL‎-00057" summary="continue new MP2">
+      <created>1687639745593</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL‎-00057" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687639745598</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -545,7 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="find intersection of sphere - tests" />
     <MESSAGE value="find intersection of triangle and plane" />
     <MESSAGE value="Intersectable" />
     <MESSAGE value="final stage 3" />
@@ -570,7 +569,8 @@
     <MESSAGE value="final mini Project 1" />
     <MESSAGE value="started MP2" />
     <MESSAGE value="started new MP2" />
-    <option name="LAST_COMMIT_MESSAGE" value="started new MP2" />
+    <MESSAGE value="continue new MP2" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue new MP2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
