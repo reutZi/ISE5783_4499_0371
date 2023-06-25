@@ -208,20 +208,20 @@ public class improvmentsTests {
 
     @Test
     public void MP2() {
-//        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-//                .setVPSize(200, 200).setVPDistance(500);
-        //Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-         //     .setVPSize(200, 200).setVPDistance(500);
-        Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
-              .setVPSize(200, 200).setVPDistance(400);
+       // Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
+         //   .setVPSize(200, 200).setVPDistance(550); //מלמעלה
+        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+        .setVPSize(200, 200).setVPDistance(550);//ממול
+        //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
+          //      .setVPSize(200, 200).setVPDistance(400); //מהצד
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
                 new Polygon( //floor
                         new Point(-200, -70, -100),
                         new Point(200, -70, -100),
-                        new Point(200, -70, 320),
-                        new Point(-200, -70, 320)
+                        new Point(200, -70, 600),
+                        new Point(-200, -70, 600)
                 ).setEmission(new Color(100, 100, 100))
                         .setMaterial(new Material()
                                 .setKd(0.5)
@@ -239,28 +239,28 @@ public class improvmentsTests {
                                 .setShininess(0)),
                 //new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
                 new Polygon(//frame
-                        new Point(-140, 90, -100),
-                        new Point(-70, 90, -100),
-                        new Point(-70, 140, -100),
-                        new Point(-140, 140, -100)
+                        new Point(-130, 80, -100),
+                        new Point(-50, 80, -100),
+                        new Point(-50, 140, -100),
+                        new Point(-130, 140, -100)
                 ).setEmission(new Color(0, 0, 0)),
                 new Polygon(//white picture
-                        new Point(-136, 94, -100),
-                        new Point(-74, 94, -100),
-                        new Point(-74, 136, -100),
-                        new Point(-136, 136, -100)
+                        new Point(-126, 84, -100),
+                        new Point(-54, 84, -100),
+                        new Point(-54, 136, -100),
+                        new Point(-126, 136, -100)
                 ).setEmission(new Color(255, 255, 255)),
                 new Polygon(//frame of mirror
-                        new Point(50, -70, -80),
+                        new Point(75, -70, -80),
                         new Point(150, -70, -80),
-                        new Point(150, 140, -100),
-                        new Point(50, 140, -100)
+                        new Point(150, 90, -100),
+                        new Point(75, 90, -100)
                 ).setEmission(new Color(20, 20, 20)),
                 new Polygon(//mirror
-                        new Point(55, -55, -77),
-                        new Point(145, -55, -77),
-                        new Point(145, 135, -97),
-                        new Point(55, 135, -97)).setEmission(new Color(130,130,130)).setMaterial(new Material().setKr(0.7)),
+                        new Point(80, -65, -77),
+                        new Point(145, -65, -77),
+                        new Point(145, 85, -97),
+                        new Point(80, 85, -97)).setEmission(new Color(130,130,130)).setMaterial(new Material().setKr(0.7)),
                 new Cuboid(new Point(-180, 100, -80), 5, 160, 5, new Color(BLACK)),//stick of lamp
                 new Sphere(20d, new Point(-177, 120, -80))  //lamp
                         .setMaterial((new Material()
@@ -269,10 +269,10 @@ public class improvmentsTests {
                                 .setKt(0.7))),
 
                 new Polygon( //סדין
-                        new Point(-5, -9.9, 45),
-                        new Point(-5, -9.9, -55),
-                        new Point(-145, -9.9, -55),
-                        new Point(-145, -9.9, 45)
+                        new Point(5, -9.9, 7),
+                        new Point(5, -9.9, -93),
+                        new Point(-145, -9.9, -93),
+                        new Point(-145, -9.9, 7)
                 ).setEmission(new Color(0, 0, 200)),
 
 //                new Polygon(new Point(-150, -28, 73),//כרית
@@ -280,96 +280,120 @@ public class improvmentsTests {
 //                        new Point(-105, 5, -23),
 //                        new Point(-141, 5, -23)).setEmission(new Color(WHITE)),
 //
-                 new Cuboid(new Point(-145, -10, 45),150,15, 100,new Color(WHITE)),//bed
+                 new Cuboid(new Point(-145, -10, 7),150,15, 100,new Color(WHITE)),//bed
 
                 //top left bed leg
-                new Cuboid(new Point(-142, -10, -45), 10, 60, 10),
+                new Cuboid(new Point(-142, -10, -80), 10, 60, 10),
                 //top right bed leg
-                new Cuboid(new Point(-2, -10, -45), 10, 60, 10),
+                new Cuboid(new Point(-7, -10, -80), 10, 60, 10),
                 //bottom right bed leg
-                new Cuboid(new Point(-2, -10, 45), 10, 60, 10),
+                new Cuboid(new Point(-7, -10, 4), 10, 60, 10),
                 //bottom left bed leg
-                new Cuboid(new Point(-142, -10, 45), 10, 60, 10),
+                new Cuboid(new Point(-142, -10, 4), 10, 60, 10),
+
+                //cuboids
+                new Cuboid(new Point(-90, -60, 130), 10, 10, 10, new Color(0, 255, 100)),
+                new Cuboid(new Point(-100, -60, 130), 10, 10, 10, new Color(255, 0,255)),
+                new Cuboid(new Point(-112, -60, 130), 10, 10, 10, new Color(100,100,200)),
+                new Cuboid(new Point(-93, -49, 130), 10, 10, 10, new Color(PINK)),
+                new Cuboid(new Point(-105, -49, 130), 10, 10, 10, new Color(ORANGE)),
+                new Cuboid(new Point(-50, -60, 150), 10, 10, 10, new Color(BLUE)),
 
 
-                //new Cuboid(new Point(-155, 10, 80),5,20,130,new Color(BLACK)),
 
-//                new Polygon(new Point(-130, -30, 50),
-//                        new Point(-110, -30, 50),
-//                        new Point(-110, 10, -20),
-//                        new Point(-130, 10, -20)).setEmission(new Color(WHITE)),
-                new Sphere(20, new Point(100, -50, 70))//body
+                new Sphere(12d, new Point(40, -58, 200))//red ball
+                        .setEmission(new Color(RED))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.7)
+                                .setShininess(30)),
+                new Sphere(8d, new Point(90, -62, 120))//pink ball
+                        .setEmission(new Color(PINK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.7)
+                                .setShininess(30)),
+                new Sphere(8d, new Point(-20, -62, 90))//yellow ball
+                        .setEmission(new Color(YELLOW))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.7)
+                                .setShininess(30)),
+
+
+
+                new Sphere(20, new Point(130, -50, 20))//body
                         .setEmission(new Color(150, 75, 0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(90)),
-                new Sphere(15d, new Point(100, -20, 80))//head
+                new Sphere(15d, new Point(130, -20, 30))//head
                         .setEmission(new Color(150, 75, 0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(90)),
-                new Sphere(7d, new Point(78, -40, 80))//left arm
+                new Sphere(7d, new Point(108, -40, 30))//left arm
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(120, -40, 85))//right arm
+                new Sphere(7d, new Point(150, -40, 35))//right arm
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(83, -65, 80))//left leg
+                new Sphere(7d, new Point(113, -65, 30))//left leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(116, -65, 80))//right leg
+                new Sphere(7d, new Point(146, -65, 30))//right leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(6d, new Point(87, -10, 80))//left ear
+                new Sphere(6d, new Point(117, -10, 30))//left ear
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(6d, new Point(114, -10, 80))//right ear
+                new Sphere(6d, new Point(144, -10, 30))//right ear
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(103, -16, 92))//right eye
+                new Sphere(3d, new Point(133, -16, 42))//right eye
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(93, -16, 92))//left eye
+                new Sphere(3d, new Point(123, -16, 42))//left eye
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3.5d, new Point(97, -25, 94))//nose
+                new Sphere(3.5d, new Point(127, -25, 44))//nose
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
+                                .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(97, -26, 94))//mouse
+                new Sphere(3d, new Point(127, -26, 44))//mouse
                         .setEmission(new Color(255,0,0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
-                                .setKs(0.7)
-                                .setShininess(30)),
+                                .setKs(0.3)
+                                .setShininess(30))
 
 
 
@@ -378,12 +402,7 @@ public class improvmentsTests {
 
 
 
-        new Sphere(12d, new Point(40, -75, 200))
-                .setEmission(new Color(RED))
-                .setMaterial(new Material()
-                        .setKd(0.2)
-                        .setKs(0.7)
-                        .setShininess(30))
+
 
         //new Cuboid(new Point(-125, 0, 70),10,10,200, new Color(255,255,255))
 
