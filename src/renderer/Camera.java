@@ -2,57 +2,38 @@ package renderer;
 
 import primitives.*;
 import static primitives.Util.*;
-
+import java.util.MissingResourceException;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.MissingResourceException;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
 
     // Camera position
-    private Point p0;
-
+    private Point position;
     // Direction vector of camera
     private Vector vTo;
-
     // Up direction vector of camera
     private Vector vUp;
-
     // Right direction vector of camera
     private Vector vRight;
-
     // Height of view plane
     private double height;
-
     // Width of view plane
     private double width;
-
     // Distance of view plane from camera
     private double distance;
-
     // The object used for writing the rendered image.
     private ImageWriter imageWriter;
-
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
-    //number of threads to use in image rendering
-    private int threadsCount = -1;
+    private int antiAliasingFactor = 1;
 
-    // Indicates whether anti-aliasing is enabled for the camera
-    private boolean isAntiAliasing = false;
+    private int maxAdaptiveLevel = 4;
 
-    // used for thread progress reporting during rendering
-    private double printInterval = 0;
-
-    //first parameter for number of random ray to cast for random beam anti aliasing
-    private int n;
-
-    // first parameter for number of random ray to cast for random beam anti aliasing
-    private int m;
+    private boolean useAdaptive = false;
 
     /** Constructs a new camera object.
      * @param p    The camera position.
@@ -64,7 +45,7 @@ public class Camera {
         if(!isZero(vTo.dotProduct(vUp)))
             throw new IllegalArgumentException("The vectors aren't orthogonal");
 
-        this.p0 = p;
+        this.position = p;
 
         this.vTo = vTo.normalize();
         this.vUp = vUp.normalize();
@@ -73,8 +54,8 @@ public class Camera {
     }
 
     /** @return The camera position. */
-    public Point getP0() {
-        return p0;
+    public Point getPosition() {
+        return position;
     }
 
     /** @return The direction vector of the camera. */
@@ -125,217 +106,45 @@ public class Camera {
         return this;
     }
 
-    /**
-     * Sets the image writer for the camera.
-     *
-     * @param imageWriter The image writer object.
-     * @return The camera object.
-     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
-    /**
-     * Sets the ray tracer for the camera.
-     *
-     * @param rayTracer The ray tracer object.
-     * @return The camera object.
-     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
     /**
-     * Sets the anti-aliasing option for the camera.
+     * function that sets the antiAliasingFactor
      *
-     * @param antiAliasing {@code true} to enable anti-aliasing, {@code false} otherwise.
-     * @return The camera object.
+     * @param antiAliasingFactor value to set
+     * @return camera itself
      */
-    public Camera setAntiAliasing(boolean antiAliasing) {
-        isAntiAliasing = antiAliasing;
+    public Camera setAntiAliasingFactor(int antiAliasingFactor) {
+        this.antiAliasingFactor = antiAliasingFactor;
         return this;
     }
 
     /**
-     * Sets the number of random rays to cast for random beam anti-aliasing.
-     *
-     * @param num The number of random rays.
-     * @return The camera object.
+     * setter for UseAdaptive
+     * @param useAdaptive- the number of pixels in row/col of every pixel
+     * @return The camera object
      */
-    public Camera setN(int num) {
-        this.n = num;
+    public Camera setUseAdaptive(boolean useAdaptive) {
+        this.useAdaptive = useAdaptive;
         return this;
     }
 
     /**
-     * Sets the number of random rays to cast for random beam anti-aliasing.
-     *
-     * @param num The number of random rays.
-     * @return The camera object.
+     * setter for maxAdaptiveLevel
+     * @param maxAdaptiveLevel- The depth of the recursion
+     * @return The camera object
      */
-    public Camera setM(int num) {
-        this.m = num;
+    public Camera setMaxAdaptiveLevel(int maxAdaptiveLevel) {
+        this.maxAdaptiveLevel = maxAdaptiveLevel;
         return this;
-    }
-
-
-    /** Constructs a new Ray object that represents a ray of light in a three-dimensional space.
-     * @param Nx the number of columns in the camera's view frustum.
-     * @param Ny the number of rows in the camera's view frustum.
-     * @param j the column index of the pixel to construct the ray for.
-     * @param i the row index of the pixel to construct the ray for.
-     * @return a new Ray object that represents a ray of light in a three-dimensional space. */
-    public Ray constructRay(int Nx, int Ny, int j, int i){
-
-        Point Pc = p0.add(vTo.scale(distance));
-
-        double Ry = height / (double)Ny;
-        double Rx = width /  (double)Nx;
-
-        double Yi = -(i -(Ny - 1)/2.0) * Ry;
-        double Xj = (j - (Nx - 1)/2.0) * Rx;
-
-        Point Pij = Pc;
-
-        if(!isZero(Xj))
-            Pij = Pij.add(vRight.scale(Xj));
-
-        if(!isZero(Yi))
-            Pij = Pij.add(vUp.scale(Yi));
-
-        Vector dirRay = Pij.subtract(p0);
-
-        return new Ray(p0, dirRay);
-    }
-
-    /**
-     * Casts a ray from the specified pixel coordinates and writes the resulting color to the image.
-     *
-     * @param j The x-coordinate of the pixel.
-     * @param i The y-coordinate of the pixel.
-     */
-    private void castRay(int j, int i) {
-        Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
-        Color color = rayTracer.traceRay(ray);
-        imageWriter.writePixel(j, i, color);
-    }
-
-
-    /**
-     * given a pixel ,cast a ray to a randomly selected point within a cell in a sub-grid made on a pixel
-     *
-     * @param Nx         number of rows in view plane
-     * @param Ny         number of columns in view plane
-     * @param Pij        center point of pixel (i,j)
-     * @param gridRow    row index of the cell in  the sub-grid of pixel
-     * @param gridColumn column index of the cell in  the sub-grid of pixel
-     * @param n          number of rows in the grid
-     * @param m          number of columns in the grid
-     * @return {@link Ray} from camera to randomly selected point
-     * @author menachem bezalel
-     */
-    public Ray constructRandomRay(int Nx, int Ny, Point Pij, int gridRow, int gridColumn, int n, int m) {
-
-        // calculate "size" of each pixel -
-        // height per pixel = total "physical" height / number of rows
-        // width per pixel = total "physical" width / number of columns
-        double Ry = (double) height / Ny;
-        double Rx = (double) width / Nx;
-
-        //calculate height and width of a cell from the sub-grid
-        double gridHeight = (double) Ry / n;
-        double gridWidth = (double) Rx / m;
-
-        Random r = new Random();
-        // set a random value to scale vector on Y axis
-        // value range is from -(gridHeight/2) to (gridHeight/2)
-        double yI = r.nextDouble(gridHeight) - gridHeight / 2;
-        // set a random value to scale vector on X axis
-        // value range is from -(gridWidth/2) to (gridWidth/2)
-        double xJ = r.nextDouble(gridWidth) - gridWidth / 2;
-
-        // if result of xJ is > 0
-        // move result point from middle of pixel to column index in sub-grid
-        // then add the random value to move left/right on X axis within the cell
-        if (!isZero(xJ)) {
-            Pij = Pij.add(vRight.scale(gridWidth * gridColumn + xJ));
-        }
-
-        // if result of yI is > 0
-        // move result point from middle of pixel to row index in sub-grid
-        // then add the random value to move up/down on Y axis within the cell
-        if (!isZero(yI)) {
-            Pij = Pij.add(vUp.scale(gridHeight * gridRow + yI));
-        }
-
-        // return ray cast from camera to randomly selected point within grid of pixel
-        // reached by yI and xJ scaling factors
-        return new Ray(p0, Pij.subtract(p0));
-    }
-
-    /**
-     * given a pixel construct a beam of random rays within the grid of the pixel
-     *
-     * @param Nx  number of rows in view plane
-     * @param Ny  number of columns in view plane
-     * @param n   first parameter to set number of random rays to cast
-     * @param m   second parameter to set number of rays to cast
-     * @param ray ray towards the center of the pixel
-     * @return list with m*n rays cast randomly within the grid of the pixel
-     * @author menachem bezalel
-     */
-    public List<Ray> constructRayBeam(int Nx, int Ny, int n, int m, Ray ray) {
-        // get center point of pixel
-        Point Pij = ray.getPoint(distance);
-        List<Ray> temp = new LinkedList<>();
-
-        // create a grid of n rows * m columns in each pixel
-        // construct a ray from camera to every cell in grid
-        // each ray is constructed randomly precisely within the grid borders
-        for (int i = -n / 2; i < n / 2; i++)
-            for (int j = -m / 2; j < m / 2; j++)
-                temp.add(constructRandomRay(Nx, Ny, Pij, i, j, n, m));
-
-        // remove from the list if a  ray was randomly constructed identical to ray to center
-        temp.removeIf((item) -> {
-            return item.equals(ray);
-        });
-        // add to list the ray to the center of the pixel
-        temp.add(ray);
-
-        return temp;
-    }
-
-    /**
-     * cast a beam of n*m random beams within a grid of a pixel (i,j)
-     *
-     * @param Nx number of rows in view plane
-     * @param Ny number of columns in view plane
-     * @param j  column index of pixel
-     * @param i  row index of pixel
-     * @param n  first parameter to set number of random rays to cast
-     * @param m  second parameter to set number of rays to cast
-     * @author menachem bezalel
-     */
-    private void castRayBeamRandom(int Nx, int Ny, int j, int i, int n, int m) {
-        // construct ray through pixel
-        Ray ray = constructRay(Nx, Ny, j, i);
-
-        // construct n*m random rays towards the pixel
-        var rayBeam = constructRayBeam(Nx, Ny, n, m, ray);
-
-        // calculate color of the pixel using the average from all the rays in beam
-        Color color = Color.BLACK;
-        for (var r : rayBeam) {
-            color = color.add(rayTracer.traceRay(r));
-        }
-        // reduce final color by total number of rays to get mean value of pixel color
-        color = color.reduce(rayBeam.size());
-
-        //write pixel
-        imageWriter.writePixel(j, i, color);
     }
 
     /**
@@ -344,7 +153,7 @@ public class Camera {
      * @param color the color of the grid.
      * @throws MissingResourceException if the image writer field is not initialized.
      */
-    public void printGrid(int interval, Color color){
+    public Camera printGrid(int interval, Color color){
 
         if (this.imageWriter == null)
             throw new MissingResourceException("The field is not initialized", "Camera", "imageWriter");
@@ -356,11 +165,12 @@ public class Camera {
                     imageWriter.writePixel(j, i, color);
             }
         }
+        return this;
     }
 
     /**
-     * Writes the image to a file using the image writer.
-     * @throws MissingResourceException if the image writer field is not initialized.
+     Writes the image to a file using the image writer.
+     @throws MissingResourceException if the image writer field is not initialized.
      */
     public void writeToImage() {
 
@@ -370,103 +180,190 @@ public class Camera {
         this.imageWriter.writeToImage();
     }
 
+    /**
+     * function that calculates the pixels location
+     *
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i  the x coordinate
+     * @param j  the y coordinate
+     * @return the ray
+     */
+    private Point findPixelLocation(int nX, int nY, int j, int i) {
+
+        double rY = height / nY;
+        double rX = width / nX;
+
+        double yI = -(i - (nY - 1d) / 2) * rY;
+        double jX = (j - (nX - 1d) / 2) * rX;
+        Point pIJ = position.add(vTo.scale(distance));
+
+        if (yI != 0) pIJ = pIJ.add(vUp.scale(yI));
+        if (jX != 0) pIJ = pIJ.add(vRight.scale(jX));
+        return pIJ;
+    }
 
     /**
-     * Renders the image using the configured camera settings.
+     * function that returns the ray from the camera to the point
      *
-     * @return The camera object.
-     * @throws MissingResourceException If the image writer or ray tracer is not initialized.
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i  the x coordinate
+     * @param j  the y coordinate
+     * @return the ray
      */
-    public Camera renderImage() throws MissingResourceException {
-        // check that image, writing and rendering objects are instantiated
-        if (imageWriter == null)
-            throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
+    public Ray constructRay(int nX, int nY, int j, int i) {
+        return new Ray(position, findPixelLocation(nX, nY, j, i).subtract(position));
+    }
 
-        if (rayTracer == null)
-            throw new MissingResourceException("ray tracer is not initialized", RayTracerBase.class.getName(), "");
+    /**
+     * function that returns the rays from the camera to the point
+     *
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i  the x coordinate
+     * @param j  the y coordinate
+     * @return the ray
+     */
+    public List<Ray> constructRays(int nX, int nY, int j, int i) {
+        List<Ray> rays = new LinkedList<>();
+        Point centralPixel = findPixelLocation(nX, nY, j, i);
+        double rY = height / nY / antiAliasingFactor;
+        double rX = width / nX / antiAliasingFactor;
+        double x, y;
 
+        for (int rowNumber = 0; rowNumber < antiAliasingFactor; rowNumber++) {
+            for (int colNumber = 0; colNumber < antiAliasingFactor; colNumber++) {
+                y = -(rowNumber - (antiAliasingFactor - 1d) / 2) * rY;
+                x = (colNumber - (antiAliasingFactor - 1d) / 2) * rX;
+                Point pIJ = centralPixel;
+                if (y != 0) pIJ = pIJ.add(vUp.scale(y));
+                if (x != 0) pIJ = pIJ.add(vRight.scale(x));
+                rays.add(new Ray(position, pIJ.subtract(position)));
+            }
+        }
+        return rays;
+    }
+
+
+    /**
+     * function that gets the color of the pixel and renders in to image
+     */
+    public Camera renderImage() {
+        if (position == null || vTo == null || vUp == null || vRight == null || distance == 0 || height == 0 || width == 0 || imageWriter == null || rayTracer == null)
+            throw new MissingResourceException("", "", "Camera is not initialized");
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-
-        // initialize thread progress reporter
-        Pixel.initialize(nY, nX, printInterval);
-
-        if (isAntiAliasing)
-            renderImageAntiAliasingRandom(nX, nY);
-        else
-            renderImage(nX, nY);
-
+        for (int i = 0; i < nX; i++)
+            for (int j = 0; j < nY; j++)
+                imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
         return this;
     }
 
 
     /**
-     * render image using No improvement with support of multi threading
-     * (the fastest runtime - image has the lowest resolution)
+     * function that casts ray and returns color
      *
-     * @param nX number of rows in the view Plane
-     * @param nY number of columns in the view plane
-     * @author menachem bezalel
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param j  the x coordinate
+     * @param i  the y coordinate
+     * @return the color
      */
-    private void renderImage(int nX, int nY) {
-        if (threadsCount == 0) {
-            for (int i = 0; i < nY; ++i)
-                for (int j = 0; j < nX; ++j) {
-                    castRay(j, i);
-                    Pixel.pixelDone();
-                    Pixel.printPixel();
-                }
-        } else if (threadsCount == -1) {
-            IntStream.range(0, nY).parallel()
-                    .forEach(i -> IntStream.range(0, nX).parallel()
-                            .forEach(j -> {
-                                castRay(j, i);
-                                Pixel.pixelDone();
-                                Pixel.printPixel();
-                            }));
-        } else {
-            while (threadsCount-- > 0) {
-                new Thread(() -> {
-                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
-                        castRay(pixel.col, pixel.row);
-                }).start();
-            }
-            Pixel.waitToFinish();
+    private Color castRay(int nX, int nY, int i, int j) {
+        if (useAdaptive)
+            return adaptiveHelper(findPixelLocation(nX, nY, i, j), nX, nY);
+        else if (antiAliasingFactor == 1)
+            return rayTracer.traceRay(constructRay(nX, nY, i, j));
+        else
+            return rayTracer.traceRays(constructRays(nX, nY, i, j));
+    }
+
+    /**
+     * get the point and return the color of the ray to this point
+     *
+     * @param p- point on the view plane
+     * @return color of this point
+     */
+    private Color calcPointColor(Point p) {
+        return rayTracer.traceRay(new Ray(position, p.subtract(position)));
+    }
+
+    /**
+     * calculate average color of the pixel by using adaptive Super-sampling
+     *
+     * @param center- the center of the pixel
+     * @param nY-     number of pixels to width
+     * @param nX-     number of pixels to length
+     * @return- the average color of the pixel
+     */
+    private Color adaptiveHelper(Point center, double nY, double nX) {
+        Hashtable<Point, Color> pointColorTable = new Hashtable<Point, Color>();
+        double rY = height / nY / 2;
+        double rX = width / nX / 2;
+        Color upRight = calcPointColor(center.add(vUp.scale(rY)).add(vRight.scale(rX)));
+        Color upLeft = calcPointColor(center.add(vUp.scale(rY)).add(vRight.scale(-rX)));
+        Color downRight = calcPointColor(center.add(vUp.scale(-rY)).add(vRight.scale(rX)));
+        Color downLeft = calcPointColor(center.add(vUp.scale(-rY)).add(vRight.scale(-rX)));
+
+        return adaptive(1, center, rX, rY, pointColorTable, upLeft, upRight, downLeft, downRight);
+    }
+
+    /**
+     * recursive method that return the average color of the pixel- by checking the color of the four corners
+     *
+     * @param max-         the depth of the recursion
+     * @param center-      the center of the pixel
+     * @param rX-          the width of the pixel
+     * @param rY-          the height of the pixel
+     * @param upLeftCol-   the color of the vUp left corner
+     * @param upRightCol-  the color of the vUp vRight corner
+     * @param downLeftCol- the color of the down left corner
+     * @param downRightCol - the color of the down vRight corner
+     * @return the average color of the pixel
+     */
+    private Color adaptive(int max, Point center, double rX, double rY, Hashtable<Point, Color> pointColorTable,
+                           Color upLeftCol, Color upRightCol, Color downLeftCol, Color downRightCol) {
+        if (max == maxAdaptiveLevel) {
+            return downRightCol.add(upLeftCol).add(upRightCol).add(downLeftCol).reduce(4);
+        }
+        if (upRightCol.equals(upLeftCol) && downRightCol.equals(downLeftCol) && downLeftCol.equals(upLeftCol))
+            return upRightCol;
+        else {
+            Color rightPCol = getPointColorFromTable(center.add(vRight.scale(rX)), pointColorTable);
+            Color leftPCol = getPointColorFromTable(center.add(vRight.scale(-rX)), pointColorTable);
+            Color upPCol = getPointColorFromTable(center.add(vUp.scale(rY)), pointColorTable);
+            Color downPCol = getPointColorFromTable(center.add(vUp.scale(-rY)), pointColorTable);
+            Color centerCol = calcPointColor(center);
+
+            rX = rX / 2;
+            rY = rY / 2;
+            upLeftCol = adaptive(max + 1, center.add(vUp.scale(rY / 2)).add(vRight.scale(-rX / 2)), rX, rY, pointColorTable,
+                    upLeftCol, upPCol, leftPCol, centerCol);
+            upRightCol = adaptive(max + 1, center.add(vUp.scale(rY / 2)).add(vRight.scale(rX / 2)), rX, rY, pointColorTable,
+                    upPCol, upRightCol, centerCol, leftPCol);
+            downLeftCol = adaptive(max + 1, center.add(vUp.scale(-rY / 2)).add(vRight.scale(-rX / 2)), rX, rY, pointColorTable,
+                    leftPCol, centerCol, downLeftCol, downPCol);
+            downRightCol = adaptive(max + 1, center.add(vUp.scale(-rY / 2)).add(vRight.scale(rX / 2)), rX, rY, pointColorTable,
+                    centerCol, rightPCol, downPCol, downRightCol);
+            return downRightCol.add(upLeftCol).add(upRightCol).add(downLeftCol).reduce(4);
         }
     }
 
-
     /**
-     * render image using Random method Anti aliasing improvement with support of multi threading
-     * (the slowest runtime - image has high resolution)
+     * check if this point exist in the HashTable return his color otherwise calculate the color and save it
      *
-     * @param nX number of rows in the view Plane
-     * @param nY number of columns in the view plane
-     * @author menachem bezalel
+     * @param point-           certain point in the pixel
+     * @param pointColorTable- dictionary that save points and their color
+     * @return the color of the point
      */
-    private void renderImageAntiAliasingRandom(int nX, int nY) {
-        if (threadsCount == 0) {
-            for (int i = 0; i < nY; ++i)
-                for (int j = 0; j < nX; ++j) {
-                    castRayBeamRandom(nX, nY, i, j, n, m);
-                    Pixel.pixelDone();
-                    Pixel.printPixel();
-                }
-        } else if (threadsCount == -1) {
-            IntStream.range(0, nY).parallel().forEach(i -> IntStream.range(0, nX).parallel().forEach(j -> {
-                castRayBeamRandom(nX, nY, i, j, n, m);
-                Pixel.pixelDone();
-                Pixel.printPixel();
-            }));
-        } else {
-            while (threadsCount-- > 0) {
-                new Thread(() -> {
-                    for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
-                        castRayBeamRandom(nX, nY, pixel.col, pixel.row, n, m);
-                }).start();
-            }
-            Pixel.waitToFinish();
+    private Color getPointColorFromTable(Point point, Hashtable<Point, Color> pointColorTable) {
+        if (!(pointColorTable.containsKey(point))) {
+            Color color = calcPointColor(point);
+            pointColorTable.put(point, color);
+            return color;
         }
+        return pointColorTable.get(point);
     }
 }
 

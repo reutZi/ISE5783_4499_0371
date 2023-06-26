@@ -37,8 +37,7 @@ public class improvmentsTests {
                 .setVPDistance(100) //
                 .setVPSize(500, 500) //
                 .setImageWriter(new ImageWriter("antiAliasing basic test", 1000, 1000))
-                .setRayTracer(new RayTracerBasic(scene))
-                .setAntiAliasing(true).setM(9).setN(9);
+                .setRayTracer(new RayTracerBasic(scene));
 
         camera.renderImage();
         camera.writeToImage();
@@ -55,7 +54,7 @@ public class improvmentsTests {
         //Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
         //.setVPSize(200, 200).setVPDistance(1000).setAntiAliasing(true).setN(4).setM(4);
         Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
-                .setVPSize(200, 200).setVPDistance(1000).setAntiAliasing(true).setN(4).setM(4);
+                .setVPSize(200, 200).setVPDistance(1000);
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
 
@@ -211,7 +210,7 @@ public class improvmentsTests {
        //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
          //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
           Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-       .setVPSize(200, 200).setVPDistance(550).setAntiAliasing(true).setM(4).setN(4);//ממול
+       .setVPSize(200, 200).setVPDistance(550);//.setUseAdaptive(true);//ממול
         //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
           //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 

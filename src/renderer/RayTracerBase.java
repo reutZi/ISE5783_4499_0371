@@ -2,6 +2,8 @@ package renderer;
 import scene.*;
 import primitives.*;
 
+import java.util.List;
+
 /**
  * An abstract class that serves as a base for Ray Tracing implementations.
  * Ray tracing is a rendering technique for generating an image by tracing the path of light
@@ -27,4 +29,5 @@ public abstract class RayTracerBase {
      */
     public abstract Color traceRay(Ray ray);
 
+    public abstract Color traceRays(List<Ray> rays);
 }

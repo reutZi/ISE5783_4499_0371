@@ -234,6 +234,17 @@ public class RayTracerBasic extends RayTracerBase {
         return true;
     }
 
+    @Override
+    public Color traceRays(List<Ray> rays) {
+
+        Color color = Color.BLACK;
+        for (Ray ray : rays) {
+            color = color.add(traceRay(ray));
+        }
+        return color.reduce(rays.size());
+
+    }
+
 
     /**
      * Finds the closest intersection point between a ray and the objects in the scene.

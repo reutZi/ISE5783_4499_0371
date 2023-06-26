@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.List;
 
+import static primitives.Util.isZero;
+
 /** A class representing a three-dimensional vector in Cartesian space, inheriting from Point.*/
 public class Vector extends Point {
 
@@ -83,6 +85,7 @@ public class Vector extends Point {
         // return new Vector(xyz.add(other.xyz));
         return new Vector(xyz.d1 + other.xyz.d1, xyz.d2 + other.xyz.d2,  xyz.d3 + other.xyz.d3);
     }
+
 
     /** @param rhs the scalar value to scale the Vector by.
      * @return a new Vector that is the result of scaling the current Vector by the specified scalar value. */
