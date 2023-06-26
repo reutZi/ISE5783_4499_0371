@@ -211,7 +211,7 @@ public class improvmentsTests {
        //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
          //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
           Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-       .setVPSize(200, 200).setVPDistance(550).setAntiAliasing(true).setM(4).setN(4);//ממול
+       .setVPSize(200, 200).setVPDistance(550);//ממול
         //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
           //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 
@@ -341,17 +341,17 @@ public class improvmentsTests {
                                 .setKs(0.3)
                                 .setShininess(30)),
                 new Polygon(//frame of mirror
-                        new Point(75, -70, -80),
-                        new Point(150, -70, -80),
-                        new Point(150, 90, -100),
-                        new Point(75, 90, -100)
+                        new Point(75, -40, -98),
+                        new Point(150, -40, -98),
+                        new Point(150, 90, -98),
+                        new Point(75, 90, -98)
                 ).setEmission(new Color(20, 20, 20)),
 
                 new Polygon(//mirror
-                        new Point(80, -65, -77),
-                        new Point(145, -65, -77),
+                        new Point(80, -35, -77),
+                        new Point(145, -35, -77),
                         new Point(145, 85, -97),
-                        new Point(80, 85, -97)).setEmission(new Color(130,130,130)).setMaterial(new Material().setKr(0.7)),
+                        new Point(80, 85, -97)).setEmission(new Color(140,140,140)).setMaterial(new Material().setKr(0.7)),
 
                 new Cuboid(new Point(-180, 100, -80), 5, 160, 5, new Color(BLACK)),//stick of lamp
 
@@ -468,17 +468,19 @@ public class improvmentsTests {
 
 
         scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 200), new Vector(0, -1, -4))
+            .setKl(4E-4).setKq(2E-5));
+        scene.lights.add(new SpotLight(new Color(0, 255,0), new Point(-150, 200, 100), new Vector(0.5, -0.5,-0.5))
               .setKl(4E-4).setKq(2E-5));
-        //scene.lights.add(new SpotLight(new Color(0, 255,0), new Point(0,30,700), new Vector(0, -0.5,-1))
-        //      .setKl(4E-4).setKq(2E-5));
+        scene.lights.add(new SpotLight(new Color(0, 0,255), new Point(0, 100, 100), new Vector(0, -0.5,-1))
+                .setKl(4E-4).setKq(2E-5));
         scene.lights.add(new PointLight(new Color(WHITE), new Point(-177, 120, -80)).setKl(0.001).setKq(0.00015));
 
 
-        ImageWriter imageWriter = new ImageWriter("newMP2", 3000, 3000);
+        ImageWriter imageWriter = new ImageWriter("newMP2", 700, 700);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
                 .writeToImage();
     }
 
-}
+    }
