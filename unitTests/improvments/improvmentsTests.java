@@ -208,12 +208,12 @@ public class improvmentsTests {
 
     @Test
     public void MP2() {
-       // Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
-         //   .setVPSize(200, 200).setVPDistance(550); //מלמעלה
+        //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
+          //.setVPSize(200, 200).setVPDistance(550); //מלמעלה
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
         .setVPSize(200, 200).setVPDistance(550);//ממול
         //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
-          //      .setVPSize(200, 200).setVPDistance(400); //מהצד
+          //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
@@ -268,28 +268,101 @@ public class improvmentsTests {
                                 .setKs(0.2)
                                 .setKt(0.7))),
 
-                new Polygon( //סדין
-                        new Point(5, -9.9, 7),
-                        new Point(5, -9.9, -93),
-                        new Point(-145, -9.9, -93),
-                        new Point(-145, -9.9, 7)
-                ).setEmission(new Color(0, 0, 200)),
+
+                new Cuboid(new Point(-120, 13, -15),150,80, 80,new Color(92, 64, 51)),// counter
+
+                new Polygon(//right door in the counter
+                        new Point(-10, 8, -15),
+                        new Point(27, 8, -15),
+                        new Point(27, -63, -15),
+                        new Point(-10, -63, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//left door in the counter
+                        new Point(-11, 8, -15),
+                        new Point(-48, 8, -15),
+                        new Point(-48, -63, -15),
+                        new Point(-11, -63, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Sphere(2d,new Point(-5, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-16, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, -22, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, -47, -13)).setEmission(new Color(92, 64, 51)),
+
+
+                new Polygon(//drawer
+                        new Point(-115, 8, -15),
+                        new Point(-52, 8, -15),
+                        new Point(-52, -12, -15),
+                        new Point(-115, -12, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//drawer
+                        new Point(-115, -37, -15),
+                        new Point(-52, -37, -15),
+                        new Point(-52, -17, -15),
+                        new Point(-115, -17, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//drawer
+                        new Point(-115, -62, -15),
+                        new Point(-52, -62, -15),
+                        new Point(-52, -42, -15),
+                        new Point(-115, -42, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Sphere(3d, new Point(27, -67, -18))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(27, -67, -93))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(-117, -67, -93))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(-117, -67, -18))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+
+
+
+
+//                new Polygon( //סדין
+//                        new Point(5, -9.9, 7),
+//                        new Point(5, -9.9, -93),
+//                        new Point(-145, -9.9, -93),
+//                        new Point(-145, -9.9, 7)
+//                ).setEmission(new Color(0, 0, 200)),
 
 //                new Polygon(new Point(-150, -28, 73),//כרית
 //                        new Point(-115, -28, 73),
 //                        new Point(-105, 5, -23),
 //                        new Point(-141, 5, -23)).setEmission(new Color(WHITE)),
 //
-                 new Cuboid(new Point(-145, -10, 7),150,15, 100,new Color(WHITE)),//bed
-
-                //top left bed leg
-                new Cuboid(new Point(-142, -10, -80), 10, 60, 10),
-                //top right bed leg
-                new Cuboid(new Point(-7, -10, -80), 10, 60, 10),
-                //bottom right bed leg
-                new Cuboid(new Point(-7, -10, 4), 10, 60, 10),
-                //bottom left bed leg
-                new Cuboid(new Point(-142, -10, 4), 10, 60, 10),
+//                 new Cuboid(new Point(-145, -10, 7),150,15, 100,new Color(WHITE)),//bed
+//
+//                //top left bed leg
+//                new Cuboid(new Point(-142, -10, -80), 10, 60, 10),
+//                //top right bed leg
+//                new Cuboid(new Point(-7, -10, -80), 10, 60, 10),
+//                //bottom right bed leg
+//                new Cuboid(new Point(-7, -10, 4), 10, 60, 10),
+//                //bottom left bed leg
+//                new Cuboid(new Point(-142, -10, 4), 10, 60, 10),
 
                 //cuboids
                 new Cuboid(new Point(-90, -60, 130), 10, 10, 10, new Color(0, 255, 100)),
