@@ -208,11 +208,11 @@ public class improvmentsTests {
 
     @Test
     public void MP2() {
-      //  Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
+       //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
          //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
-         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-       .setVPSize(200, 200).setVPDistance(550);//ממול
-      //  Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
+          Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+       .setVPSize(200, 200).setVPDistance(550).setAntiAliasing(true).setM(4).setN(4);//ממול
+        //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
           //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
@@ -390,75 +390,75 @@ public class improvmentsTests {
                                 .setKs(0.7)
                                 .setShininess(30)),
 
+                new Cuboid(new Point(100, -50, 30), 60, 20, 50, new Color(120,90,20)),
 
-
-                new Sphere(20, new Point(130, -50, 20))//body
+                new Sphere(20, new Point(130, -28, 20))//body
                         .setEmission(new Color(150, 75, 0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(90)),
-                new Sphere(15d, new Point(130, -20, 30))//head
+                new Sphere(15d, new Point(130, 2, 22))//head
                         .setEmission(new Color(150, 75, 0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(90)),
-                new Sphere(7d, new Point(108, -40, 30))//left arm
+                new Sphere(7d, new Point(113, -18, 23))//left arm
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(150, -40, 35))//right arm
+                new Sphere(7d, new Point(143, -18, 23))//right arm
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(113, -65, 30))//left leg
+                new Sphere(7d, new Point(121, -43, 27))//left leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(146, -65, 30))//right leg
+                new Sphere(7d, new Point(139, -43, 27))//right leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(6d, new Point(117, -10, 30))//left ear
+                new Sphere(6d, new Point(120, 12, 25))//left ear
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(6d, new Point(144, -10, 30))//right ear
+                new Sphere(6d, new Point(139, 12, 25))//right ear
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(133, -16, 42))//right eye
+                new Sphere(3d, new Point(133, 6, 37))//right eye
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(123, -16, 42))//left eye
+                new Sphere(3d, new Point(123, 6, 37))//left eye
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3.5d, new Point(127, -25, 44))//nose
+                new Sphere(3.5d, new Point(128, -3, 37))//nose
                         .setEmission(new Color(BLACK))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(3d, new Point(127, -26, 44))//mouse
+                new Sphere(3d, new Point(128, -4, 37))//mouse
                         .setEmission(new Color(255,0,0))
                         .setMaterial(new Material()
                                 .setKd(0.2)
@@ -474,7 +474,7 @@ public class improvmentsTests {
         scene.lights.add(new PointLight(new Color(WHITE), new Point(-177, 120, -80)).setKl(0.001).setKq(0.00015));
 
 
-        ImageWriter imageWriter = new ImageWriter("newMP2", 600, 600);
+        ImageWriter imageWriter = new ImageWriter("newMP2", 3000, 3000);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
