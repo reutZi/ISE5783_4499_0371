@@ -208,12 +208,12 @@ public class improvmentsTests {
 
     @Test
     public void MP2() {
-       // Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
-         //   .setVPSize(200, 200).setVPDistance(550); //מלמעלה
-        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-        .setVPSize(200, 200).setVPDistance(550);//ממול
-        //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
-          //      .setVPSize(200, 200).setVPDistance(400); //מהצד
+      //  Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
+         //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
+         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+       .setVPSize(200, 200).setVPDistance(550);//ממול
+      //  Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
+          //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
@@ -228,68 +228,140 @@ public class improvmentsTests {
                                 .setKs(0.5)
                                 .setShininess(0)),
                 new Polygon( //back wall
-                        new Point(-200, -70, -100),
-                        new Point(200, -70, -100),
-                        new Point(200, 200, -100),
-                        new Point(-200, 200, -100)
+                        new Point(-200, -70, -100.2),
+                        new Point(200, -70, -100.2),
+                        new Point(200, 200, -100.2),
+                        new Point(-200, 200, -100.2)
                 ).setEmission(new Color(100, 0, 0))
                         .setMaterial(new Material()
                                 .setKd(0.5)
                                 .setKs(0.5)
                                 .setShininess(0)),
                 //new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
-                new Polygon(//frame
-                        new Point(-130, 80, -100),
-                        new Point(-50, 80, -100),
-                        new Point(-50, 140, -100),
-                        new Point(-130, 140, -100)
-                ).setEmission(new Color(0, 0, 0)),
                 new Polygon(//white picture
-                        new Point(-126, 84, -100),
-                        new Point(-54, 84, -100),
-                        new Point(-54, 136, -100),
-                        new Point(-126, 136, -100)
-                ).setEmission(new Color(255, 255, 255)),
+                        new Point(-100, 80, -99.9),
+                        new Point(-10, 80, -99.9),
+                        new Point(-10, 145, -99.9),
+                        new Point(-100, 145, -99.9)
+                ).setEmission(new Color(WHITE)),
+                new Polygon(//light blue picture
+                        new Point(-60, 100, -99.9),
+                        new Point(-10, 100, -99.9),
+                        new Point(-10, 145, -99.9),
+                        new Point(-100, 145, -99.9)
+                ).setEmission(new Color(100,149,237)),
+                new Triangle(//light purple picture
+                        new Point(-10, 80, -99.8),
+                        new Point(-10, 145, -99.8),
+                        new Point(-50, 145, -99.8)
+                ).setEmission(new Color(185,140,185)),
+                new Triangle(//light green picture
+                        new Point(-90, 80, -99.7),
+                        new Point(-50, 80, -99.7),
+                        new Point(-70, 100, -99.7)
+                ).setEmission(new Color(0,128,128)),
+                new Polygon(//yellow picture
+                        new Point(-100, 80, -99.8),
+                        new Point(-80, 80, -99.8),
+                        new Point(-80, 145, -99.8),
+                        new Point(-100, 145, -99.8)
+                ).setEmission(new Color(245,255, 129)),
+                new Polygon(//frame
+                        new Point(-105, 75, -100.1),
+                        new Point(-5, 75, -100.1),
+                        new Point(-5, 150, -100.1),
+                        new Point(-105, 150, -100.1)
+                ).setEmission(new Color(GRAY)),
+                new Cuboid(new Point(-120, 13, -15),150,80, 80,new Color(92, 64, 51)),// counter
+
+                new Polygon(//right door in the counter
+                        new Point(-10, 8, -15),
+                        new Point(27, 8, -15),
+                        new Point(27, -63, -15),
+                        new Point(-10, -63, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//left door in the counter
+                        new Point(-11, 8, -15),
+                        new Point(-48, 8, -15),
+                        new Point(-48, -63, -15),
+                        new Point(-11, -63, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Sphere(2d,new Point(-5, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-16, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, 3, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, -22, -13)).setEmission(new Color(92, 64, 51)),
+                new Sphere(2d,new Point(-85, -47, -13)).setEmission(new Color(92, 64, 51)),
+
+
+                new Polygon(//drawer
+                        new Point(-115, 8, -15),
+                        new Point(-52, 8, -15),
+                        new Point(-52, -12, -15),
+                        new Point(-115, -12, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//drawer
+                        new Point(-115, -37, -15),
+                        new Point(-52, -37, -15),
+                        new Point(-52, -17, -15),
+                        new Point(-115, -17, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Polygon(//drawer
+                        new Point(-115, -62, -15),
+                        new Point(-52, -62, -15),
+                        new Point(-52, -42, -15),
+                        new Point(-115, -42, -15)
+                ).setEmission(new Color(49.8, 24.71, 0)),
+
+                new Sphere(3d, new Point(27, -67, -18))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(27, -67, -93))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(-117, -67, -93))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
+                new Sphere(3d, new Point(-117, -67, -18))//leg of counter
+                        .setEmission(new Color(BLACK))
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.3)
+                                .setShininess(30)),
                 new Polygon(//frame of mirror
                         new Point(75, -70, -80),
                         new Point(150, -70, -80),
                         new Point(150, 90, -100),
                         new Point(75, 90, -100)
                 ).setEmission(new Color(20, 20, 20)),
+
                 new Polygon(//mirror
                         new Point(80, -65, -77),
                         new Point(145, -65, -77),
                         new Point(145, 85, -97),
                         new Point(80, 85, -97)).setEmission(new Color(130,130,130)).setMaterial(new Material().setKr(0.7)),
+
                 new Cuboid(new Point(-180, 100, -80), 5, 160, 5, new Color(BLACK)),//stick of lamp
+
+                new Cuboid(new Point(-193, -60, -70), 30, 20, 30, new Color(BLACK)),
+
                 new Sphere(20d, new Point(-177, 120, -80))  //lamp
                         .setMaterial((new Material()
                                 .setKd(0.5)
                                 .setKs(0.2)
                                 .setKt(0.7))),
-
-                new Polygon( //סדין
-                        new Point(5, -9.9, 7),
-                        new Point(5, -9.9, -93),
-                        new Point(-145, -9.9, -93),
-                        new Point(-145, -9.9, 7)
-                ).setEmission(new Color(0, 0, 200)),
-
-//                new Polygon(new Point(-150, -28, 73),//כרית
-//                        new Point(-115, -28, 73),
-//                        new Point(-105, 5, -23),
-//                        new Point(-141, 5, -23)).setEmission(new Color(WHITE)),
-//
-                 new Cuboid(new Point(-145, -10, 7),150,15, 100,new Color(WHITE)),//bed
-
-                //top left bed leg
-                new Cuboid(new Point(-142, -10, -80), 10, 60, 10),
-                //top right bed leg
-                new Cuboid(new Point(-7, -10, -80), 10, 60, 10),
-                //bottom right bed leg
-                new Cuboid(new Point(-7, -10, 4), 10, 60, 10),
-                //bottom left bed leg
-                new Cuboid(new Point(-142, -10, 4), 10, 60, 10),
 
                 //cuboids
                 new Cuboid(new Point(-90, -60, 130), 10, 10, 10, new Color(0, 255, 100)),
@@ -298,8 +370,6 @@ public class improvmentsTests {
                 new Cuboid(new Point(-93, -49, 130), 10, 10, 10, new Color(PINK)),
                 new Cuboid(new Point(-105, -49, 130), 10, 10, 10, new Color(ORANGE)),
                 new Cuboid(new Point(-50, -60, 150), 10, 10, 10, new Color(BLUE)),
-
-
 
                 new Sphere(12d, new Point(40, -58, 200))//red ball
                         .setEmission(new Color(RED))
@@ -394,19 +464,6 @@ public class improvmentsTests {
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30))
-
-
-
-
-
-
-
-
-
-
-        //new Cuboid(new Point(-125, 0, 70),10,10,200, new Color(255,255,255))
-
-
         );
 
 
