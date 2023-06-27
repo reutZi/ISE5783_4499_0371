@@ -180,10 +180,12 @@ public class finalProjects {
     public void MP2() {
         //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
         //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
-        Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-                .setVPSize(200, 200).setVPDistance(550);//.setUseAdaptive(true);//ממול
+        Camera camera = new Camera(new Point(0, 20, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+          .setVPSize(200, 200).setVPDistance(550);//.setUseAdaptive(true);//ממול
         //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
         //    .setVPSize(200, 200).setVPDistance(400); //מהצד
+        //Camera camera = new Camera(new Point(-450, 20, 1200), new Vector(0.3, 0, -0.75), new Vector(0, 1, 0))
+          //      .setVPSize(200, 200).setVPDistance(500);//.setUseAdaptive(true);//ממול
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
@@ -200,8 +202,8 @@ public class finalProjects {
                 new Polygon( //back wall
                         new Point(-200, -70, -100.2),
                         new Point(200, -70, -100.2),
-                        new Point(200, 200, -100.2),
-                        new Point(-200, 200, -100.2)
+                        new Point(200, 220, -100.2),
+                        new Point(-200, 220, -100.2)
                 ).setEmission(new Color(100, 0, 0))
                         .setMaterial(new Material()
                                 .setKd(0.5)
@@ -318,8 +320,8 @@ public class finalProjects {
                 ).setEmission(new Color(20, 20, 20)),
 
                 new Polygon(//mirror
-                        new Point(80, -35, -77),
-                        new Point(145, -35, -77),
+                        new Point(80, -35, -97),
+                        new Point(145, -35, -97),
                         new Point(145, 85, -97),
                         new Point(80, 85, -97))
                         .setEmission(new Color(140,140,140))
@@ -383,19 +385,19 @@ public class finalProjects {
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(143, -18, 23))//right arm
+                new Sphere(7d, new Point(146, -18.3, 24))//right arm
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(121, -43, 27))//left leg
+                new Sphere(7d, new Point(120, -45, 30))//left leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
                                 .setKs(0.3)
                                 .setShininess(30)),
-                new Sphere(7d, new Point(139, -43, 27))//right leg
+                new Sphere(7d, new Point(140, -45, 30))//right leg
                         .setEmission(new Color(92, 64, 51))
                         .setMaterial(new Material()
                                 .setKd(0.2)
@@ -444,8 +446,8 @@ public class finalProjects {
                 .setKl(4E-4).setKq(2E-5));
         scene.lights.add(new SpotLight(new Color(0,200,20), new Point(200,100, 200), new Vector(0, -1,-1))
                 .setKl(4E-4).setKq(2E-6));
-        scene.lights.add(new SpotLight(new Color(10, 222,20), new Point(350, 200, 1000), new Vector(-0.5, -0.75,-1))
-                .setKl(4E-4).setKq(2E-5));
+        scene.lights.add(new SpotLight(new Color(10, 222,20), new Point(-150, 200, 300), new Vector(0.5, -0.75,-1))
+               .setKl(4E-4).setKq(2E-5));
 
         scene.lights.add(new PointLight(new Color(WHITE), new Point(-177, 120, -80)).setKl(0.001).setKq(0.00015));
 
