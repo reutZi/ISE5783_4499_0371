@@ -54,7 +54,8 @@ public class improvmentsTests {
                 .setImageWriter(new ImageWriter("basic test without Antialiasing", 500, 500))
                 .setRayTracer(new RayTracerBasic(scene));
 
-        camera.renderImage();
+        camera.renderImage()
+        .setMultiThreading(3);
         camera.writeToImage();
     }
 }

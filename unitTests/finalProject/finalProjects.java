@@ -16,7 +16,7 @@ public class finalProjects {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
 
     @Test
-    public void heart() {
+    public void MP1() {
         // Camera camera = new Camera(new Point(0, -150, 800), new Vector(0, 0, -1), new Vector(0, 1, 0))
         //      .setVPSize(200, 200).setVPDistance(1000);
 
@@ -173,6 +173,7 @@ public class finalProjects {
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
+                .setAntiAliasingFactor(9)
                 .writeToImage();
     }
 

@@ -335,11 +335,6 @@ public class Camera {
         }
 
         return this;
-
-//        for (int i = 0; i < nX; i++)
-//            for (int j = 0; j < nY; j++)
-//                imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
-//        return this;
     }
 
 

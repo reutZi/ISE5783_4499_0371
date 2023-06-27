@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
-      <change afterPath="$PROJECT_DIR$/images/basic test without Antialiasing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/final project from above.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/final project in front.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/PixelManager.java" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final project">
+      <change afterPath="$PROJECT_DIR$/דוח מיניפ.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/MP2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/antiAliasing basic test.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/antiAliasing basic test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/base render test antialiasing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/cuboid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/newMP2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/newMP2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ourTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/ourTest.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Pixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/PixelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/PixelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
     </list>
@@ -97,7 +90,23 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.finalProjects.MP2">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.ourTest">
+    <configuration name="ReflectionRefractionTests.ourTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="ourTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="cubesTower.cuber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -146,22 +155,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="improvmentsTests.antiAliasingBasicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="improvments.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="improvments" />
-      <option name="MAIN_CLASS_NAME" value="improvments.improvmentsTests" />
-      <option name="METHOD_NAME" value="antiAliasingBasicTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="improvmentsTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -180,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
         <item itemvalue="JUnit.finalProjects.MP2" />
         <item itemvalue="JUnit.improvmentsTests.MP2" />
         <item itemvalue="JUnit.cubesTower.cuber" />
         <item itemvalue="JUnit.improvmentsTests.heart" />
-        <item itemvalue="JUnit.improvmentsTests.antiAliasingBasicTest" />
       </list>
     </recent_temporary>
   </component>
@@ -196,20 +189,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00014" summary="find intersection of triangle and plane">
-      <created>1682856949881</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL‎-00014" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1682856949881</updated>
-    </task>
-    <task id="LOCAL‎-00015" summary="find intersection of triangle and plane">
-      <created>1682878780126</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL‎-00015" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1682878780126</updated>
     </task>
     <task id="LOCAL‎-00016" summary="Intersectable">
       <created>1682927838620</created>
@@ -540,7 +519,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687855767353</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL‎-00063" summary="final project">
+      <created>1687861458628</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL‎-00063" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687861458628</updated>
+    </task>
+    <task id="LOCAL‎-00064" summary="final project">
+      <created>1687861471130</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL‎-00064" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687861471130</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -556,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="find intersection of triangle and plane" />
     <MESSAGE value="Intersectable" />
     <MESSAGE value="final stage 3" />
     <MESSAGE value="integrationTriangle" />
@@ -581,7 +573,8 @@
     <MESSAGE value="started MP2" />
     <MESSAGE value="started new MP2" />
     <MESSAGE value="continue new MP2" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue new MP2" />
+    <MESSAGE value="final project" />
+    <option name="LAST_COMMIT_MESSAGE" value="final project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
