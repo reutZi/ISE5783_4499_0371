@@ -178,14 +178,14 @@ public class finalProjects {
 
     @Test
     public void MP2() {
-        //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
-        //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
-        Camera camera = new Camera(new Point(0, 20, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-          .setVPSize(200, 200).setVPDistance(550);//.setUseAdaptive(true);//ממול
-        //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
-        //    .setVPSize(200, 200).setVPDistance(400); //מהצד
-        //Camera camera = new Camera(new Point(-450, 20, 1200), new Vector(0.3, 0, -0.75), new Vector(0, 1, 0))
-          //      .setVPSize(200, 200).setVPDistance(500);//.setUseAdaptive(true);//ממול
+     //   Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
+     //      .setVPSize(200, 200).setVPDistance(550); //מלמעלה
+        //Camera camera = new Camera(new Point(0, 20, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
+      //    .setVPSize(200, 200).setVPDistance(550);//.setUseAdaptive(true);//ממול
+        //  Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
+      //      .setVPSize(200, 200).setVPDistance(400); //מהצד
+        Camera camera = new Camera(new Point(-450, 20, 1200), new Vector(0.3, 0, -0.75), new Vector(0, 1, 0))
+                .setVPSize(200, 200).setVPDistance(500);//.setUseAdaptive(true);//באלכסון
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.geometries.add(
@@ -452,10 +452,11 @@ public class finalProjects {
         scene.lights.add(new PointLight(new Color(WHITE), new Point(-177, 120, -80)).setKl(0.001).setKq(0.00015));
 
 
-        ImageWriter imageWriter = new ImageWriter("newMP2", 500, 500);
+        ImageWriter imageWriter = new ImageWriter("final project diagonally", 3000, 3000);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
+                .setMultiThreading(3)
                 .writeToImage();
     }
 }

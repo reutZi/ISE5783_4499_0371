@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
+      <change afterPath="$PROJECT_DIR$/images/basic test without Antialiasing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/final project from above.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/final project in front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/PixelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/MP2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/antiAliasing basic test.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/antiAliasing basic test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/base render test antialiasing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/cuboid.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/newMP2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/newMP2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Pixel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -12,6 +12,7 @@ import renderer.RayTracerBasic;
 import scene.Scene;
 
 
+import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
 
 public class improvmentsTests {
@@ -23,27 +24,37 @@ public class improvmentsTests {
         Scene scene = new Scene.SceneBuilder("Test scene")
                 .setAmbientLight(new AmbientLight(new Color(255, 191, 191), //
                         new Double3(1, 1, 1))) //
-                .setBackground(new Color(75, 127, 90)).build();
+                .setBackground(new Color(BLACK)).build();
 
-        scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)),
-                new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
-                // left
-                new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
-                        new Point(-100, -100, -100)), // down
-                // left
-                new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
+        scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)));
         // right
         Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setVPDistance(100) //
                 .setVPSize(500, 500) //
-                .setImageWriter(new ImageWriter("antiAliasing basic test", 1000, 1000))
-                .setRayTracer(new RayTracerBasic(scene));
+                .setImageWriter(new ImageWriter("antiAliasing basic test", 500, 500))
+                .setRayTracer(new RayTracerBasic(scene))
+                .setAntiAliasingFactor(10);
 
         camera.renderImage();
         camera.writeToImage();
     }
 
+    @Test
+    public void withoutAntiAliasingBasicTest() {
+        Scene scene = new Scene.SceneBuilder("Test scene")
+                .setAmbientLight(new AmbientLight(new Color(255, 191, 191), //
+                        new Double3(1, 1, 1))) //
+                .setBackground(new Color(BLACK)).build();
 
+        scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)));
+        // right
+        Camera camera = new Camera(Point.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setVPDistance(100) //
+                .setVPSize(500, 500) //
+                .setImageWriter(new ImageWriter("basic test without Antialiasing", 500, 500))
+                .setRayTracer(new RayTracerBasic(scene));
 
-
+        camera.renderImage();
+        camera.writeToImage();
     }
+}

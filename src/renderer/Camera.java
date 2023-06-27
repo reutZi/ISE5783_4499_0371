@@ -6,7 +6,6 @@ import java.util.MissingResourceException;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
@@ -30,7 +29,9 @@ public class Camera {
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
-    private int printInterval = 0;
+    private double printInterval = 0.5;
+
+    private PixelManager pixelManager;
 
     /**
      * The factor for anti-aliasing. Determines the level of sub-pixel sampling.
@@ -50,6 +51,9 @@ public class Camera {
      * Default value is false (disabled).
      */
     private boolean useAdaptive = false;
+
+    //number of threads to be used for multi-threading.
+    private int multiThreading = 0;
 
 
     /** Constructs a new camera object.
@@ -110,6 +114,17 @@ public class Camera {
      * @return The camera object. */
     public Camera setVPDistance(double distance){
         this.distance = distance;
+        return this;
+    }
+
+    /**
+     * Sets the number of threads to be used for multi-threading.
+     *
+     * @param multiThreading the number of threads to set
+     *
+     */
+    public Camera setMultiThreading(int multiThreading) {
+        this.multiThreading = multiThreading;
         return this;
     }
 
@@ -292,19 +307,39 @@ public class Camera {
             throw new MissingResourceException("", "", "Camera is not initialized");
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-//        Pixel.initialize(nY, nX, printInterval);
-//        IntStream.range(0, nY).parallel().forEach(i -> {
-//            IntStream.range(0, nX).parallel().forEach(j -> {
-//                castRay(nX, nY, j, i);
-//                Pixel.pixelDone();
-//                Pixel.printPixel();
-//            });
-//        });
-//        return this;
-        for (int i = 0; i < nX; i++)
-            for (int j = 0; j < nY; j++)
-                imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
+
+        pixelManager = new PixelManager(nY,nX,printInterval);
+
+        if (multiThreading == 0)
+            for (int i = 0; i < nX; i++)
+                for (int j = 0; j < nY; j++) {
+
+                    //get the ray through the pixel
+                    //imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
+                    castRay(nX, nY, j, i);
+                }
+        else {
+            var threads = new LinkedList<Thread>(); // list of threads
+            while (multiThreading-- > 0) // add appropriate number of threads
+                threads.add(new Thread(() -> { // add a thread with its code
+                    PixelManager.Pixel pixel; // current pixel(row,col)
+                    // allocate pixel(row,col) in loop until there are no more pixels
+                    while ((pixel = pixelManager.nextPixel()) != null)
+                        // cast ray through pixel (and color it – inside castRay)
+                        castRay(nX, nY, pixel.col(), pixel.row());
+                }));
+            // start all the threads
+            for (var thread : threads) thread.start();
+            // wait until all the threads have finished
+            try { for (var thread : threads) thread.join(); } catch (InterruptedException ignore) {}
+        }
+
         return this;
+
+//        for (int i = 0; i < nX; i++)
+//            for (int j = 0; j < nY; j++)
+//                imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
+//        return this;
     }
 
 
@@ -318,13 +353,15 @@ public class Camera {
      * @return the color
      * @author rafael najman
      */
-    private Color castRay(int nX, int nY, int i, int j) {
+    private void castRay(int nX, int nY, int col, int row) {
         if (useAdaptive)
-            return adaptiveHelper(findPixelLocation(nX, nY, i, j), nX, nY);
+            imageWriter.writePixel(col,row,adaptiveHelper(findPixelLocation(nX, nY, col, row), nX, nY));
         else if (antiAliasingFactor == 1)
-            return rayTracer.traceRay(constructRay(nX, nY, i, j));
+            imageWriter.writePixel(col, row, rayTracer.traceRay(constructRay(nX, nY, col, row)));
         else
-            return rayTracer.traceRays(constructRays(nX, nY, i, j));
+            imageWriter.writePixel(col, row, rayTracer.traceRays(constructRays(nX, nY, col, row)));
+
+        pixelManager.pixelDone();
     }
 
     /**
