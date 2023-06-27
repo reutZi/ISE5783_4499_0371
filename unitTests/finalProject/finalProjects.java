@@ -173,7 +173,6 @@ public class finalProjects {
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()
-                .setAntiAliasingFactor(9)
                 .writeToImage();
     }
 

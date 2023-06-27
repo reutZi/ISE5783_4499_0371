@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="final project">
-      <change afterPath="$PROJECT_DIR$/דוח מיניפ.docx" afterDir="false" />
+    <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
+      <change afterPath="$PROJECT_DIR$/~$ח מיניפ.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_06_2023_11_38__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_06_2023_11_38__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_06_2023_12_30__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_06_2023_12_30__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/ourTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/ourTest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/PixelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/PixelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/heart.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/heart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.ourTest">
+  <component name="RunManager" selected="JUnit.finalProjects.MP1">
     <configuration name="ReflectionRefractionTests.ourTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -118,6 +117,22 @@
       <option name="PACKAGE_NAME" value="finalProject" />
       <option name="MAIN_CLASS_NAME" value="finalProject.cubesTower" />
       <option name="METHOD_NAME" value="cuber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="finalProjects.MP1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalProject" />
+      <option name="MAIN_CLASS_NAME" value="finalProject.finalProjects" />
+      <option name="METHOD_NAME" value="MP1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,29 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="improvmentsTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="improvments.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="improvments" />
-      <option name="MAIN_CLASS_NAME" value="improvments.improvmentsTests" />
-      <option name="METHOD_NAME" value="heart" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.finalProjects.MP1" />
         <item itemvalue="JUnit.ReflectionRefractionTests.ourTest" />
         <item itemvalue="JUnit.finalProjects.MP2" />
         <item itemvalue="JUnit.improvmentsTests.MP2" />
         <item itemvalue="JUnit.cubesTower.cuber" />
-        <item itemvalue="JUnit.improvmentsTests.heart" />
       </list>
     </recent_temporary>
   </component>
