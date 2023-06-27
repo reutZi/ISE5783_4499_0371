@@ -363,7 +363,7 @@ public class finalProjects {
                                 .setKs(0.7)
                                 .setShininess(30)),
 
-                new Cuboid(new Point(100, -50, 30), 60, 20, 50, new Color(120,90,20)),
+                new Cuboid(new Point(100, -50, 30), 60, 20, 50, new Color(120,120,120)),//little chair
 
                 new Sphere(20, new Point(130, -28, 20))//body
                         .setEmission(new Color(150, 75, 0))
@@ -442,7 +442,7 @@ public class finalProjects {
 
         scene.lights.add(new SpotLight(new Color(245, 222, 179), new Point(75, 20, 200), new Vector(0, -1, -4))
                 .setKl(4E-4).setKq(2E-5));
-        scene.lights.add(new SpotLight(new Color(200,200,200), new Point(200,100, 200), new Vector(0, -1,-1))
+        scene.lights.add(new SpotLight(new Color(0,200,20), new Point(200,100, 200), new Vector(0, -1,-1))
                 .setKl(4E-4).setKq(2E-6));
         scene.lights.add(new SpotLight(new Color(10, 222,20), new Point(350, 200, 1000), new Vector(-0.5, -0.75,-1))
                 .setKl(4E-4).setKq(2E-5));

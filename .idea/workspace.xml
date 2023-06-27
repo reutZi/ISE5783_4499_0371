@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
-      <change afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/newMP2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/newMP2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/finalProject/cubesTower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,13 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678630784933</updated>
-    </task>
-    <task id="LOCAL‎-00012" summary="find intersection of sphere - tests">
-      <created>1682601757218</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL‎-00012" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1682601757218</updated>
     </task>
     <task id="LOCAL‎-00013" summary="find intersection of sphere - tests">
       <created>1682601778512</created>
@@ -531,7 +522,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687785294599</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL‎-00061" summary="continue new MP2">
+      <created>1687855071534</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL‎-00061" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687855071534</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
