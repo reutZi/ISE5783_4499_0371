@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b738b3-3eb2-41ed-8462-6743d1ce23ab" name="Changes" comment="continue new MP2">
+      <change afterPath="$PROJECT_DIR$/unitTests/finalProject/finalProjects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/newMP2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/newMP2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/finalProject/cubesTower.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/improvments/improvmentsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,23 +88,7 @@
       <recent name="renderer" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.improvmentsTests.MP2">
-    <configuration name="ReflectionRefractionTests.heart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5783_4499_0371" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="heart" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.finalProjects.MP2">
     <configuration name="cubesTower.cuber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5783_4499_0371" />
       <extension name="coverage">
@@ -115,6 +100,22 @@
       <option name="PACKAGE_NAME" value="finalProject" />
       <option name="MAIN_CLASS_NAME" value="finalProject.cubesTower" />
       <option name="METHOD_NAME" value="cuber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="finalProjects.MP2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5783_4499_0371" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalProject" />
+      <option name="MAIN_CLASS_NAME" value="finalProject.finalProjects" />
+      <option name="METHOD_NAME" value="MP2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.finalProjects.MP2" />
         <item itemvalue="JUnit.improvmentsTests.MP2" />
         <item itemvalue="JUnit.cubesTower.cuber" />
         <item itemvalue="JUnit.improvmentsTests.heart" />
         <item itemvalue="JUnit.improvmentsTests.antiAliasingBasicTest" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.heart" />
       </list>
     </recent_temporary>
   </component>
