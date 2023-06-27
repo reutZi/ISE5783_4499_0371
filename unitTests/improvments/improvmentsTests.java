@@ -37,8 +37,7 @@ public class improvmentsTests {
                 .setVPDistance(100) //
                 .setVPSize(500, 500) //
                 .setImageWriter(new ImageWriter("antiAliasing basic test", 1000, 1000))
-                .setRayTracer(new RayTracerBasic(scene))
-                .setAntiAliasing(true).setM(9).setN(9);
+                .setRayTracer(new RayTracerBasic(scene));
 
         camera.renderImage();
         camera.writeToImage();
@@ -55,7 +54,7 @@ public class improvmentsTests {
         //Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
         //.setVPSize(200, 200).setVPDistance(1000).setAntiAliasing(true).setN(4).setM(4);
         Camera camera = new Camera(new Point(10, 1200, -200), new Vector(0, -1, 0), new Vector(1 / 2, 0, 1))
-                .setVPSize(200, 200).setVPDistance(1000).setAntiAliasing(true).setN(4).setM(4);
+                .setVPSize(200, 200).setVPDistance(1000);
 
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
 
@@ -211,7 +210,7 @@ public class improvmentsTests {
        //Camera camera = new Camera(new Point(0, 1000, 50), new Vector(0, -1,0), new Vector(0, 0, -1))
          //  .setVPSize(200, 200).setVPDistance(550); //מלמעלה
           Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))
-       .setVPSize(200, 200).setVPDistance(550);//ממול
+       .setVPSize(200, 200).setVPDistance(550).setUseAdaptive(true);//ממול
         //Camera camera = new Camera(new Point(-700, 10, 20), new Vector(1, 0, 0), new Vector(0, 1, 0))
           //    .setVPSize(200, 200).setVPDistance(400); //מהצד
 
@@ -237,7 +236,6 @@ public class improvmentsTests {
                                 .setKd(0.5)
                                 .setKs(0.5)
                                 .setShininess(0)),
-                //new Cuboid(new Point(-100, -10, -70), 100, 20, 30, new Color(BLUE)),
                 new Polygon(//white picture
                         new Point(-100, 80, -99.9),
                         new Point(-10, 80, -99.9),
@@ -272,6 +270,7 @@ public class improvmentsTests {
                         new Point(-5, 150, -100.1),
                         new Point(-105, 150, -100.1)
                 ).setEmission(new Color(GRAY)),
+
                 new Cuboid(new Point(-120, 13, -15),150,80, 80,new Color(92, 64, 51)),// counter
 
                 new Polygon(//right door in the counter
@@ -351,7 +350,10 @@ public class improvmentsTests {
                         new Point(80, -35, -77),
                         new Point(145, -35, -77),
                         new Point(145, 85, -97),
-                        new Point(80, 85, -97)).setEmission(new Color(140,140,140)).setMaterial(new Material().setKr(0.7)),
+                        new Point(80, 85, -97))
+                        .setEmission(new Color(140,140,140))
+                        .setMaterial(new Material()
+                                .setKr(0.7)),
 
                 new Cuboid(new Point(-180, 100, -80), 5, 160, 5, new Color(BLACK)),//stick of lamp
 
@@ -476,7 +478,7 @@ public class improvmentsTests {
         scene.lights.add(new PointLight(new Color(WHITE), new Point(-177, 120, -80)).setKl(0.001).setKq(0.00015));
 
 
-        ImageWriter imageWriter = new ImageWriter("newMP2", 700, 700);
+        ImageWriter imageWriter = new ImageWriter("newMP2", 500, 500);
         camera.setImageWriter(imageWriter)
                 .setRayTracer(new RayTracerBasic(scene))
                 .renderImage()

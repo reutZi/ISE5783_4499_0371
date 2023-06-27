@@ -6,6 +6,7 @@ import java.util.MissingResourceException;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /** A camera object used to construct rays for rendering an image. */
 public class Camera {
@@ -29,11 +30,27 @@ public class Camera {
     // The object used for tracing rays and computing colors.
     private RayTracerBase rayTracer;
 
+    private int printInterval = 0;
+
+    /**
+     * The factor for anti-aliasing. Determines the level of sub-pixel sampling.
+     * Default value is 1 (no anti-aliasing).
+     */
     private int antiAliasingFactor = 1;
 
+    /**
+     * The maximum adaptive level for ray tracing. Controls the level of refinement
+     * for adaptive anti-aliasing.
+     * Default value is 4.
+     */
     private int maxAdaptiveLevel = 4;
 
+    /**
+     * Specifies whether to use adaptive anti-aliasing.
+     * Default value is false (disabled).
+     */
     private boolean useAdaptive = false;
+
 
     /** Constructs a new camera object.
      * @param p    The camera position.
@@ -106,21 +123,34 @@ public class Camera {
         return this;
     }
 
+    /**
+     * Sets the image writer for the camera.
+     *
+     * @param imageWriter the image writer to set
+     * @return the Camera object itself, allowing for method chaining
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * Sets the ray tracer for the camera.
+     *
+     * @param rayTracer the ray tracer to set
+     * @return the Camera object itself, allowing for method chaining
+     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
+
     /**
      * function that sets the antiAliasingFactor
      *
      * @param antiAliasingFactor value to set
-     * @return camera itself
+     * @return The camera object
      */
     public Camera setAntiAliasingFactor(int antiAliasingFactor) {
         this.antiAliasingFactor = antiAliasingFactor;
@@ -188,6 +218,7 @@ public class Camera {
      * @param i  the x coordinate
      * @param j  the y coordinate
      * @return the ray
+     * @author rafael najman
      */
     private Point findPixelLocation(int nX, int nY, int j, int i) {
 
@@ -211,6 +242,7 @@ public class Camera {
      * @param i  the x coordinate
      * @param j  the y coordinate
      * @return the ray
+     * @author rafael najman
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
         return new Ray(position, findPixelLocation(nX, nY, j, i).subtract(position));
@@ -224,6 +256,7 @@ public class Camera {
      * @param i  the x coordinate
      * @param j  the y coordinate
      * @return the ray
+     * @author rafael najman
      */
     public List<Ray> constructRays(int nX, int nY, int j, int i) {
         List<Ray> rays = new LinkedList<>();
@@ -247,13 +280,27 @@ public class Camera {
 
 
     /**
-     * function that gets the color of the pixel and renders in to image
+     * Renders the image using the configured camera settings, image writer, and ray tracer.
+     * Throws an exception if the camera is not properly initialized.
+     *
+     * @return the Camera object itself, allowing for method chaining
+     * @throws MissingResourceException if the camera is not initialized with required parameters
+     * @author rafael najman
      */
     public Camera renderImage() {
         if (position == null || vTo == null || vUp == null || vRight == null || distance == 0 || height == 0 || width == 0 || imageWriter == null || rayTracer == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
+//        Pixel.initialize(nY, nX, printInterval);
+//        IntStream.range(0, nY).parallel().forEach(i -> {
+//            IntStream.range(0, nX).parallel().forEach(j -> {
+//                castRay(nX, nY, j, i);
+//                Pixel.pixelDone();
+//                Pixel.printPixel();
+//            });
+//        });
+//        return this;
         for (int i = 0; i < nX; i++)
             for (int j = 0; j < nY; j++)
                 imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
@@ -269,6 +316,7 @@ public class Camera {
      * @param j  the x coordinate
      * @param i  the y coordinate
      * @return the color
+     * @author rafael najman
      */
     private Color castRay(int nX, int nY, int i, int j) {
         if (useAdaptive)
@@ -284,6 +332,7 @@ public class Camera {
      *
      * @param p- point on the view plane
      * @return color of this point
+     * @author rafael najman
      */
     private Color calcPointColor(Point p) {
         return rayTracer.traceRay(new Ray(position, p.subtract(position)));
@@ -296,6 +345,7 @@ public class Camera {
      * @param nY-     number of pixels to width
      * @param nX-     number of pixels to length
      * @return- the average color of the pixel
+     * @author rafael najman
      */
     private Color adaptiveHelper(Point center, double nY, double nX) {
         Hashtable<Point, Color> pointColorTable = new Hashtable<Point, Color>();
@@ -321,6 +371,7 @@ public class Camera {
      * @param downLeftCol- the color of the down left corner
      * @param downRightCol - the color of the down vRight corner
      * @return the average color of the pixel
+     * @author rafael najman
      */
     private Color adaptive(int max, Point center, double rX, double rY, Hashtable<Point, Color> pointColorTable,
                            Color upLeftCol, Color upRightCol, Color downLeftCol, Color downRightCol) {
@@ -356,6 +407,7 @@ public class Camera {
      * @param point-           certain point in the pixel
      * @param pointColorTable- dictionary that save points and their color
      * @return the color of the point
+     * @author rafael najman
      */
     private Color getPointColorFromTable(Point point, Hashtable<Point, Color> pointColorTable) {
         if (!(pointColorTable.containsKey(point))) {
